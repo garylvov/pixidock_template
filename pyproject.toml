@@ -1,0 +1,12 @@
+[project]
+name = "TEMPLATE"
+requires-python = "== 3.11"
+version = "0.1.0"
+description = "A Python project template"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/TEMPLATE"]
