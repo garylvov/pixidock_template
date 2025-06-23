@@ -5,7 +5,7 @@
 ### Usage as Template
 
 ```bash
-git clone <your-repository-url> <YOUR_PROJECT_NAME>
+git clone https://github.com/garylvov/pixidock_template <YOUR_PROJECT_NAME>
 cd <YOUR_PROJECT_NAME>
 bash name.bash <YOUR_PROJECT_NAME>
 ```
