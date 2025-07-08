@@ -35,7 +35,7 @@ curl -fsSL https://pixi.sh/install.sh | bash
 
 ### Run Commands
 
-To enter the Docker environment if desired, run the following
+To optionally enter the Docker environment if desired, run the following
 (Docker must already be installed on the system, and must be able to be used without ``sudo``: see post-installation steps).
 
 ```bash

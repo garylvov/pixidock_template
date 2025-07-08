@@ -3,15 +3,27 @@ channels = ["conda-forge"]
 name = "TEMPLATE"
 platforms = ["linux-64"]
 version = "0.1.0"
+
+
+# Feel free to ignore features you don't need!
+
+
+### CHANNELS
 #---------------------------------------------------------------------------------------------
 [feature.gpu]
-channels = ["nvidia", "pytorch", "conda-forge"]
+channels = ["nvidia", "pytorch", "conda-forge", ]
 
 [feature.cpu]
 # CPU-only environment
+
+[feature.ros2]
+# "https://prefix.dev/robostack-[humble|jazzy|kilted]"
+channels = ["https://prefix.dev/robostack-humble", "conda-forge", ]
 #---------------------------------------------------------------------------------------------
 [feature.test]
 # Test environment
+
+### TASKS
 #---------------------------------------------------------------------------------------------
 [tasks]
 #---------------------------------------------------------------------------------------------
@@ -22,6 +34,8 @@ channels = ["nvidia", "pytorch", "conda-forge"]
 [feature.test.tasks]
 lint = "pre-commit run --all-files --show-diff-on-failure"
 test = "python -m pytest test/ -v"
+
+### CONDA DEPS
 #---------------------------------------------------------------------------------------------
 [dependencies]
 python = "==3.11"
@@ -35,15 +49,24 @@ hatchling = ">=1.27.0,<2"
 # GPU-specific dependencies
 cuda-version = "12.0.*"
 #---------------------------------------------------------------------------------------------
+[feature.ros2.dependencies]
+ros-humble-ros-core	= "*"
+ros-humble-sensor-msgs = "*"
+ros-humble-rviz2 = "*"
+#---------------------------------------------------------------------------------------------
 [feature.test.dependencies]
 pytest = ">=7.0.0"
 pre-commit = ">=3.6.0"
+
+### PYPI DEPS
 #---------------------------------------------------------------------------------------------
 [feature.cpu.pypi-dependencies]
 #---------------------------------------------------------------------------------------------
 [feature.gpu.pypi-dependencies]
 #---------------------------------------------------------------------------------------------
 [feature.test.pypi-dependencies]
+
+### UNIX ACTIVATION SCRIPTS
 #---------------------------------------------------------------------------------------------
 [target.unix.activation]
 scripts = ["post-install.bash"]
@@ -53,9 +76,13 @@ scripts = ["post-install.bash"]
 [feature.gpu.target.unix.activation]
 #---------------------------------------------------------------------------------------------
 [feature.test.target.unix.activation]
+
+
+### ENVS
 #---------------------------------------------------------------------------------------------
 [environments]
 cpu = { features = ["cpu"] }
 gpu = { features = ["gpu"] }
 test = { features = ["test"] }
-#---------------------------------------------------------------------------------------------
+ros2gpu = { features = ["ros2", "gpu"]}
+ros2cpu = { features = ["ros2", "cpu"]}
