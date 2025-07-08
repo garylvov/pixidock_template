@@ -12,16 +12,19 @@ version = "0.1.0"
 #---------------------------------------------------------------------------------------------
 [feature.gpu]
 channels = ["nvidia", "pytorch", "conda-forge", ]
-
+#---------------------------------------------------------------------------------------------
 [feature.cpu]
 # CPU-only environment
-
+#---------------------------------------------------------------------------------------------
+[feature.test]
+# Test environment
+#---------------------------------------------------------------------------------------------
 [feature.ros2]
 # "https://prefix.dev/robostack-[humble|jazzy|kilted]"
 channels = ["https://prefix.dev/robostack-humble", "conda-forge", ]
 #---------------------------------------------------------------------------------------------
-[feature.test]
-# Test environment
+[feature.genesis]
+channels = ["conda-forge"]
 
 ### TASKS
 #---------------------------------------------------------------------------------------------
@@ -48,15 +51,16 @@ hatchling = ">=1.27.0,<2"
 [feature.gpu.dependencies]
 # GPU-specific dependencies
 cuda-version = "12.0.*"
+pytorch = ">=2.3.0"
+#---------------------------------------------------------------------------------------------
+[feature.test.dependencies]
+pytest = ">=7.0.0"
+pre-commit = ">=3.6.0"
 #---------------------------------------------------------------------------------------------
 [feature.ros2.dependencies]
 ros-humble-ros-core	= "*"
 ros-humble-sensor-msgs = "*"
 ros-humble-rviz2 = "*"
-#---------------------------------------------------------------------------------------------
-[feature.test.dependencies]
-pytest = ">=7.0.0"
-pre-commit = ">=3.6.0"
 
 ### PYPI DEPS
 #---------------------------------------------------------------------------------------------
@@ -65,6 +69,9 @@ pre-commit = ">=3.6.0"
 [feature.gpu.pypi-dependencies]
 #---------------------------------------------------------------------------------------------
 [feature.test.pypi-dependencies]
+#---------------------------------------------------------------------------------------------
+[feature.genesis.pypi-dependencies]
+# genesis-world = "*" # currently broken numpy dep resolution
 
 ### UNIX ACTIVATION SCRIPTS
 #---------------------------------------------------------------------------------------------
@@ -76,6 +83,7 @@ scripts = ["post-install.bash"]
 [feature.gpu.target.unix.activation]
 #---------------------------------------------------------------------------------------------
 [feature.test.target.unix.activation]
+#---------------------------------------------------------------------------------------------
 
 
 ### ENVS
@@ -86,3 +94,4 @@ gpu = { features = ["gpu"] }
 test = { features = ["test"] }
 ros2gpu = { features = ["ros2", "gpu"]}
 ros2cpu = { features = ["ros2", "cpu"]}
+genesisgpu = { features = ["genesis", "gpu"]}
