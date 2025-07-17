@@ -1,0 +1,3 @@
+[submodule "ros2_ws/src/ros_utilities"]
+	path = ros2_ws/src/ros_utilities
+	url = https://github.com/bdaiinstitute/ros_utilities

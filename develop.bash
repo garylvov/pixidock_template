@@ -7,7 +7,8 @@ PROJECT_NAME=$(basename "$(pwd)")
 # CPU build: Uses Ubuntu base image without CUDA, suitable for systems without GPU support
 # GPU build: Uses NVIDIA CUDA base image with GPU support enabled
 CPU_BASE_IMAGE="ubuntu:22.04"
-GPU_BASE_IMAGE="nvidia/cuda:12.4.1-base-ubuntu22.04"
+# Can try changing devel to base if you don't need to compile anything
+GPU_BASE_IMAGE="cuda:12.6.1-devel-ubuntu22.04 "
 
 # Default values
 USE_CPU=false

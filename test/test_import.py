@@ -1,10 +1,3 @@
-# Copyright 2025 TEMPLATE
-
-"""
-Test that the TEMPLATE package can be imported correctly.
-"""
-
-
 def test_import_package():
     """Test that the package has the expected structure."""
     import TEMPLATE

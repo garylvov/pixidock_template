@@ -1,4 +1,5 @@
-ARG BASE_IMAGE=nvidia/cuda:12.4.1-base-ubuntu22.04
+# Can try changing devel to base if you don't need to compile anything
+ARG BASE_IMAGE=nvidia/cuda:12.6.1-devel-ubuntu22.04
 FROM ${BASE_IMAGE}
 
 RUN apt-get update && apt-get install -y \

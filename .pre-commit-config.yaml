@@ -39,6 +39,7 @@ repos:
     hooks:
       - id: insert-license
         files: \.py$
+        exclude: (__init__\.py|test/.*\.py)$
         args:
           - --license-filepath
           - LICENSE.txt

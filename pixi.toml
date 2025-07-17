@@ -1,97 +1,119 @@
 [workspace]
-channels = ["conda-forge"]
+channels = ["https://prefix.dev/conda-forge"]
 name = "TEMPLATE"
 platforms = ["linux-64"]
 version = "0.1.0"
 
+#### Base Bare Bones Environment
 
-# Feel free to ignore features you don't need!
-
-
-### CHANNELS
-#---------------------------------------------------------------------------------------------
-[feature.gpu]
-channels = ["nvidia", "pytorch", "conda-forge", ]
-#---------------------------------------------------------------------------------------------
-[feature.cpu]
-# CPU-only environment
-#---------------------------------------------------------------------------------------------
-[feature.test]
-# Test environment
-#---------------------------------------------------------------------------------------------
-[feature.ros2]
-# "https://prefix.dev/robostack-[humble|jazzy|kilted]"
-channels = ["https://prefix.dev/robostack-humble", "conda-forge", ]
-#---------------------------------------------------------------------------------------------
-[feature.genesis]
-channels = ["conda-forge"]
-
-### TASKS
-#---------------------------------------------------------------------------------------------
-[tasks]
-#---------------------------------------------------------------------------------------------
-[feature.cpu.tasks]
-#---------------------------------------------------------------------------------------------
-[feature.gpu.tasks]
-#---------------------------------------------------------------------------------------------
-[feature.test.tasks]
-lint = "pre-commit run --all-files --show-diff-on-failure"
-test = "python -m pytest test/ -v"
-
-### CONDA DEPS
-#---------------------------------------------------------------------------------------------
-[dependencies]
-python = "==3.11"
+[dependencies] # Global dependencies across all environments
 pip = ">=25.0.1,<26"
 hatchling = ">=1.27.0,<2"
-#---------------------------------------------------------------------------------------------
+numpy = "*"
+
+[feature.cpu]
 [feature.cpu.dependencies]
-# CPU-specific dependencies can be added here
-#---------------------------------------------------------------------------------------------
-[feature.gpu.dependencies]
-# GPU-specific dependencies
-cuda-version = "12.0.*"
-pytorch = ">=2.3.0"
-#---------------------------------------------------------------------------------------------
+python = "==3.11" # We define Python here to avoid conflicts with other features
+
+[tasks]
+# Tasks would go here.
+[target.unix.activation]
+scripts = ["post-install.bash"] # pip  install the package in editable mode
+
+#### All possible environment combinations
+[environments]
+cpu = { features = ["cpu"] } # All you need for bare-bones
+
+## The following environment combinations are optional and can safely be removed if not needed.
+gpu = { features = ["gpu"] }
+test = { features = ["test", "cpu"] }
+test-gpu = { features = ["gpu", "test"] }
+ros2-gpu = { features = ["ros2", "gpu"]}
+ros2-cpu = { features = ["ros2", "cpu"]}
+genesis-gpu = { features = ["genesis", "gpu"]}
+genesis-ros2-gpu = { features = ["genesis", "gpu", "ros2"]} # Advanced users ;)
+
+isaaclab = {features = ["isaaclab"]}
+# Now, for the other environment configurations.
+# Feel free to ignore and delete features you don't need!
+
+#### Test Environment----------------------------------------------------------------------------
 [feature.test.dependencies]
 pytest = ">=7.0.0"
 pre-commit = ">=3.6.0"
-#---------------------------------------------------------------------------------------------
+[feature.test.tasks]
+lint = "pre-commit run --all-files --show-diff-on-failure"
+test = "python -m pytest test/* -v"
+
+#### GPU Environment-----------------------------------------------------------------------------
+[feature.gpu]
+# Channels would go here.
+[feature.gpu.dependencies]
+python = "==3.11" # We define Python here to avoid conflicts with other features
+# For a different CUDA version change here and the torch/torchvision pypi versions below accordingly
+# Or, use the included docker and develop scripts to get a virtualized compatible CUDA env
+cuda-version = "==12.6"
+# pytorch-gpu = "2.7.*" # I found that importing torch through conda is more brittle
+# I import torch through pypi mapping as it's easier to resolve the deps that way;
+# I think maybe more wheels are available that way and it's more compatible with ROS?
+# To be frank I'm not entirely sure what the difference is but it works better with pypi
+[feature.gpu.pypi-dependencies]
+# https://pytorch.org/get-started/locally/
+torch = { version = ">=2.7", index = "https://download.pytorch.org/whl/cu126" }
+torchvision = { version = "<=0.22.1", index = "https://download.pytorch.org/whl/cu126" }
+
+#### Genesis Simulation Environment------------------------------------------------------------
+[feature.genesis.dependencies]
+numpy = "==1.26.4" # otherwise, genesis complains:
+# Because all versions of genesis-world depend on numpy==1.26.4 and numpy==2.3.1, we can conclude that all versions of genesis-world cannot be used.
+[feature.genesis.pypi-dependencies]
+libigl = "==2.5.1" # https://github.com/Genesis-Embodied-AI/Genesis/issues/1156
+genesis-world = ">=0.2.1, <0.3" # Only available built wheels at the moment
+
+#### ROS 2 Environment---------------------------------------------------------------------------
+[feature.ros2]
+# "https://prefix.dev/robostack-[humble|jazzy|kilted]"
+channels = ["https://prefix.dev/robostack-humble", "https://prefix.dev/conda-forge", ]
 [feature.ros2.dependencies]
 ros-humble-ros-core	= "*"
 ros-humble-sensor-msgs = "*"
 ros-humble-rviz2 = "*"
-
-### PYPI DEPS
-#---------------------------------------------------------------------------------------------
-[feature.cpu.pypi-dependencies]
-#---------------------------------------------------------------------------------------------
-[feature.gpu.pypi-dependencies]
-#---------------------------------------------------------------------------------------------
-[feature.test.pypi-dependencies]
-#---------------------------------------------------------------------------------------------
-[feature.genesis.pypi-dependencies]
-# genesis-world = "*" # currently broken numpy dep resolution
-
-### UNIX ACTIVATION SCRIPTS
-#---------------------------------------------------------------------------------------------
-[target.unix.activation]
-scripts = ["post-install.bash"]
-#---------------------------------------------------------------------------------------------
-[feature.cpu.target.unix.activation]
-#---------------------------------------------------------------------------------------------
-[feature.gpu.target.unix.activation]
-#---------------------------------------------------------------------------------------------
-[feature.test.target.unix.activation]
-#---------------------------------------------------------------------------------------------
+compilers = "*"
+cmake = "*"
+pkg-config = "*"
+make = "*"
+ninja = "*"
+colcon-common-extensions = "*"
+ros-humble-rosbag2 = "*"
+ros-humble-rosbag2-storage-mcap = "*"
+# " error: option --editable not recognized for setuptools==80.1.0 " occurs for building ROS 2 Humble Python Packages
+setuptools = ">=59.6.0,<=79.0.1"
+[feature.ros2.tasks]
+bag = "ros2 bag record -s mcap --all"
+build-ros = "bash build_ros2_ws.bash"
+[feature.ros2.target.unix.activation]
+scripts = ["ros2_ws/install/setup.bash"]
 
 
-### ENVS
-#---------------------------------------------------------------------------------------------
-[environments]
-cpu = { features = ["cpu"] }
-gpu = { features = ["gpu"] }
-test = { features = ["test"] }
-ros2gpu = { features = ["ros2", "gpu"]}
-ros2cpu = { features = ["ros2", "cpu"]}
-genesisgpu = { features = ["genesis", "gpu"]}
+## Experimental failed environment; Isaac Lab only supports conda and not Pixi at the moment ;(
+### Isaac Sim Environment-----------------------------------------------------------------------
+# Warning; not as compatible as the other environments; use with caution
+# Once Isaac Sim is updated to Torch 2.7, and Python 3.11, it will be compatible with all other environments ;)
+# Latest Isaac Sim wheel is still Python 3.10 and Torch 2025
+[feature.isaaclab]
+[feature.isaaclab.dependencies]
+python = "==3.10"
+cmake = ">3.6"
+conda-build = "*"
+nbstripout = "*" # Robomimic doesn't work without this lol
+[feature.isaaclab.pypi-dependencies]
+# isaacsim = { version = "==4.5.0", index = "https://pypi.nvidia.com" }
+# If we try to add it as a pypi dependency, it fails to resolve the deps
+# Because isaacsim[all] has no wheels with a matching platform tag (e.g., `manylinux_2_28_x86_64`) we can conclude that your requirements are unsatisfiable.
+# hint: Wheels are available for `isaacsim` (v4.5.0.0) on the following platforms: `manylinux_2_34_x86_64`, `win_amd64`
+# If we just pip install it, things aren't as strict, see the install_isaaclab.bash script
+torch = { version = "==2.5.1", index = "https://download.pytorch.org/whl/cu121" }
+torchvision = { version = "==0.20.1", index = "https://download.pytorch.org/whl/cu121" }
+[feature.isaaclab.tasks] # Isaac Sim specific tasks
+# https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
+install-isaaclab = "bash install_isaaclab.bash"
