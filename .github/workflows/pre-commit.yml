@@ -22,6 +22,7 @@ jobs:
         run: |
           pixi install
 
-      - name: Run pre-commit
+      - name: Run lint
         run: |
-          pixi run lint
+          pixi run --environment test lint
+
