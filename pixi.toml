@@ -95,8 +95,6 @@ build-ros = "bash build_ros2_ws.bash"
 [feature.ros2.target.unix.activation]
 scripts = ["ros2_ws/install/setup.bash"]
 
-
-## Experimental failed environment; Isaac Lab only supports conda and not Pixi at the moment ;(
 ### Isaac Sim Environment-----------------------------------------------------------------------
 # Warning; not as compatible as the other environments; use with caution
 # Once Isaac Sim is updated to Torch 2.7, and Python 3.11, it will be compatible with all other environments ;)
