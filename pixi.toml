@@ -33,7 +33,10 @@ ros2-cpu = { features = ["ros2", "cpu"]}
 genesis-gpu = { features = ["genesis", "gpu"]}
 genesis-ros2-gpu = { features = ["genesis", "gpu", "ros2"]} # Advanced users ;)
 
+# Isaac Lab is not yet compatible with the other environments, due to Python and Torch version conflicts
+# use on it's own for now. See below for more info.
 isaaclab = {features = ["isaaclab"]}
+
 # Now, for the other environment configurations.
 # Feel free to ignore and delete features you don't need!
 
