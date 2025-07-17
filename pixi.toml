@@ -38,6 +38,7 @@ isaaclab = {features = ["isaaclab"]}
 # Feel free to ignore and delete features you don't need!
 
 #### Test Environment----------------------------------------------------------------------------
+# This environment is relied upon by default by the CI in .github/workflows/pre-commit.yml
 [feature.test.dependencies]
 pytest = ">=7.0.0"
 pre-commit = ">=3.6.0"
