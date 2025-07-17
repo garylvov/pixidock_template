@@ -107,7 +107,6 @@ scripts = ["ros2_ws/install/setup.bash"]
 python = "==3.10"
 cmake = ">3.6"
 conda-build = "*"
-nbstripout = "*" # Robomimic doesn't work without this lol
 [feature.isaaclab.pypi-dependencies]
 # isaacsim = { version = "==4.5.0", index = "https://pypi.nvidia.com" }
 # If we try to add it as a pypi dependency, it fails to resolve the deps
