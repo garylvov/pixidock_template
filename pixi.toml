@@ -23,10 +23,10 @@ scripts = ["post-install.bash"] # pip  install the package in editable mode
 #### All possible environment combinations
 [environments]
 cpu = { features = ["cpu"] } # All you need for bare-bones
+test = { features = ["test", "cpu"] } # This environment is relied upon by default by the CI
 
 ## The following environment combinations are optional and can safely be removed if not needed.
 gpu = { features = ["gpu"] }
-test = { features = ["test", "cpu"] }
 test-gpu = { features = ["gpu", "test"] }
 ros2-gpu = { features = ["ros2", "gpu"]}
 ros2-cpu = { features = ["ros2", "cpu"]}
