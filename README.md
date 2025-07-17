@@ -108,10 +108,8 @@ to activate the environment.
 ```bash
 pixi s  # Activate environment, add -e for specific env, like -e gpu|ros2-gpu|ros2-cpu|genesis-gpu|genesis-ros2-gpu|isaaclab
 
-# For Isaac Lab, make sure to also run pixi r install-isaaclab
+# For Isaac Lab, make sure to also run pixi r install-isaaclab, prior to commands, it'll be faster after the first time
 ```
-
-Test that the environment is well formed.
 
 ## Testing and Linting
 

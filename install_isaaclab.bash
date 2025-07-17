@@ -12,18 +12,22 @@ echo "Cloning IsaacLab repo and egl_probe if not present..."
 if [ ! -d "egl_probe" ]; then
   git clone https://github.com/StanfordVL/egl_probe.git egl_probe
   # Patch the CMakeLists.txt to use CMake >= 3.5
-  sed -i '1s/.*/cmake_minimum_required(VERSION 3.5...3.28)/' egl_probe/CMakeLists.txt
-  pip install ./egl_probe
 else
-  echo "egl_probe already exists, skipping clone and install."
+  echo "egl_probe already exists, skipping clone "
 fi
+
+sed -i '1s/.*/cmake_minimum_required(VERSION 3.5...3.28)/' egl_probe/egl_probe/CMakeLists.txt
+pip install ./egl_probe
+
 
 # Clone IsaacLab if not already present
 if [ ! -d "IsaacLab" ]; then
   git clone git@github.com:isaac-sim/IsaacLab.git
-  cd IsaacLab
-  ./isaaclab.sh -i
 else
   echo "IsaacLab already exists, skipping clone and install."
 fi
+
+cd IsaacLab
+./isaaclab.sh -i
+
 echo "Isaac Lab installation complete, see at IsaacLab"
