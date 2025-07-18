@@ -20,6 +20,6 @@ jobs:
         with:
           pixi-version: v0.43.3
 
-      - name: Run lint
+      - name : Run test
         run: |
-          pixi run --environment test lint
+          pixi run --environment test test
