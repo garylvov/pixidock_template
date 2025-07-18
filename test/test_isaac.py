@@ -1,7 +1,7 @@
 import pytest
 
 
-def test_isaaclab_existeence():
+def test_isaaclab_existence():
     try:
         from isaaclab.app import AppLauncherimport  # noqa: F401
     except ImportError:

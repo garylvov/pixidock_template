@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  pre-commit:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
