@@ -81,9 +81,6 @@ pytorch3d = { version = "==0.7.8+pt2.7.0cu126", index = "https://miropsota.githu
 numpy = "==1.26.4" # otherwise, genesis complains:
 # Because all versions of genesis-world depend on numpy==1.26.4 and numpy==2.3.1, we can conclude that all versions of genesis-world cannot be used.
 [feature.genesis.pypi-dependencies]
-# # Crazy manual patch needed to get pyrender to play nice, which genesis-world uses.
-# #
-# pyrender = { git = "https://github.com/mmatl/pyrender.git", tag = "7c613e8aed7142df9ff40767a8f10b7a19b6255c" }
 libigl = "==2.5.1" # https://github.com/Genesis-Embodied-AI/Genesis/issues/1156
 # Get a very recent release
 genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", tag = "d0e31a2f5f86225c5b516960fda89927408e2f96" }
