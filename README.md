@@ -89,20 +89,23 @@ curl -fsSL https://pixi.sh/install.sh | bash
 
 ### Run Commands
 
-To optionally enter the Docker environment if desired, run the following
+Optionally, to enter the Docker virtualization environment if desired to achieve cross-version compatibility, run the following
 (Docker must already be installed on the system, and must be able to be used without ``sudo``: see post-installation steps).
 
 ```bash
-# Build the container
-bash build.bash
+# Build and enter the container (GPU version by default)
+bash develop.bash
 
-# Enter the container
-bash develop.bash  # GPU version, add --cpu for CPU version
+# For CPU-only version
+bash develop.bash --cpu
+
+# You can also specify other options:
+# bash develop.bash --base-image ubuntu:22.04 --image-name myproject --tag v1.0 --build-arg SOME_ARG=VALUE
 
 # For a new terminal, docker container ls ; docker exec -it <CONTAINER_ID> -- bash
 ```
 
-Then, from within either the Docker container or the project parent folder with Pixi installed on the system, run the following
+Then, from within either the project parent folder or the Docker image home directory, with Pixi installed on the system, run the following
 to activate the environment.
 
 ```bash
