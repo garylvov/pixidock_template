@@ -62,7 +62,7 @@ For example, the same computer vision for robotics package can be used without R
 ```bash
 git clone https://github.com/garylvov/pixidock_template <YOUR_PROJECT_NAME>
 cd <YOUR_PROJECT_NAME>
-bash name.bash <YOUR_PROJECT_NAME>
+bash scripts/name.bash <YOUR_PROJECT_NAME>
 ```
 
 Then, delete everything above Quick Start, this line, and edit the rest of the README.
@@ -100,13 +100,13 @@ Optionally, to enter the Docker virtualization environment if desired to achieve
 
 ```bash
 # Build and enter the container (GPU version by default)
-bash develop.bash
+bash scripts/develop.bash
 
 # For CPU-only version
-bash develop.bash --cpu
+bash scripts/develop.bash --cpu
 
 # You can also specify other options:
-# bash develop.bash --base-image ubuntu:22.04 --image-name myproject --tag v1.0 --build-arg SOME_ARG=VALUE
+# bash scripts/develop.bash --base-image ubuntu:22.04 --image-name myproject --tag v1.0 --build-arg SOME_ARG=VALUE
 
 # For a new terminal, docker container ls ; docker exec -it <CONTAINER_ID> -- bash
 ```
