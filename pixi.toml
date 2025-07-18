@@ -10,6 +10,9 @@ version = "0.1.0"
 pip = ">=25.0.1,<26"
 hatchling = ">=1.27.0,<2"
 numpy = "*"
+matplotlib = "*"
+jupyter = "*" # For jupyter notebooks
+ipywidgets = "*" # For jupyter notebooks
 
 [feature.cpu]
 [feature.cpu.dependencies]
@@ -26,16 +29,16 @@ cpu = { features = ["cpu"] } # All you need for bare-bones
 test = { features = ["test", "cpu"] } # This environment is relied upon by default by the CI
 
 ## The following environment combinations are optional and can safely be removed if not needed.
-gpu = { features = ["gpu"] }
-test-gpu = { features = ["gpu", "test"] }
-ros2-gpu = { features = ["ros2", "gpu"]}
-ros2-cpu = { features = ["ros2", "cpu"]}
-genesis-gpu = { features = ["genesis", "gpu"]}
-genesis-ros2-gpu = { features = ["genesis", "gpu", "ros2"]} # Advanced users ;)
+gpu = { features = ["gpu", ] }
+test-gpu = { features = ["gpu", "test", ] }
+ros2-gpu = { features = ["ros2", "gpu", ]}
+ros2-cpu = { features = ["ros2", "cpu", ]}
+genesis-gpu = { features = ["genesis", "gpu", ]}
+genesis-ros2-gpu = { features = ["genesis", "gpu", "ros2", ]} # Advanced users ;)
 
 # Isaac Lab is not yet compatible with the other environments, due to Python and Torch version conflicts
 # use on it's own for now. See below for more info.
-isaaclab = {features = ["isaaclab"]}
+isaaclab = {features = ["isaaclab", ]}
 
 # Now, for the other environment configurations.
 # Feel free to ignore and delete features you don't need!
@@ -61,10 +64,17 @@ cuda-version = "==12.6"
 # I import torch through pypi mapping as it's easier to resolve the deps that way;
 # I think maybe more wheels are available that way and it's more compatible with ROS?
 # To be frank I'm not entirely sure what the difference is but it works better with pypi
+# For computer vision tasks, feel free to remove if not needed
+imageio = ">=2.37.0,<3"
+scikit-image = ">=0.25.2,<0.26"
 [feature.gpu.pypi-dependencies]
 # https://pytorch.org/get-started/locally/
 torch = { version = ">=2.7", index = "https://download.pytorch.org/whl/cu126" }
+# For computer vision tasks, feel free to remove if not needed
 torchvision = { version = "<=0.22.1", index = "https://download.pytorch.org/whl/cu126" }
+# Special thank you to @MiroPsota for these wheels
+# https://github.com/facebookresearch/pytorch3d/discussions/1752?
+pytorch3d = { version = "==0.7.8+pt2.7.0cu126", index = "https://miropsota.github.io/torch_packages_builder" }
 
 #### Genesis Simulation Environment------------------------------------------------------------
 [feature.genesis.dependencies]
