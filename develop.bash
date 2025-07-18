@@ -79,6 +79,9 @@ docker build \
 
 echo "Build completed: $IMAGE_NAME:$TAG"
 
+echo "Warning, disabling access control for X server. This may have security implications."
+sudo xhost +
+echo "Make sure to re-enable access control with 'sudo xhost -' after exiting the container."
 # Base docker command
 DOCKER_CMD="docker run -it \
 --env=DISPLAY=$DISPLAY \
@@ -88,6 +91,7 @@ DOCKER_CMD="docker run -it \
 --privileged \
 --volume=/dev/bus/usb:/dev/bus/usb:rw \
 --volume=$(pwd):/workspace \
+--shm-size=8G \
 --workdir=/workspace"
 
 # Add GPU flag if not using CPU
