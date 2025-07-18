@@ -17,6 +17,8 @@ jobs:
 
       - name: Install Pixi
         uses: prefix-dev/setup-pixi@v0.3.0
+        with:
+          pixi-version: v0.43.3
 
       - name: Install dependencies
         run: |
@@ -25,3 +27,7 @@ jobs:
       - name: Run lint
         run: |
           pixi run --environment test lint
+
+      - name : Run test
+        run: |
+          pixi run --environment test test
