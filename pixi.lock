@@ -946,6 +946,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/colcon-devtools-0.3.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-library-path-0.2.1-py_0.tar.bz2
       - conda: https://prefix.dev/conda-forge/noarch/colcon-metadata-0.2.5-py_0.tar.bz2
+      - conda: https://prefix.dev/conda-forge/noarch/colcon-mixin-0.2.3-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-output-0.2.13-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-package-information-0.4.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-package-selection-0.2.10-py_0.tar.bz2
@@ -963,7 +964,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/linux-64/compilers-1.10.0-ha770c72_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/console_bridge-1.0.2-h924138e_1.tar.bz2
       - conda: https://prefix.dev/conda-forge/linux-64/contourpy-1.3.2-py311hd18a35c_0.conda
-      - conda: https://prefix.dev/conda-forge/linux-64/coverage-7.9.2-py311h2dc5d0c_0.conda
+      - conda: https://prefix.dev/conda-forge/linux-64/coverage-7.10.0-py311h3778330_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/cppcheck-2.17.1-py311hca438b8_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/cryptography-45.0.5-py311hafd3f86_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/cuda-version-12.6-h7480c83_3.conda
@@ -975,7 +976,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/linux-64/debugpy-1.8.14-py311hfdbb021_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/decorator-5.2.1-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/defusedxml-0.7.1-pyhd8ed1ab_0.tar.bz2
-      - conda: https://prefix.dev/conda-forge/noarch/distlib-0.3.9-pyhd8ed1ab_1.conda
+      - conda: https://prefix.dev/conda-forge/noarch/distlib-0.4.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/distro-1.9.0-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/docutils-0.21.2-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/linux-64/double-conversion-3.3.1-h5888daf_0.conda
@@ -1608,8 +1609,8 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/f5/4f/febddea17a122dc933b74ce512ee81b4bc00577f0940bd920925f1c30d48/taichi-1.7.3-cp311-cp311-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/e5/30/643397144bfbfec6f6ef821f36f33e57d35946c44a2352d3c9f0ae847619/tenacity-9.1.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/82/f6/054cf29d236e244e6dd4feb32979f5eae16d3677f5aab8b6913de0b4f568/tetgen-0.6.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-      - pypi: https://download.pytorch.org/whl/cu126/torch-2.7.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl#sha256=e1a8465165708c2e2e90786ade8a3e1b1d01eca1f022792cd397caad9d8c21bc
-      - pypi: https://download.pytorch.org/whl/cu126/torchvision-0.22.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl#sha256=b49a0e0c10680e8ee8cb703227640a4b6376d5a285fe73b3254f304707cd8d2f
+      - pypi: https://download.pytorch.org/whl/cu126/torch-2.7.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl
+      - pypi: https://download.pytorch.org/whl/cu126/torchvision-0.22.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/d0/30/dc54f88dd4a2b5dc8a0279bdd7270e735851848b762aeb1c1184ed1f6b14/tqdm-4.67.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c6/64/99e785dd4bb5796881b5686b0869a6ebf75b1b7d00932af577eb343c4f72/trimesh-4.7.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/21/2f/3e56ea7b58f80ff68899b1dbe810ff257c9d177d288c6b0f55bf2fe4eb50/triton-3.3.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
@@ -2325,6 +2326,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/colcon-devtools-0.3.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-library-path-0.2.1-py_0.tar.bz2
       - conda: https://prefix.dev/conda-forge/noarch/colcon-metadata-0.2.5-py_0.tar.bz2
+      - conda: https://prefix.dev/conda-forge/noarch/colcon-mixin-0.2.3-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-output-0.2.13-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-package-information-0.4.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-package-selection-0.2.10-py_0.tar.bz2
@@ -2342,7 +2344,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/linux-64/compilers-1.10.0-ha770c72_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/console_bridge-1.0.2-h924138e_1.tar.bz2
       - conda: https://prefix.dev/conda-forge/linux-64/contourpy-1.3.2-py311hd18a35c_0.conda
-      - conda: https://prefix.dev/conda-forge/linux-64/coverage-7.9.2-py311h2dc5d0c_0.conda
+      - conda: https://prefix.dev/conda-forge/linux-64/coverage-7.10.0-py311h3778330_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/cppcheck-2.17.1-py311hca438b8_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/cryptography-45.0.5-py311hafd3f86_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/cxx-compiler-1.10.0-h1a2810e_0.conda
@@ -2352,7 +2354,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/linux-64/debugpy-1.8.14-py311hfdbb021_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/decorator-5.2.1-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/defusedxml-0.7.1-pyhd8ed1ab_0.tar.bz2
-      - conda: https://prefix.dev/conda-forge/noarch/distlib-0.3.9-pyhd8ed1ab_1.conda
+      - conda: https://prefix.dev/conda-forge/noarch/distlib-0.4.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/distro-1.9.0-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/docutils-0.21.2-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/linux-64/double-conversion-3.3.1-h5888daf_0.conda
@@ -2964,6 +2966,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/colcon-devtools-0.3.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-library-path-0.2.1-py_0.tar.bz2
       - conda: https://prefix.dev/conda-forge/noarch/colcon-metadata-0.2.5-py_0.tar.bz2
+      - conda: https://prefix.dev/conda-forge/noarch/colcon-mixin-0.2.3-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-output-0.2.13-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-package-information-0.4.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/colcon-package-selection-0.2.10-py_0.tar.bz2
@@ -2981,7 +2984,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/linux-64/compilers-1.10.0-ha770c72_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/console_bridge-1.0.2-h924138e_1.tar.bz2
       - conda: https://prefix.dev/conda-forge/linux-64/contourpy-1.3.2-py311hd18a35c_0.conda
-      - conda: https://prefix.dev/conda-forge/linux-64/coverage-7.9.2-py311h2dc5d0c_0.conda
+      - conda: https://prefix.dev/conda-forge/linux-64/coverage-7.10.0-py311h3778330_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/cppcheck-2.17.1-py311hca438b8_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/cryptography-45.0.5-py311hafd3f86_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/cuda-version-12.6-h7480c83_3.conda
@@ -2993,7 +2996,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/linux-64/debugpy-1.8.14-py311hfdbb021_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/decorator-5.2.1-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/defusedxml-0.7.1-pyhd8ed1ab_0.tar.bz2
-      - conda: https://prefix.dev/conda-forge/noarch/distlib-0.3.9-pyhd8ed1ab_1.conda
+      - conda: https://prefix.dev/conda-forge/noarch/distlib-0.4.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/distro-1.9.0-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/docutils-0.21.2-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/linux-64/double-conversion-3.3.1-h5888daf_0.conda
@@ -3583,8 +3586,8 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/4b/a6/38c8e2f318bf67d338f4d629e93b0b4b9af331f455f0390ea8ce4a099b26/portalocker-3.2.0-py3-none-any.whl
       - pypi: https://github.com/MiroPsota/torch_packages_builder/releases/download/pytorch3d-0.7.8/pytorch3d-0.7.8%2Bpt2.7.0cu126-cp311-cp311-linux_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl
-      - pypi: https://download.pytorch.org/whl/cu126/torch-2.7.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl#sha256=e1a8465165708c2e2e90786ade8a3e1b1d01eca1f022792cd397caad9d8c21bc
-      - pypi: https://download.pytorch.org/whl/cu126/torchvision-0.22.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl#sha256=b49a0e0c10680e8ee8cb703227640a4b6376d5a285fe73b3254f304707cd8d2f
+      - pypi: https://download.pytorch.org/whl/cu126/torch-2.7.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl
+      - pypi: https://download.pytorch.org/whl/cu126/torchvision-0.22.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/d0/30/dc54f88dd4a2b5dc8a0279bdd7270e735851848b762aeb1c1184ed1f6b14/tqdm-4.67.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/21/2f/3e56ea7b58f80ff68899b1dbe810ff257c9d177d288c6b0f55bf2fe4eb50/triton-3.3.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
   test:
@@ -5078,6 +5081,19 @@ packages:
   - pkg:pypi/colcon-metadata?source=hash-mapping
   size: 17805
   timestamp: 1597041738215
+- conda: https://prefix.dev/conda-forge/noarch/colcon-mixin-0.2.3-pyhd8ed1ab_1.conda
+  sha256: beabb15276e1e246b7b5715f82b7fa43593dda6cb51e0fee229729e0d4a8f2aa
+  md5: 8f6f5ee1a01268b62a07ff35e818c522
+  depends:
+  - colcon-core >=0.12
+  - python >=3.9
+  - pyyaml
+  license: Apache-2.0
+  license_family: APACHE
+  purls:
+  - pkg:pypi/colcon-mixin?source=hash-mapping
+  size: 25148
+  timestamp: 1736162602690
 - conda: https://prefix.dev/conda-forge/noarch/colcon-output-0.2.13-pyhd8ed1ab_0.conda
   sha256: ce2802f9c76f4502d17ff47f76f634449a1ae10fded0bed6a65c05d35ccafb33
   md5: d0294b947e6256444f31979612468bba
@@ -5457,21 +5473,20 @@ packages:
   license_family: BSD
   size: 278576
   timestamp: 1744743243839
-- conda: https://prefix.dev/conda-forge/linux-64/coverage-7.9.2-py311h2dc5d0c_0.conda
-  sha256: bd58cbea4606052fc7f1236d4ae8febc95f877dd34e588f6060147e4f43aafde
-  md5: 4a4d2bb7e4d14efb7320206a57467029
+- conda: https://prefix.dev/conda-forge/linux-64/coverage-7.10.0-py311h3778330_0.conda
+  sha256: 1223c410786ae545eb51ed3611010aa29931864ea38cb9dc6652b7301290ef3b
+  md5: 2f62d3939cc0ce55d8b371cf9f5f3c82
   depends:
   - __glibc >=2.17,<3.0.a0
-  - libgcc >=13
+  - libgcc >=14
   - python >=3.11,<3.12.0a0
   - python_abi 3.11.* *_cp311
   - tomli
   license: Apache-2.0
-  license_family: APACHE
   purls:
   - pkg:pypi/coverage?source=hash-mapping
-  size: 382776
-  timestamp: 1751548744567
+  size: 388729
+  timestamp: 1753387820948
 - conda: https://prefix.dev/conda-forge/linux-64/cpp-expected-1.1.0-hff21bea_1.conda
   sha256: 234e423531e0d5f31e8e8b2979c4dfa05bdb4c502cb3eb0a5db865bd831d333e
   md5: 54e8e1a8144fd678c5d43905e3ba684d
@@ -5699,6 +5714,17 @@ packages:
   - pkg:pypi/distlib?source=hash-mapping
   size: 274151
   timestamp: 1733238487461
+- conda: https://prefix.dev/conda-forge/noarch/distlib-0.4.0-pyhd8ed1ab_0.conda
+  sha256: 6d977f0b2fc24fee21a9554389ab83070db341af6d6f09285360b2e09ef8b26e
+  md5: 003b8ba0a94e2f1e117d0bd46aebc901
+  depends:
+  - python >=3.9
+  license: Apache-2.0
+  license_family: APACHE
+  purls:
+  - pkg:pypi/distlib?source=compressed-mapping
+  size: 275642
+  timestamp: 1752823081585
 - conda: https://prefix.dev/conda-forge/noarch/distro-1.9.0-pyhd8ed1ab_1.conda
   sha256: 5603c7d0321963bb9b4030eadabc3fd7ca6103a38475b4e0ed13ed6d97c86f4e
   md5: 0a2014fd9860f8b1eaa0b1f3d3771a08
@@ -16107,6 +16133,36 @@ packages:
   - opt-einsum>=3.3 ; extra == 'opt-einsum'
   - optree>=0.12.0 ; extra == 'optree'
   requires_python: '>=3.8.0'
+- pypi: https://download.pytorch.org/whl/cu126/torch-2.7.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl
+  name: torch
+  version: 2.7.1+cu126
+  sha256: e1a8465165708c2e2e90786ade8a3e1b1d01eca1f022792cd397caad9d8c21bc
+  requires_dist:
+  - filelock
+  - typing-extensions>=4.10.0
+  - setuptools ; python_full_version >= '3.12'
+  - sympy>=1.13.3
+  - networkx
+  - jinja2
+  - fsspec
+  - nvidia-cuda-nvrtc-cu12==12.6.77 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-cuda-runtime-cu12==12.6.77 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-cuda-cupti-cu12==12.6.80 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-cudnn-cu12==9.5.1.17 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-cublas-cu12==12.6.4.1 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-cufft-cu12==11.3.0.4 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-curand-cu12==10.3.7.77 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-cusolver-cu12==11.7.1.2 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-cusparse-cu12==12.5.4.2 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-cusparselt-cu12==0.6.3 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-nccl-cu12==2.26.2 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-nvtx-cu12==12.6.77 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-nvjitlink-cu12==12.6.85 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - nvidia-cufile-cu12==1.11.1.6 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - triton==3.3.1 ; platform_machine == 'x86_64' and sys_platform == 'linux'
+  - optree>=0.13.0 ; extra == 'optree'
+  - opt-einsum>=3.3 ; extra == 'opt-einsum'
+  requires_python: '>=3.9.0'
 - pypi: https://download.pytorch.org/whl/cu126/torch-2.7.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl#sha256=e1a8465165708c2e2e90786ade8a3e1b1d01eca1f022792cd397caad9d8c21bc
   name: torch
   version: 2.7.1+cu126
@@ -16148,6 +16204,17 @@ packages:
   - gdown>=4.7.3 ; extra == 'gdown'
   - scipy ; extra == 'scipy'
   requires_python: '>=3.8'
+- pypi: https://download.pytorch.org/whl/cu126/torchvision-0.22.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl
+  name: torchvision
+  version: 0.22.1+cu126
+  sha256: b49a0e0c10680e8ee8cb703227640a4b6376d5a285fe73b3254f304707cd8d2f
+  requires_dist:
+  - numpy
+  - torch==2.7.1
+  - pillow>=5.3.0,!=8.3.*
+  - gdown>=4.7.3 ; extra == 'gdown'
+  - scipy ; extra == 'scipy'
+  requires_python: '>=3.9'
 - pypi: https://download.pytorch.org/whl/cu126/torchvision-0.22.1%2Bcu126-cp311-cp311-manylinux_2_28_x86_64.whl#sha256=b49a0e0c10680e8ee8cb703227640a4b6376d5a285fe73b3254f304707cd8d2f
   name: torchvision
   version: 0.22.1+cu126

@@ -19,7 +19,7 @@ ipywidgets = "*" # For jupyter notebooks
 python = "==3.11" # We define Python here to avoid conflicts with other features
 
 [tasks]
-# Tasks would go here.
+gitmod = "git submodule update --init --recursive"
 [target.unix.activation]
 scripts = ["scripts/post-install.bash"] # pip  install the package in editable mode
 
@@ -94,21 +94,25 @@ channels = ["https://prefix.dev/robostack-humble", "https://prefix.dev/conda-for
 ros-humble-ros-core	= "*"
 ros-humble-sensor-msgs = "*"
 ros-humble-rviz2 = "*"
+ros-humble-rosbag2 = "*"
+ros-humble-rosbag2-storage-mcap = "*"
+
 compilers = "*"
 cmake = "*"
 pkg-config = "*"
 make = "*"
 ninja = "*"
-colcon-common-extensions = "*"
-ros-humble-rosbag2 = "*"
-ros-humble-rosbag2-storage-mcap = "*"
+
+colcon-common-extensions = "*" # needed for using ros2_ws/colcon-defaults.yaml
+colcon-mixin = "*"
+
 # " error: option --editable not recognized for setuptools==80.1.0 " occurs for building ROS 2 Humble Python Packages
 setuptools = ">=59.6.0,<=79.0.1"
 [feature.ros2.tasks]
 bag = "ros2 bag record -s mcap --all"
-build-ros = "bash scripts/build_ros2_ws.bash"
+build-ros = "colcon build"
 [feature.ros2.target.unix.activation]
-scripts = ["ros2_ws/install/setup.bash"]
+scripts = ["ros2_ws/install/setup.bash", "scripts/ros2-config-colcon.bash"]
 
 ### Isaac Sim Environment-----------------------------------------------------------------------
 # Warning; not as compatible as the other environments; use with caution

@@ -1,0 +1,13 @@
+# Contains colcon default settings for user overlay containers.
+build:
+  # Enable this for bidirectional syncing from the UI
+  symlink-install: true
+  # https://colcon.readthedocs.io/en/released/reference/executor-arguments.html
+  executor: parallel
+  # num_paralel_workers : auto configured to be number of CPU cores by default with 'parallel' executor
+  mixin:
+    # Multithreaded linker to speed up linking step during compilation
+    - lld
+    - compile-commands
+    # Debug info and build testing for dev workflows
+    - rel-with-deb-info

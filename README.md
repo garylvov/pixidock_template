@@ -77,7 +77,7 @@ This repository primarily targets x64 Linux.
 
 ```bash
 git clone <YOUR_REPO_LINK>
-cd TEMPLATE && git submodule init && git submodule update
+cd TEMPLATE && git submodule update --init --recursive
 ```
 
 Using Pixi directly to resolve dependencies is sometimes sufficient if the system is compatible
@@ -86,6 +86,7 @@ Using Pixi directly to resolve dependencies is sometimes sufficient if the syste
 Docker can be used to address GPU driver version mismatches through virtualization, while autoinstalling all dependencies.
 This approach ensures the environment matches the project requirements exactly if possible.
 For NVIDIA GPU setup with Docker, refer to [this guide](https://github.com/garylvov/dev_env/tree/main/setup_scripts/nvidia).
+For non-GPU setup, install Docker and Docker compose, and follow the post-installation steps to ensure that Docker can be run without sudo.
 
 If not using Docker, install Pixi on the base system with the following command.
 
@@ -93,10 +94,9 @@ If not using Docker, install Pixi on the base system with the following command.
 curl -fsSL https://pixi.sh/install.sh | bash
 ```
 
-### Run Commands
+### Environment Entry and Configuration
 
-Optionally, to enter the Docker virtualization environment if desired to achieve cross-version compatibility, run the following
-(Docker must already be installed on the system, and must be able to be used without ``sudo``: see post-installation steps).
+Optionally, to enter the Docker virtualization environment if desired to achieve CUDA version compatibility, run the following.
 
 ```bash
 # Build and enter the container (GPU version by default)
@@ -111,14 +111,22 @@ bash scripts/develop.bash --cpu
 # For a new terminal, docker container ls ; docker exec -it <CONTAINER_ID> -- bash
 ```
 
-Then, from within either the project parent folder or the Docker image home directory, with Pixi installed on the system, run the following
+Then, from within either the project parent folder or the Docker image home directory, run the following
 to activate the environment.
 
 ```bash
-pixi s  # Activate environment, add -e for specific env, like -e gpu|ros2-gpu|ros2-cpu|genesis-gpu|genesis-ros2-gpu|isaaclab
+pixi s  # Activate environment, add -e for specific env,
+# Envs: gpu|ros2-gpu|ros2-cpu|genesis-gpu|genesis-ros2-gpu|isaaclab
 
-# For Isaac Lab, make sure to also run pixi r install-isaaclab, prior to commands, it'll be faster after the first time
+# For ROS, run "colcon build" or "pixi r build-ros" to build the ros2_ws
+# colcon build is auto-configured by ros2_ws/colcon-defaults.yaml
+
+# For Isaac Lab, do "pixi r install-isaaclab" to install all deps
 ```
+
+### Run Commands
+
+Here is where to put the entrypoints your user may care about.
 
 ## Testing and Linting
 
