@@ -80,7 +80,7 @@ git clone <YOUR_REPO_LINK>
 cd TEMPLATE && git submodule update --init --recursive
 ```
 
-Pixi is all that's needed to locally to resolve dependencies WITHOUT Docker/Docker Compose if:
+Pixi is all that's needed to locally to resolve dependencies if:
 - Using CPU only environments on x86-64 Linux
 - Using GPU compatible environments while having a matching CUDA version installed on the x86-64 Linux host system (CUDA ver. 12.6)
 
