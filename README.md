@@ -2,7 +2,7 @@
 
 [![Pre-commit](https://github.com/garylvov/pixidock_template/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/garylvov/pixidock_template/actions/workflows/pre-commit.yaml) [![Test](https://github.com/garylvov/pixidock_template/actions/workflows/test.yaml/badge.svg)](https://github.com/garylvov/pixidock_template/actions/workflows/test.yaml)
 
-## Philosophy - Hermetic,  Reproducible, and Neat Python environment
+## Philosophy - Hermetic,  Reproducible, and Neat Python environment(s)
 
 This template shamelessly targets only 64 bit linux systems while favoring NVIDIA GPUs and Ubuntu. Sorry! PRs are welcome for support for other platforms ;p
 
@@ -54,7 +54,8 @@ That being said, Option A and B may not cover every case. However, cases that ca
 <br>
 
 Finally, Pixi has [great multi-environment support](https://pixi.sh/dev/tutorials/multi_environment/).
-For example, the same computer vision for robotics package can be used without ROS, with ROS, with a simulator, with a GPU, or combinations of the previous mentioned environments.
+For example, the same computer vision for robotics package code can be used without ROS, with ROS, with a simulator, with a GPU, or combinations of the previous mentioned environments,
+all [while sharing the same PyTorch version](pixi.toml) as a dependency.
 
 ## Quick Start
 
