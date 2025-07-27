@@ -7,12 +7,12 @@ version = "0.1.0"
 #### Base Bare Bones Environment
 
 [dependencies] # Global dependencies across all environments
-pip = ">=25.0.1,<26"
+pip = ">=25.1.1,<26"
 hatchling = ">=1.27.0,<2"
-numpy = "*"
-matplotlib = "*"
-jupyter = "*" # For jupyter notebooks
-ipywidgets = "*" # For jupyter notebooks
+numpy = ">=1.26.4,<3"
+matplotlib = ">=3.10.3,<4"
+jupyter = ">=1.1.1,<2"
+ipywidgets = ">=8.1.7,<9"
 
 [feature.cpu]
 [feature.cpu.dependencies]
@@ -67,6 +67,7 @@ cuda-version = "==12.6"
 # For computer vision tasks, feel free to remove if not needed
 imageio = ">=2.37.0,<3"
 scikit-image = ">=0.25.2,<0.26"
+
 [feature.gpu.pypi-dependencies]
 # https://pytorch.org/get-started/locally/
 torch = { version = ">=2.7", index = "https://download.pytorch.org/whl/cu126" }
@@ -79,20 +80,21 @@ pytorch3d = { version = "==0.7.8+pt2.7.0cu126", index = "https://miropsota.githu
 #### Genesis Simulation Environment------------------------------------------------------------
 [feature.genesis.dependencies]
 numpy = "==1.26.4" # otherwise, genesis complains:
-# Because all versions of genesis-world depend on numpy==1.26.4 and numpy==2.3.1, we can conclude that all versions of genesis-world cannot be used.
 [feature.genesis.pypi-dependencies]
-libigl = "==2.5.1" # https://github.com/Genesis-Embodied-AI/Genesis/issues/1156
-# Get a very recent release
-genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", tag = "d0e31a2f5f86225c5b516960fda89927408e2f96" }
+genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", tag = "ec40996d4959d9a347e03c1a2ae63a27089d3952" }
 # genesis-world = ">=0.2.1, <0.3" # Only available built wheels at the moment, for a more stable release
+
+[feature.genesis.target.unix.activation]
+scripts = ["scripts/config-genesis.bash"]
 
 #### ROS 2 Environment---------------------------------------------------------------------------
 [feature.ros2]
 # "https://prefix.dev/robostack-[humble|jazzy|kilted]"
 channels = ["https://prefix.dev/robostack-humble", "https://prefix.dev/conda-forge", ]
 [feature.ros2.dependencies]
+# For minimal dep set
 ros-humble-ros-core	= "*"
-ros-humble-sensor-msgs = "*"
+# For full feature set
 ros-humble-rviz2 = "*"
 ros-humble-rosbag2 = "*"
 ros-humble-rosbag2-storage-mcap = "*"
@@ -108,11 +110,12 @@ colcon-mixin = "*"
 
 # " error: option --editable not recognized for setuptools==80.1.0 " occurs for building ROS 2 Humble Python Packages
 setuptools = ">=59.6.0,<=79.0.1"
+
 [feature.ros2.tasks]
 bag = "ros2 bag record -s mcap --all"
 build-ros = "colcon build"
 [feature.ros2.target.unix.activation]
-scripts = ["ros2_ws/install/setup.bash", "scripts/ros2-config-colcon.bash"]
+scripts = ["ros2_ws/install/setup.bash", "scripts/config-ros2-colcon.bash"]
 
 ### Isaac Sim Environment-----------------------------------------------------------------------
 # Warning; not as compatible as the other environments; use with caution
@@ -123,6 +126,7 @@ scripts = ["ros2_ws/install/setup.bash", "scripts/ros2-config-colcon.bash"]
 python = "==3.10"
 cmake = ">3.6"
 conda-build = "*"
+
 [feature.isaaclab.pypi-dependencies]
 # isaacsim = { version = "==4.5.0", index = "https://pypi.nvidia.com" }
 # If we try to add it as a pypi dependency, it fails to resolve the deps
@@ -131,6 +135,7 @@ conda-build = "*"
 # If we just pip install it, things aren't as strict, see the install_isaaclab.bash script
 torch = { version = "==2.5.1", index = "https://download.pytorch.org/whl/cu121" }
 torchvision = { version = "==0.20.1", index = "https://download.pytorch.org/whl/cu121" }
+
 [feature.isaaclab.tasks] # Isaac Sim specific tasks
 # https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
-install-isaaclab = "bash install_isaaclab.bash"
+install-isaaclab = "bash scripts/install_isaaclab.bash"

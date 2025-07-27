@@ -73,46 +73,43 @@ Good luck!
 
 ### Clone the Repo and Install Dependencies
 
-This repository primarily targets x64 Linux.
+This repository primarily targets x86-64 Linux.
 
 ```bash
 git clone <YOUR_REPO_LINK>
 cd TEMPLATE && git submodule update --init --recursive
 ```
 
-Using Pixi directly to resolve dependencies is sometimes sufficient if the system is compatible
-(Linux with correct drivers+version for GPU work).
+Using Pixi directly locally to resolve dependencies WITHOUT Docker/Docker Compose is sufficient if:
+- Using CPU only environments on x86-64 Linux
+- Using GPU compatible environments while having a matching CUDA version installed on the x86-64 Linux host system (CUDA ver. 12.6)
 
-Docker can be used to address GPU driver version mismatches through virtualization, while autoinstalling all dependencies.
+Otherwise, Docker (and Docker Compose) can be used to address GPU driver version mismatches through virtualization, while autoinstalling all dependencies.
 This approach ensures the environment matches the project requirements exactly if possible.
-For NVIDIA GPU setup with Docker, refer to [this guide](https://github.com/garylvov/dev_env/tree/main/setup_scripts/nvidia).
-For non-GPU setup, install Docker and Docker compose, and follow the post-installation steps to ensure that Docker can be run without sudo.
+To configure an NVIDIA GPU system with Docker/Docker Compose, refer to [this guide](https://github.com/garylvov/dev_env/tree/main/setup_scripts/nvidia).
 
-If not using Docker, install Pixi on the base system with the following command.
+Installing dependencies through Pixi directly WITHOUT Docker is highly recommended.
+
+To use Pixi directly on the base system run the following installation command.
 
 ```bash
 curl -fsSL https://pixi.sh/install.sh | bash
 ```
 
-### Environment Entry and Configuration
-
-Optionally, to enter the Docker virtualization environment if desired to achieve CUDA version compatibility, run the following.
+If using Docker, install Docker and Docker Compose on the host system, and enter the container prior to running any commands with the following.
 
 ```bash
-# Build and enter the container (GPU version by default)
-bash scripts/develop.bash
-
-# For CPU-only version
-bash scripts/develop.bash --cpu
-
-# You can also specify other options:
-# bash scripts/develop.bash --base-image ubuntu:22.04 --image-name myproject --tag v1.0 --build-arg SOME_ARG=VALUE
-
-# For a new terminal, docker container ls ; docker exec -it <CONTAINER_ID> -- bash
+# Build and enter the container
+bash scripts/develop-compose.bash
+# For a new terminal, run "docker exec -it TEMPLATE_dev bash"
+# To stop, run "docker compose down && sudo xhost -"
 ```
 
+### Environment Entry and Configuration
+
+
 Then, from within either the project parent folder or the Docker image home directory, run the following
-to activate the environment.
+to activate the environment(s).
 
 ```bash
 pixi s  # Activate environment, add -e for specific env,
@@ -122,9 +119,13 @@ pixi s  # Activate environment, add -e for specific env,
 # colcon build is auto-configured by ros2_ws/colcon-defaults.yaml
 
 # For Isaac Lab, do "pixi r install-isaaclab" to install all deps
+
+# Genesis + Isaac Lab environments are still a bit flaky despite my best efforts ;(
 ```
 
 ### Run Commands
+
+All run commands must occur from within the project parent folder or Docker image home directory to function correctly.
 
 Here is where to put the entrypoints your user may care about.
 
