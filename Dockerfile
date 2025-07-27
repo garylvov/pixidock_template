@@ -22,3 +22,6 @@ RUN rm -rf /tmp/* /var/tmp/*
 RUN pixi shell-hook -e default > /workspace/shell-hook.sh
 RUN echo 'exec "$@"' >> /workspace/shell-hook.sh
 RUN chmod +x /workspace/shell-hook.sh
+
+# For Genesis only
+RUN apt-get update && apt install -y libosmesa6 libosmesa6-dev && rm -rf /var/lib/apt/lists/*

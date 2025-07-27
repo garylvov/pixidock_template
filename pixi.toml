@@ -80,10 +80,11 @@ pytorch3d = { version = "==0.7.8+pt2.7.0cu126", index = "https://miropsota.githu
 #### Genesis Simulation Environment------------------------------------------------------------
 [feature.genesis.dependencies]
 numpy = "==1.26.4" # otherwise, genesis complains:
+pyopengl="*"
 [feature.genesis.pypi-dependencies]
+PyOpenGL_accelerate = "*"
 genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", tag = "ec40996d4959d9a347e03c1a2ae63a27089d3952" }
 # genesis-world = ">=0.2.1, <0.3" # Only available built wheels at the moment, for a more stable release
-
 [feature.genesis.target.unix.activation]
 scripts = ["scripts/config-genesis.bash"]
 
