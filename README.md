@@ -1,5 +1,8 @@
 # pixidock_template
 
+[![Pre-commit](https://github.com/garylvov/pixidock_template/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/garylvov/pixidock_template/actions/workflows/pre-commit.yml)
+[![test](https://github.com/garylvov/pixidock_template/actions/workflows/test.yml/badge.svg)](https://github.com/garylvov/pixidock_template/actions/workflows/test.yml)
+
 ## Philosophy - Hermetic,  Reproducible, and Neat Python environment
 
 This template shamelessly targets only 64 bit linux systems while favoring NVIDIA GPUs and Ubuntu. Sorry! PRs are welcome for support for other platforms ;p
