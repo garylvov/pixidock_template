@@ -12,10 +12,10 @@ For those who like robots, there are environments for [ROS 2](https://www.ros.or
 Check out the [pixi.toml](pixi.toml) to see all environments.
 
 Pixi and Docker are two tools that together, in my opinion, can create a largely hermetic,  reproducible, and neat Python environment.
-I think it's better than just ```pip``` and/or ```apt```  installing, or using ```venv```, or ```conda```, or ```mamba```, or other virtualization tools.
+I think it's better than just ```pip``` and/or ```apt```  installing, or using ```virtualenv```, or [uv alone](https://docs.astral.sh/uv/#installation), ```conda```, or ```mamba```, or other virtualization tools.
 I will give [Bazel an honorable mention](https://github.com/RobotLocomotion/drake-ros/tree/main/bazel_ros2_rules/ros2#alternatives), but to be honest it seems harder to set up.
 Of course, the environment isn't perfectly hermetic, reproducible, and neat, as some things love to be ```pip``` installed after Pixi environment creation.
-Things that are ```pip``` installed after Pixi environment creation are not be reflected in the Pixi Lockfile (such as Isaac Lab, due the package platform being incorrectly identified as incompatible through Pixi-based uv PyPi installation, when ```pip``` doesn't fail on the platform check) and thus are weak points for reproducibility.
+Things that are ```pip``` installed after Pixi environment creation are not be reflected in the Pixi Lockfile (such as Isaac Lab, due the package platform being incorrectly identified as incompatible through [Pixi-based uv](https://prefix.dev/blog/uv_in_pixi) PyPi installation, when ```pip``` doesn't fail on the platform check) and thus are weak points for reproducibility.
 
 Although Pixi can create hermetic environments largely on its own, oftentimes a thin Docker virtualization layer may be needed to get CUDA to be reproducible across mistmatching host CUDA versions to be able to use the GPU (see an [example here](https://github.com/yuliangguo/depth_any_camera/pull/5))
 
