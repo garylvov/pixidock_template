@@ -96,7 +96,7 @@ To use Pixi directly on the base system run the following installation command.
 curl -fsSL https://pixi.sh/install.sh | bash
 ```
 
-If using Docker, install Docker and Docker Compose on the host system, and enter the container prior to running any commands with the following.
+If using Docker, install [Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and [Docker Compose](https://docs.docker.com/compose/install/linux/#install-using-the-repository) on the host system, and enter the container prior to running any commands with the following.
 
 ```bash
 # Build and enter the container
