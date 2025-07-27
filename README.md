@@ -6,7 +6,7 @@ This template shamelessly targets only 64 bit linux systems while favoring NVIDI
 
 Also, this template includes environments containing popular libraries for roboticists, as I am a roboticist, and I created this template largely for myself. However, it really could be used
 for any Python project, especially if interfacing with the GPU. The robotics environments can easily be deleted; get rid of the envs/deps you don't need!
-For those who like robots, there are environments for ROS 2, ROS 2 with GPU, [Genesis Simulator](https://genesis-world.readthedocs.io/en/latest/), and [NVIDIA Isaac Lab](https://isaac-sim.github.io/IsaacLab/main/index.html) (NVIDIA Isaac Simulator base physics engine with robot learning support overlay).
+For those who like robots, there are environments for [ROS 2](https://www.ros.org/), ROS 2 with GPU, [Genesis Simulator](https://genesis-world.readthedocs.io/en/latest/), and [NVIDIA Isaac Lab](https://isaac-sim.github.io/IsaacLab/main/index.html) (NVIDIA Isaac Simulator base physics engine with robot learning support overlay).
 Check out the [pixi.toml](pixi.toml) to see all environments.
 
 Pixi and Docker are two tools that together, in my opinion, can create a largely hermetic,  reproducible, and neat Python environment.
