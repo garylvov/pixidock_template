@@ -119,7 +119,7 @@ pixi s  # Activate environment, add -e for specific env,
 
 # For ROS, run "colcon build" or "pixi r build-ros" to build the ros2_ws
 # colcon build is auto-configured by ros2_ws/colcon-defaults.yaml
-# To build your package, clone it into ros2_ws/src, and add it to the colcon-defaults.yaml
+# To build your package, clone it into ros2_ws/src, and add it's name to the colcon-defaults.yaml
 
 # For Isaac Lab, do "pixi r install-isaaclab" to install all deps
 
