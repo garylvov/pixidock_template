@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Isaac Lab can't be easily added to the the pixi.toml
+# Isaac Lab can't be easily added to the the pixi.toml like Genesis currently is
 # due the package platform being incorrectly identified as incompatible through Pixi-based uv PyPi installation,
 # Pip doesn't fail on the platform check, and is more easily deceived
 
