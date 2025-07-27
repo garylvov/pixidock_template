@@ -80,7 +80,7 @@ git clone <YOUR_REPO_LINK>
 cd TEMPLATE && git submodule update --init --recursive
 ```
 
-Using Pixi directly locally to resolve dependencies WITHOUT Docker/Docker Compose is sufficient if:
+Pixi is all that's needed to locally to resolve dependencies WITHOUT Docker/Docker Compose if:
 - Using CPU only environments on x86-64 Linux
 - Using GPU compatible environments while having a matching CUDA version installed on the x86-64 Linux host system (CUDA ver. 12.6)
 
@@ -88,9 +88,9 @@ Otherwise, Docker (and Docker Compose) can be used to address GPU driver version
 This approach ensures the environment matches the project requirements exactly if possible.
 To configure an NVIDIA GPU system with Docker/Docker Compose, refer to [this guide](https://github.com/garylvov/dev_env/tree/main/setup_scripts/nvidia).
 
-Installing dependencies through Pixi directly WITHOUT Docker is highly recommended.
+Installing dependencies through Pixi locally WITHOUT Docker is highly recommended.
 
-To use Pixi directly on the base system run the following installation command.
+To use Pixi locally on the base system run the following installation command.
 
 ```bash
 curl -fsSL https://pixi.sh/install.sh | bash
