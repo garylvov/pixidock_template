@@ -4,7 +4,7 @@ echo "🔍 Checking for available NVIDIA GPUs in Docker passthrough..."
 
 export BASE_IMAGE=nvidia/cuda:12.6.3-base-ubuntu22.04
 
-if docker run --rm --gpus all $(BASE_IMAGE) nvidia-smi > /dev/null 2>&1; then
+if docker run --rm --gpus all $BASE_IMAGE nvidia-smi > /dev/null 2>&1; then
   echo "✅ NVIDIA GPUs detected. Using CUDA-enabled base image."
   export GPU_COUNT=all
 else
