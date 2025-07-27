@@ -44,3 +44,12 @@ repos:
           - --license-filepath
           - LICENSE.txt
           - --use-current-year
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args: [
+          "--ignore-words-list=crate,te",  # example: ignore common false positives
+          "--skip=*.json,*.csv,*.lock",      # optional: skip files
+        ]

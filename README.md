@@ -14,9 +14,9 @@ Check out the [pixi.toml](pixi.toml) to see all environments.
 Pixi and Docker are two tools that together, in my opinion, can create a largely hermetic,  reproducible, and neat Python environment.
 I think it's better than just ```pip``` and/or ```apt```  installing, or using ```virtualenv```, or [uv alone](https://docs.astral.sh/uv/#installation), ```conda```, or ```mamba```, or other virtualization tools.
 I will give [Bazel an honorable mention](https://github.com/RobotLocomotion/drake-ros/tree/main/bazel_ros2_rules/ros2#alternatives), but to be honest it seems harder to set up.
-Of course, the environment isn't perfectly hermetic, reproducible, and neat, as some things [(such as Isaac Lab) need to be ```pip``` installed or otherwise configured after Pixi environment creation](scripts/install-isaaclab.bash) resulting in some instability as dependencies are ommitted from the [Lockfile](pixi.lock). That being said, it is the closest I've gotten to hermetic, reproducible, and neat ;)
+Of course, not all included environments are perfectly hermetic, reproducible, and neat, as some things [(such as Isaac Lab) need to be ```pip``` installed or otherwise configured after Pixi environment creation](scripts/install-isaaclab.bash) resulting in some instability as dependencies are sometimes omitted from the [Lockfile](pixi.lock). That being said, it is the closest I've gotten to hermetic, reproducible, and neat for many of the environments.
 
-Although Pixi can create hermetic environments largely on its own, oftentimes a thin Docker virtualization layer may be needed to get CUDA to be reproducible across mistmatching host CUDA versions to be able to use the GPU (see an [example here](https://github.com/yuliangguo/depth_any_camera/pull/5))
+Although Pixi can create hermetic environments largely on its own, oftentimes a thin Docker virtualization layer may be needed to get CUDA to be reproducible across mismatching host CUDA versions to be able to use the GPU (see an [example here](https://github.com/yuliangguo/depth_any_camera/pull/5))
 
 I also like to use [Pixi with ROS 2 through the RoboStack project](https://robostack.github.io/GettingStarted.html#__tabbed_1_2), as this allows for using specific versions of PyTorch+CUDA with ROS 2 that may not be packaged with the ```apt``` repository ROS 2 package versions.
 
@@ -42,7 +42,7 @@ However, [be wary of relying on rosdep](https://github.com/huggingface/lerobot).
 
 Option B: Running the library within Docker with it's own standalone version of ROS 2, that communicates through ROS 2 with this template package
 
-Some libraries, such as the Franka Robot Arm Drivers, can't yet be easily built with RoboStack (I failed on my attempt, but I know someone who succeded with careful version selection and building libfranka from source).
+Some libraries, such as the Franka Robot Arm Drivers, can't yet be easily built with RoboStack (I failed on my attempt, but I know someone who succeeded with careful version selection and building libfranka from source).
 In this case, I would advise running these libraries
 in their own standalone docker container, using the ```network=host``` flag when starting the container, with ROS 2 installed from ```apt``` or built from source.
 This way, the library within the container should hopefully still be able to communicate with this template's ROS despite originating messages from two different versions of ROS 2.
