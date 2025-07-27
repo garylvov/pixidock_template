@@ -1,7 +1,6 @@
 # pixidock_template
 
-[![Pre-commit](https://github.com/garylvov/pixidock_template/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/garylvov/pixidock_template/actions/workflows/pre-commit.yml)
-[![test](https://github.com/garylvov/pixidock_template/actions/workflows/test.yml/badge.svg)](https://github.com/garylvov/pixidock_template/actions/workflows/test.yml)
+[![Pre-commit](https://github.com/garylvov/pixidock_template/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/garylvov/pixidock_template/actions/workflows/pre-commit.yaml) [![Test](https://github.com/garylvov/pixidock_template/actions/workflows/test.yaml/badge.svg)](https://github.com/garylvov/pixidock_template/actions/workflows/test.yaml)
 
 ## Philosophy - Hermetic,  Reproducible, and Neat Python environment
 
