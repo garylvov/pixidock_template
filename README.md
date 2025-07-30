@@ -132,7 +132,7 @@ All run commands must occur from within the project parent folder or Docker imag
 
 Here is where to put the entrypoints your user may care about.
 
-### Community Contributions
+## Community Contributions
 
 If something doesn't work, please create a GitHub issue!
 PRs are always welcome!
