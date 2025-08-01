@@ -122,7 +122,7 @@ scripts = ["ros2_ws/install/setup.bash", "scripts/config-ros2-colcon.bash"]
 # Latest Isaac Sim wheel is still Python 3.10 and Torch 2025
 [feature.isaaclab]
 [feature.isaaclab.dependencies]
-python = "==3.10" 
+python = "==3.10"
 cmake = ">3.6"
 conda-build = "*"
 pytorch-gpu = "==2.7.0"
