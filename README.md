@@ -30,25 +30,26 @@ Using RoboStack with ROS, allows to try to find a version of ```library A``` tha
 It also increases reproducibility as well with versioned lockfiles for ROS packages.
 <br>
 
-In some cases, certain libraries may not be compatible out of the box with RoboStack.
+In some cases, certain packages/libraries may not be compatible out of the box with RoboStack.
+In this case, there are a few good options on make the package/library compatible.
 
-In this case, there are two options that I like to do.
+Option A: Help everybody by [adding the package/library to RoboStack](https://robostack.github.io/Contributing.html)
 
-Option A: Building the library within a ROS workspace with RoboStack
+Option B: Help everybody by [opening an issue with a package request on RoboStack on your ROS distribution](https://github.com/RoboStack/ros-humble/issues/325)
+
+Option C: Building the library within a ROS workspace with RoboStack
 
 The desired library may not be available on the RoboStack package index, but it maybe can still be built as part of the ROS workspace.
 Run <code>pixi r build-ros</code> to build the [synchros2](https://github.com/bdaiinstitute/ros_utilities/wiki) package from source in <code>ros2_ws</code> directory to see an example.
 However, [be wary of relying on rosdep](https://github.com/huggingface/lerobot).
 
-Option B: Running the library within Docker with it's own standalone version of ROS 2, that communicates through ROS 2 with this template package
+Option D: Running the library within Docker with it's own standalone version of ROS 2, that communicates through ROS 2 with this template package
 
-Some libraries, such as the Franka Robot Arm Drivers, can't yet be easily built with RoboStack (I failed on my attempt, but I know someone who succeeded with careful version selection and building libfranka from source).
+In a time crunch, it may be useful to use an external library as-is without modifications.
 In this case, I would advise running these libraries
 in their own standalone docker container, using the ```network=host``` flag when starting the container, with ROS 2 installed from ```apt``` or built from source.
 This way, the library within the container should hopefully still be able to communicate with this template's ROS despite originating messages from two different versions of ROS 2.
 Be wary of ```ufw``` blocking the UDP packets; see how to [enable multicast](https://docs.ros.org/en/rolling/How-To-Guides/Installation-Troubleshooting.html).
-
-That being said, Option A and B may not cover every case. However, cases that can't be tackled with either of the above options, may not be possible to use with ROS even through other methods.
 
 </details>
 <br>
