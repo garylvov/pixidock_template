@@ -55,22 +55,23 @@ test = "python -m pytest test/* -v"
 #### GPU Environment-----------------------------------------------------------------------------
 [feature.gpu]
 # Channels would go here.
+[feature.gpu.system-requirements]
+# Thank you to Matthew Feickert for the system requirements tip!
+# https://pixi.sh/latest/workspace/system_requirements/ 
+# https://matthewfeickert-talks.github.io/reproducible-ml-for-scientists-with-pixi-scipy-2025/cuda-conda
+cuda   = "12"
 [feature.gpu.dependencies]
 python = "==3.11" # We define Python here to avoid conflicts with other features
 # For a different CUDA version change here and the torch/torchvision pypi versions below accordingly
 # Or, use the included docker and develop scripts to get a virtualized compatible CUDA env
 cuda-version = "==12.6"
-# pytorch-gpu = "2.7.*" # I found that importing torch through conda is more brittle
-# I import torch through pypi mapping as it's easier to resolve the deps that way;
-# I think maybe more wheels are available that way and it's more compatible with ROS?
-# To be frank I'm not entirely sure what the difference is but it works better with pypi
-# For computer vision tasks, feel free to remove if not needed
+pytorch-gpu = "2.7.*" 
+torchvision = "0.22.*" 
 imageio = ">=2.37.0,<3"
 scikit-image = ">=0.25.2,<0.26"
 
 [feature.gpu.pypi-dependencies]
 # https://pytorch.org/get-started/locally/
-torch = { version = ">=2.7", index = "https://download.pytorch.org/whl/cu126" }
 # For computer vision tasks, feel free to remove if not needed
 torchvision = { version = "<=0.22.1", index = "https://download.pytorch.org/whl/cu126" }
 # Special thank you to @MiroPsota for these wheels
@@ -128,15 +129,16 @@ python = "==3.10"
 cmake = ">3.6"
 conda-build = "*"
 
+[feature.isaaclab.system-requirements]
+# Thank you to Matthew Feickert for the system requirements tip!
+# https://pixi.sh/latest/workspace/system_requirements/ 
+# https://matthewfeickert-talks.github.io/reproducible-ml-for-scientists-with-pixi-scipy-2025/cuda-conda
+cuda   = "12"
 [feature.isaaclab.pypi-dependencies]
 # isaacsim = { version = "==4.5.0", index = "https://pypi.nvidia.com" }
 # If we try to add it as a pypi dependency, it fails to resolve the deps
 # Because isaacsim[all] has no wheels with a matching platform tag (e.g., `manylinux_2_28_x86_64`) we can conclude that your requirements are unsatisfiable.
 # hint: Wheels are available for `isaacsim` (v4.5.0.0) on the following platforms: `manylinux_2_34_x86_64`, `win_amd64`
-# If we just pip install it, things aren't as strict, see the install_isaaclab.bash script
-torch = { version = "==2.5.1", index = "https://download.pytorch.org/whl/cu121" }
-torchvision = { version = "==0.20.1", index = "https://download.pytorch.org/whl/cu121" }
-
 [feature.isaaclab.tasks] # Isaac Sim specific tasks
 # https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
 install-isaaclab = "bash scripts/install-isaaclab.bash"

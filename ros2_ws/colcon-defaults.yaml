@@ -1,6 +1,7 @@
 # Contains colcon default settings for user overlay containers.
+# Thank you to Sebastian Castro for the Colcon home file tip!
+# Taken from https://github.com/PickNikRobotics/moveit_pro_example_ws/blob/main/colcon-defaults.yaml
 build:
-  # Enable this for bidirectional syncing from the UI
   symlink-install: true
   # https://colcon.readthedocs.io/en/released/reference/executor-arguments.html
   executor: parallel
