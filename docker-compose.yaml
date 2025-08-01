@@ -13,6 +13,7 @@ services:
       - XDG_RUNTIME_DIR=/tmp/runtime-developer
     volumes:
       - ./src:/workspace/src
+      - ./test:/workspace/test
       - ./ros2_ws:/workspace/ros2_ws
       - ./scripts:/workspace/scripts
       - ./pixi.lock:/workspace/pixi.lock
