@@ -62,7 +62,7 @@ test = "python -m pytest test/* -v"
 cuda   = "12"
 [feature.gpu.dependencies]
 python = "==3.11" # We define Python here to avoid conflicts with other features
-# For a different CUDA version change here and the torch/torchvision pypi versions below accordingly
+# For a different CUDA version change here and the torch/torchvision versions below accordingly
 # Or, use the included docker and develop scripts to get a virtualized compatible CUDA env
 cuda-version = "==12.6"
 pytorch-gpu = ">=2.7.0,<3"
