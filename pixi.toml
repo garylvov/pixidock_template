@@ -128,9 +128,6 @@ conda-build = "*"
 pytorch-gpu = "==2.7.0"
 torchvision = "==0.22.0"
 [feature.isaaclab.system-requirements]
-# Thank you to Matthew Feickert for the system requirements tip!
-# https://pixi.sh/latest/workspace/system_requirements/
-# https://matthewfeickert-talks.github.io/reproducible-ml-for-scientists-with-pixi-scipy-2025/cuda-conda
 cuda   = "12"
 [feature.isaaclab.pypi-dependencies]
 # isaacsim = { version = "==4.5.0", index = "https://pypi.nvidia.com" }
