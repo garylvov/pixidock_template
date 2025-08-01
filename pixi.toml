@@ -57,7 +57,7 @@ test = "python -m pytest test/* -v"
 # Channels would go here.
 [feature.gpu.system-requirements]
 # Thank you to Matthew Feickert for the system requirements tip!
-# https://pixi.sh/latest/workspace/system_requirements/ 
+# https://pixi.sh/latest/workspace/system_requirements/
 # https://matthewfeickert-talks.github.io/reproducible-ml-for-scientists-with-pixi-scipy-2025/cuda-conda
 cuda   = "12"
 [feature.gpu.dependencies]
@@ -65,8 +65,8 @@ python = "==3.11" # We define Python here to avoid conflicts with other features
 # For a different CUDA version change here and the torch/torchvision pypi versions below accordingly
 # Or, use the included docker and develop scripts to get a virtualized compatible CUDA env
 cuda-version = "==12.6"
-pytorch-gpu = "2.7.*" 
-torchvision = "0.22.*" 
+pytorch-gpu = "2.7.*"
+torchvision = "0.22.*"
 imageio = ">=2.37.0,<3"
 scikit-image = ">=0.25.2,<0.26"
 
@@ -131,7 +131,7 @@ conda-build = "*"
 
 [feature.isaaclab.system-requirements]
 # Thank you to Matthew Feickert for the system requirements tip!
-# https://pixi.sh/latest/workspace/system_requirements/ 
+# https://pixi.sh/latest/workspace/system_requirements/
 # https://matthewfeickert-talks.github.io/reproducible-ml-for-scientists-with-pixi-scipy-2025/cuda-conda
 cuda   = "12"
 [feature.isaaclab.pypi-dependencies]
