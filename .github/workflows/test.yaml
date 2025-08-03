@@ -48,3 +48,4 @@ jobs:
       - name: Run Genesis tests
         run: |
           xvfb-run -a -s "-screen 0 1024x768x24" pixi run --environment genesis-cpu-test test
+          
