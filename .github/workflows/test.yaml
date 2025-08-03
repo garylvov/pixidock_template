@@ -35,7 +35,10 @@ jobs:
       - name: Setup headless OpenGL
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb mesa-utils libgl1-mesa-glx
+          sudo apt-get install -y xvfb mesa-utils
+          # Handle Ubuntu version differences
+          sudo apt-get install -y libgl1-mesa-dev libegl1-mesa-dev || \
+          sudo apt-get install -y libgl1-mesa-glx
 
       - name: Install Pixi
         uses: prefix-dev/setup-pixi@v0.3.0
