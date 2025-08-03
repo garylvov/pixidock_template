@@ -46,5 +46,10 @@ jobs:
           pixi-version: v0.43.3
 
       - name: Run Genesis tests
+        env:
+          DISPLAY: ':99'
         run: |
-          xvfb-run -a -s "-screen 0 1024x768x24" pixi run --environment genesis-cpu-test test
+          # Start Xvfb in background
+          Xvfb :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset &
+          sleep 3  # Give Xvfb time to start
+          pixi run --environment genesis-cpu-test test
