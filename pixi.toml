@@ -17,6 +17,7 @@ ipywidgets = ">=8.1.7,<9"
 [feature.cpu]
 [feature.cpu.dependencies]
 python = "==3.11" # We define Python here to avoid conflicts with other features
+pytorch = ">=2.7.0,<3"
 
 [tasks]
 gitmod = "git submodule update --init --recursive"
@@ -34,6 +35,9 @@ test-gpu = { features = ["gpu", "test", ] }
 ros2-gpu = { features = [ "gpu", "ros2", ]}
 ros2-cpu = { features = ["cpu", "ros2"]}
 genesis-gpu = { features = ["gpu", "genesis"]}
+genesis-cpu = { features = ["cpu", "genesis"] }
+genesis-cpu-test = { features = ["cpu", "genesis", "test"] }
+genesis-gpu-test = { features = ["gpu", "genesis", "test"] }
 genesis-ros2-gpu = { features = ["gpu", "genesis", "ros2", ]} # Advanced users ;)
 
 # Isaac Lab is not yet compatible with the other environments, due to Python and Torch version conflicts
@@ -47,6 +51,7 @@ isaaclab = {features = ["isaaclab", ]}
 # This environment is relied upon by default by the CI in .github/workflows/pre-commit.yml
 [feature.test.dependencies]
 pytest = ">=7.0.0"
+pytest-timeout = "*"
 pre-commit = ">=3.6.0"
 [feature.test.tasks]
 lint = "pre-commit run --all-files --show-diff-on-failure"
@@ -78,7 +83,8 @@ pytorch3d = { version = "==0.7.8+pt2.7.0cu126", index = "https://miropsota.githu
 #### Genesis Simulation Environment------------------------------------------------------------
 [feature.genesis.dependencies]
 numpy = "==1.26.4" # otherwise, genesis complains:
-pyopengl="*"
+pyopengl="==3.1.5"
+freeglut = "*"
 [feature.genesis.pypi-dependencies]
 PyOpenGL_accelerate = "*"
 genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", tag = "ec40996d4959d9a347e03c1a2ae63a27089d3952" }
