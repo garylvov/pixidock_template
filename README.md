@@ -11,9 +11,9 @@ for any Python project, especially if interfacing with the GPU. The robotics env
 For those who like robots, there are environments for [PyTorch](https://pytorch.org/), [PyTorch3d](https://pytorch3d.org/), [ROS 2](https://www.ros.org/), ROS 2 with GPU, [Genesis Simulator](https://genesis-world.readthedocs.io/en/latest/), and [NVIDIA Isaac Lab](https://isaac-sim.github.io/IsaacLab/main/index.html) (NVIDIA Isaac Simulator base physics engine with robot learning support overlay).
 Check out the [pixi.toml](pixi.toml) to see all environments.
 
-Pixi and Docker are two tools that together, in my opinion, can create a largely hermetic,  reproducible, and neat Python environment.
+[Pixi](https://pixi.sh/latest/) and [Docker](https://www.docker.com/) are two tools that together, in my opinion, can create a largely hermetic,  reproducible, and neat Python environment.
 I think it's better than just ```pip``` and/or ```apt```  installing, or using ```virtualenv```, or [uv alone](https://docs.astral.sh/uv/#installation), ```conda```, or ```mamba```, or other virtualization tools.
-I will give [Bazel an honorable mention](https://github.com/RobotLocomotion/drake-ros/tree/main/bazel_ros2_rules/ros2#alternatives), but to be honest it seems harder to set up.
+I will give [Podman](https://podman.io/) and [Bazel an honorable mention](https://github.com/RobotLocomotion/drake-ros/tree/main/bazel_ros2_rules/ros2#alternatives).
 Of course, not all included environments are perfectly hermetic, reproducible, and neat, as some things [(such as Isaac Lab) need to be ```pip``` installed or otherwise configured after Pixi environment creation](scripts/install-isaaclab.bash) resulting in some instability as dependencies are sometimes omitted from the [Lockfile](pixi.lock). That being said, it is the closest I've gotten to hermetic, reproducible, and neat for many of the environments.
 
 Although Pixi can create hermetic environments largely on its own, oftentimes a thin Docker virtualization layer may be needed to get CUDA to be reproducible across mismatching host CUDA versions to be able to use the GPU (see an [example here](https://github.com/yuliangguo/depth_any_camera/pull/5))
