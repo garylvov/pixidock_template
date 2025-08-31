@@ -7,7 +7,7 @@
 set -e  # Exit on error
 
 # Install Isaac Sim Python package
-pip install 'isaacsim[all,extscache]==4.5.0' --extra-index-url https://pypi.nvidia.com
+pip install 'isaacsim[all,extscache]==5.0.0' --extra-index-url https://pypi.nvidia.com
 
 echo "Cloning IsaacLab repo and egl_probe if not present..."
 
@@ -29,11 +29,11 @@ pip install ./egl_probe
 # Clone IsaacLab if not already present
 if [ ! -d "IsaacLab" ]; then
   git clone git@github.com:isaac-sim/IsaacLab.git
+  cd IsaacLab
+  git checkout 0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20
+  ./isaaclab.sh -i
 else
   echo "IsaacLab already exists, skipping clone and install."
 fi
-
-cd IsaacLab
-./isaaclab.sh -i
 
 echo "Isaac Lab installation complete, see at IsaacLab"
