@@ -116,7 +116,8 @@ to activate the environment(s).
 
 ```bash
 pixi s  # Activate environment, add -e for specific env,
-# Envs: gpu|ros2-gpu|ros2-cpu|genesis-gpu|genesis-ros2-gpu|isaaclab
+
+# Envs: gpu|ros2-gpu|ros2-cpu|genesis-gpu|genesis-ros2-gpu|isaaclab-gpu|isaaclab-ros2-gpu
 
 # For ROS, run "colcon build" or "pixi r build-ros" to build the ros2_ws
 # colcon build is auto-configured by ros2_ws/colcon-defaults.yaml
