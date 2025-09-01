@@ -123,8 +123,6 @@ scripts = ["ros2_ws/install/setup.bash", "scripts/config-ros2-colcon.bash"]
 [feature.isaaclab]
 [feature.isaaclab.dependencies]
 cmake = ">3.6"
-[feature.isaaclab.system-requirements]
-cuda   = "12"
 [feature.isaaclab.pypi-dependencies]
 #isaacsim = { version = "==5.0.0", index = "https://pypi.nvidia.com", extras = ["all", "extcache"] }
 # If we try to add it as a pypi dependency, it fails to resolve the deps
