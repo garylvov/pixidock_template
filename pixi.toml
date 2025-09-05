@@ -106,6 +106,14 @@ ninja = "*"
 
 colcon-common-extensions = "*" # needed for using ros2_ws/colcon-defaults.yaml
 colcon-mixin = "*"
+# Maybe extra colcon stuff...
+colcon-devtools = "*"
+colcon-parallel-executor = "*"
+colcon-defaults = "*"
+colcon-package-selection = "*"
+colcon-python-setup-py = "*"
+colcon-recursive-crawl = "*"
+colcon-ros = "*"
 
 # " error: option --editable not recognized for setuptools==80.1.0 " occurs for building ROS 2 Humble Python Packages
 setuptools = ">=59.6.0,<=79.0.1"
