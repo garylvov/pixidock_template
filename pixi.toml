@@ -3,6 +3,17 @@ channels = ["https://prefix.dev/conda-forge"]
 name = "TEMPLATE"
 platforms = ["linux-64"]
 version = "0.1.0"
+# Map conda pywin32 to satisfy pypi pywin32 requirement (isaacsim needs pywin32 but it's Windows-only on PyPI)
+conda-pypi-map = { "https://prefix.dev/conda-forge" = "patches/conda_pypi_map.json" }
+
+# Global PyPI options - extra indexes for NVIDIA and MuJoCo packages
+[pypi-options]
+extra-index-urls = ["https://pypi.nvidia.com", "https://py.mujoco.org"]
+
+# Override malformed dependencies from mujoco-warp and newton git packages
+[pypi-options.dependency-overrides]
+warp-lang = ">=1.11.0.dev0"
+mujoco = ">=3.3.7"
 
 #### Base Bare Bones Environment
 
@@ -13,14 +24,15 @@ hatchling = ">=1.27.0,<2"
 numpy = ">=1.26.4,<3"
 matplotlib = ">=3.10.3,<4"
 jupyter = ">=1.1.1,<2"
-ipywidgets = ">=8.1.7,<9"
+ipywidgets = ">=8.1.5,<9"
 
 [feature.cpu]
 [feature.cpu.dependencies]
 python = "==3.11" # We define Python here to avoid conflicts with other features
 
 [tasks]
-gitmod = "git submodule update --init --recursive"
+# Git submodule initialization + apply patches
+gitmod = "bash scripts/get_submodules_and_patches.bash"
 [target.unix.activation]
 scripts = ["scripts/post-install.bash"] # pip  install the package in editable mode
 
@@ -39,8 +51,12 @@ genesis-ros2-gpu = { features = ["gpu", "genesis", "ros2", ]} # Advanced users ;
 
 # Isaac Lab is not yet compatible with the other environments, due to Python and Torch version conflicts
 # use on it's own for now. See below for more info.
-isaaclab-gpu = {features = ["isaaclab", "gpu" ]}
-isaaclab-ros2-gpu ={ features = ["isaaclab", "ros2", "gpu"]}
+isaaclab-gpu = {features = ["isaaclab", "isaaclab-physx", "gpu" ]}
+isaaclab-ros2-gpu ={ features = ["isaaclab", "isaaclab-physx", "ros2", "gpu"]}
+
+# Isaac Lab Newton - uses Newton physics engine instead of PhysX
+# Newton uses NVIDIA Warp for GPU-accelerated physics simulation
+isaaclab-newton-gpu = {features = ["isaaclab", "isaaclab-newton", "gpu"]}
 # Now, for the other environment configurations.
 # Feel free to ignore and delete features you don't need!
 
@@ -56,16 +72,23 @@ test = "python -m pytest test/* -v"
 #### GPU Environment-----------------------------------------------------------------------------
 [feature.gpu]
 # Channels would go here.
+
+# Set CUDA_HOME for torch.compile/Triton to find ptxas
+[feature.gpu.activation.env]
+CUDA_HOME = "$CONDA_PREFIX"
+
 [feature.gpu.system-requirements]
 # Thank you to Matthew Feickert for the system requirements tip!
 # https://pixi.sh/latest/workspace/system_requirements/
 # https://matthewfeickert-talks.github.io/reproducible-ml-for-scientists-with-pixi-scipy-2025/cuda-conda
 cuda   = "12"
 [feature.gpu.dependencies]
-# For a different CUDA version change here and the torch/torchvision versions below accordingly
-# Or, use the included docker and develop scripts to get a virtualized compatible CUDA env
-cuda-version = "==12.6"
-pytorch-gpu = ">=2.7.0,<3"
+# CUDA 12.8 required for Blackwell GPU (sm_120) support with torch.compile/Triton
+# https://pytorch.org/blog/pytorch-2-7/
+cuda-version = "==12.8"
+cuda-nvcc_linux-64 = "12.8.*"
+cuda-toolkit = "12.8.*"
+pytorch-gpu = ">=2.7.1,<3"
 torchvision = ">=0.22.0,<0.23.0"
 imageio = ">=2.37.0,<3"
 scikit-image = ">=0.25.2,<0.26"
@@ -73,7 +96,9 @@ scikit-image = ">=0.25.2,<0.26"
 [feature.gpu.pypi-dependencies]
 # Special thank you to @MiroPsota for these wheels
 # https://github.com/facebookresearch/pytorch3d/discussions/1752?
-pytorch3d = { version = "==0.7.8+pt2.7.0cu126", index = "https://miropsota.github.io/torch_packages_builder" }
+pytorch3d = { version = "==0.7.8+5043d15pt2.7.0cu128", index = "https://miropsota.github.io/torch_packages_builder" }
+mujoco = ">=3.3.3"
+mujoco-mjx = "*"
 
 #### Genesis Simulation Environment------------------------------------------------------------
 [feature.genesis.dependencies]
@@ -126,16 +151,105 @@ scripts = ["ros2_ws/install/setup.bash", "scripts/config-ros2-colcon.bash"]
 
 ### Isaac Sim Environment-----------------------------------------------------------------------
 # Warning; not as compatible as the other environments; use with caution
-# Once Isaac Sim is updated to Python 3.11, it will be compatible with all other environments ;)
-# Latest Isaac Sim wheel is still Python 3.10 and Torch 2025
+# Isaac Sim 5.1.0 now supports Python 3.11!
 [feature.isaaclab]
 [feature.isaaclab.dependencies]
+sysroot_linux-64 = ">=2.35"
+# Need newer GCC/binutils to work with glibc 2.39's .relr.dyn sections
+gxx_linux-64 = ">=12"
+gcc_linux-64 = ">=12"
+binutils_linux-64 = ">=2.40"
 cmake = ">3.6"
+# Pin versions required by isaacsim-kernel to override conda's defaults
+psutil = "==5.9.8"
+propcache = "==0.2.1"
+aiohappyeyeballs = "==2.4.4"
+pytz = "==2024.1"
+frozenlist = "==1.5.0"
+charset-normalizer = "==3.3.2"
+watchdog = "==4.0.0"
+aiosignal = "==1.3.2"
+coverage = "==7.4.4"
+typing-extensions = "==4.12.2"
+idna = "==3.10"
+yarl= "==1.18.3"
+multidict = "==6.1.0"
+attrs = "==25.1.0"
+click = "==8.1.7"
+aiohttp = "==3.11.11"
+sympy = "==1.13.3"
+networkx = "==3.3"
+fsspec = "==2024.6.1"
+filelock = "==3.13.1"
+cryptography = "==44.0.0"
+pyyaml = "==6.0.2"
+tornado = "==6.5.1"
+packaging = "==23.0"
+kiwisolver = "==1.4.4"
+cycler = "==0.11.0"
+pyparsing = "==3.0.9"
+fonttools = "==4.55.3"
+contourpy = "==1.3.1"
+matplotlib = "==3.10.3"
+markupsafe = "==2.1.3"
+nest-asyncio = "==1.5.6"
+# Conda pywin32 stub satisfies isaacsim's pywin32 requirement on Linux
+pywin32 = ">=306"
+ipywidgets = "==8.1.5"
+[feature.isaaclab.system-requirements]
+libc = "2.35"
+
+[feature.isaaclab.pypi-options.dependency-overrides]
+# Careful: Isaac Lab PhysX and Newton may depend on different numpy versions
+numpy = "*"
+torch = "==2.7.1"
+pillow = ">=11.0.0"
+scipy = ">=1.16.0"
+pywin32 = "*"
+triton = "==3.3.0"
+requests = "==2.32.5"
+isaacsim-kernel = "==5.1.0.0"
+starlette = "==0.49.1"
 [feature.isaaclab.pypi-dependencies]
-#isaacsim = { version = "==5.0.0", index = "https://pypi.nvidia.com", extras = ["all", "extcache"] }
-# If we try to add it as a pypi dependency, it fails to resolve the deps
-# Because isaacsim[all] has no wheels with a matching platform tag (e.g., `manylinux_2_28_x86_64`) we can conclude that your requirements are unsatisfiable.
-# hint: Wheels are available for `isaacsim` (v4.5.0.0) on the following platforms: `manylinux_2_34_x86_64`, `win_amd64`
-[feature.isaaclab.tasks] # Isaac Sim specific tasks
+isaacsim = { version = "==5.1.0", index = "https://pypi.nvidia.com", extras = ["all", "extscache"] }
+# Patched egl_probe (CMake 3.5+ fix)
+egl-probe = { path = "patches/egl_probe", editable = true }
+[feature.isaaclab.tasks]
+# Install Isaac Lab from specific commit (requires submodules)
 # https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
-install-isaaclab = "bash scripts/install-isaaclab.bash"
+install-isaaclab = { cmd = "cd IsaacLab && ./isaaclab.sh -i", depends-on = ["gitmod"] }
+install-isaaclab-newton = { cmd = "cd IsaacLabNewton && ./isaaclab.sh -i", depends-on = ["gitmod"] }
+
+### Isaac Lab PhysX Feature (use with isaaclab feature)----------------------------------------
+[feature.isaaclab-physx]
+[feature.isaaclab-physx.pypi-dependencies]
+# IsaacLab PhysX packages (editable install from IsaacLab submodule)
+isaaclab        = { path = "IsaacLab/source/isaaclab", editable = true }
+isaaclab-assets = { path = "IsaacLab/source/isaaclab_assets", editable = true }
+isaaclab-tasks  = { path = "IsaacLab/source/isaaclab_tasks", editable = true }
+isaaclab-rl     = { path = "IsaacLab/source/isaaclab_rl", editable = true }
+isaaclab-mimic  = { path = "IsaacLab/source/isaaclab_mimic", editable = true }
+
+### Isaac Lab Newton Feature (use with isaaclab feature)---------------------------------------
+# Newton uses NVIDIA Warp for GPU-accelerated physics simulation
+[feature.isaaclab-newton]
+# Override packages that have malformed (index: ...) syntax in their dependencies
+[feature.isaaclab-newton.pypi-options.dependency-overrides]
+warp-lang = ">=1.11.0.dev0"
+mujoco = ">=3.3.7"
+
+[feature.isaaclab-newton.pypi-dependencies]
+# Pre-install these before other packages resolve them with malformed index syntax
+warp-lang = { version = ">=1.11.0.dev0", index = "https://pypi.nvidia.com" }
+mujoco = { version = ">=3.3.7", index = "https://py.mujoco.org" }
+omniverseclient = { version = "*", index = "https://pypi.nvidia.com" }
+# IsaacLab Newton packages (editable install from IsaacLabNewton submodule)
+# Note: Newton doesn't have isaaclab_mimic - it has isaaclab_newton and experimental packages instead
+# Note: mujoco-warp and newton have malformed metadata - they must be installed separately via:
+#   pip install "mujoco-warp @ git+https://github.com/google-deepmind/mujoco_warp.git@e9a67538f2c14486121635074c5a5fd6ca55fa83"
+#   pip install "newton @ git+https://github.com/newton-physics/newton.git@beta-0.2.1"
+isaaclab        = { path = "IsaacLabNewton/source/isaaclab", editable = true }
+isaaclab-assets = { path = "IsaacLabNewton/source/isaaclab_assets", editable = true }
+isaaclab-tasks  = { path = "IsaacLabNewton/source/isaaclab_tasks", editable = true }
+isaaclab-rl     = { path = "IsaacLabNewton/source/isaaclab_rl", editable = true }
+isaaclab-newton = { path = "IsaacLabNewton/source/isaaclab_newton", editable = true }

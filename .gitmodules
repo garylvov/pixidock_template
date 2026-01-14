@@ -1,3 +1,12 @@
 [submodule "ros2_ws/src/ros_utilities"]
 	path = ros2_ws/src/ros_utilities
 	url = https://github.com/bdaiinstitute/ros_utilities
+[submodule "patches/egl_probe"]
+	path = patches/egl_probe
+	url = https://github.com/StanfordVL/egl_probe.git
+[submodule "IsaacLab"]
+	path = IsaacLab
+	url = https://github.com/isaac-sim/IsaacLab.git
+[submodule "IsaacLabNewton"]
+	path = IsaacLabNewton
+	url = https://github.com/isaac-sim/IsaacLab.git
