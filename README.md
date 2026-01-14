@@ -83,7 +83,7 @@ git clone <YOUR_REPO_LINK>
 cd TEMPLATE && git submodule update --init --recursive
 ```
 
-[Pixi](https://pixi.sh/latest/) is all that's needed to locally to resolve dependencies if:
+[Pixi](https://pixi.sh/latest/) (version 0.62.2) is all that's needed to locally to resolve dependencies if:
 - Using CPU only environments on x86-64 Linux
 - Using GPU compatible environments while having a matching CUDA version installed on the x86-64 Linux host system (CUDA ver. 12.6)
 
