@@ -104,6 +104,9 @@ mujoco-mjx = "*"
 [feature.genesis.dependencies]
 numpy = "==1.26.4" # otherwise, genesis complains:
 pyopengl="*"
+[feature.genesis.pypi-options.dependency-overrides]
+# Override moviepy's pillow<12.0 constraint (conda pins pillow==12.1.0)
+pillow = ">=9.2.0"
 [feature.genesis.pypi-dependencies]
 PyOpenGL_accelerate = "*"
 genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", tag = "ec40996d4959d9a347e03c1a2ae63a27089d3952" }
