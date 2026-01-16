@@ -119,12 +119,12 @@ to activate the environment(s).
 # ulimit -n 64000  # Increase file descriptor limit
 # ulimit -u 8192   # Increase process limit (helps for multi-GPU training)
 
-# On some systems (e.g., RHEL 9.2, Brown CCV cluster), you may need:
-# export CONDA_OVERRIDE_GLIBC=2.35
-
 pixi s  # Activate environment, add -e for specific env,
 # Envs: gpu|ros2-gpu|ros2-cpu|genesis-gpu|genesis-ros2-gpu|isaaclab-gpu|isaaclab-ros2-gpu|isaaclab-newton-gpu
 
+
+# On some systems (e.g., RHEL 9.4), you may need the following
+# export CONDA_OVERRIDE_GLIBC=2.35
 # For Isaac Lab (PhysX)
 pixi r install-isaaclab
 # For Isaac Lab Newton (Warp-based)
