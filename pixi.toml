@@ -217,14 +217,12 @@ starlette = "==0.49.1"
 isaacsim = { version = "==5.1.0", index = "https://pypi.nvidia.com", extras = ["all", "extscache"] }
 # Patched egl_probe (CMake 3.5+ fix)
 egl-probe = { path = "patches/egl_probe", editable = true }
-[feature.isaaclab.tasks]
+### Isaac Lab PhysX Feature (use with isaaclab feature)----------------------------------------
+[feature.isaaclab-physx]
+[feature.isaaclab-physx.tasks]
 # Install Isaac Lab from specific commit (requires submodules)
 # https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
 install-isaaclab = { cmd = "cd IsaacLab && ./isaaclab.sh -i", depends-on = ["gitmod"] }
-install-isaaclab-newton = { cmd = "cd IsaacLabNewton && ./isaaclab.sh -i", depends-on = ["gitmod"] }
-
-### Isaac Lab PhysX Feature (use with isaaclab feature)----------------------------------------
-[feature.isaaclab-physx]
 [feature.isaaclab-physx.pypi-dependencies]
 # IsaacLab PhysX packages (editable install from IsaacLab submodule)
 isaaclab        = { path = "IsaacLab/source/isaaclab", editable = true }
@@ -236,6 +234,9 @@ isaaclab-mimic  = { path = "IsaacLab/source/isaaclab_mimic", editable = true }
 ### Isaac Lab Newton Feature (use with isaaclab feature)---------------------------------------
 # Newton uses NVIDIA Warp for GPU-accelerated physics simulation
 [feature.isaaclab-newton]
+[feature.isaaclab-newton.tasks]
+# Install Isaac Lab Newton from specific commit (requires submodules)
+install-isaaclab-newton = { cmd = "cd IsaacLabNewton && ./isaaclab.sh -i", depends-on = ["gitmod"] }
 # Override packages that have malformed (index: ...) syntax in their dependencies
 [feature.isaaclab-newton.pypi-options.dependency-overrides]
 warp-lang = ">=1.11.0.dev0"

@@ -126,9 +126,11 @@ pixi s  # Activate environment, add -e for specific env,
 # On some systems (e.g., RHEL 9.4), you may need the following
 # export CONDA_OVERRIDE_GLIBC=2.35
 # For Isaac Lab (PhysX)
-pixi r install-isaaclab
+pixi r -e isaaclab-gpu install-isaaclab
+# To use: pixi s -e isaaclab-gpu
 # For Isaac Lab Newton (Warp-based)
 pixi r install-isaaclab-newton
+# To use: pixi s -e isaaclab-newton
 
 # For ROS, build the ros2_ws (colcon build is auto-configured by ros2_ws/colcon-defaults.yaml)
 pixi r build-ros
