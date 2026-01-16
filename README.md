@@ -8,13 +8,13 @@ This template shamelessly targets only 64 bit linux systems while favoring NVIDI
 
 Also, this template includes environments containing popular libraries for roboticists, as I am a roboticist, and I created this template largely for myself. However, it really could be used
 for any Python project, especially if interfacing with the GPU. The robotics environments can easily be deleted; get rid of the envs/deps you don't need!
-For those who like robots, there are environments for [PyTorch](https://pytorch.org/), [PyTorch3d](https://pytorch3d.org/), [ROS 2](https://www.ros.org/), ROS 2 with GPU, [Genesis Simulator](https://genesis-world.readthedocs.io/en/latest/), and [NVIDIA Isaac Lab](https://isaac-sim.github.io/IsaacLab/main/index.html) (NVIDIA Isaac Simulator base physics engine with robot learning support overlay).
+For those who like robots, there are environments for [PyTorch](https://pytorch.org/), [PyTorch3d](https://pytorch3d.org/), [ROS 2](https://www.ros.org/), ROS 2 with GPU, [Genesis Simulator](https://genesis-world.readthedocs.io/en/latest/), [NVIDIA Isaac Lab](https://isaac-sim.github.io/IsaacLab/main/index.html) (NVIDIA Isaac Sim with PhysX physics), and [Isaac Lab Newton](https://github.com/isaac-sim/IsaacLab) (Isaac Lab with NVIDIA's Warp-based Newton physics engine for GPU-accelerated simulation).
 Check out the [pixi.toml](pixi.toml) to see all environments.
 
 [Pixi](https://pixi.sh/latest/) and [Docker](https://www.docker.com/) are two tools that together, in my opinion, can create a largely hermetic,  reproducible, and neat Python environment.
 I think it's better than just ```pip``` and/or ```apt```  installing, or using ```virtualenv```, or [uv alone](https://docs.astral.sh/uv/#installation), ```conda```, or ```mamba```, or other virtualization tools.
 I will give [Podman](https://podman.io/) and [Bazel an honorable mention](https://github.com/RobotLocomotion/drake-ros/tree/main/bazel_ros2_rules/ros2#alternatives).
-Of course, not all included environments are perfectly hermetic, reproducible, and neat, as some things [(such as Isaac Lab) need to be ```pip``` installed or otherwise configured after Pixi environment creation](scripts/install-isaaclab.bash) resulting in some instability as dependencies are sometimes omitted from the [Lockfile](pixi.lock). That being said, it is the closest I've gotten to hermetic, reproducible, and neat for many of the environments.
+Of course, not all included environments are perfectly hermetic, reproducible, and neat, as some things need to be configured after Pixi environment creation, resulting in some instability as dependencies are sometimes omitted from the [Lockfile](pixi.lock). That being said, it is the closest I've gotten to hermetic, reproducible, and neat for many of the environments.
 
 Although Pixi can create hermetic environments largely on its own, oftentimes a thin Docker virtualization layer may be needed to get CUDA to be reproducible across mismatching host CUDA versions to be able to use the GPU (see an [example here](https://github.com/yuliangguo/depth_any_camera/pull/5))
 
@@ -83,7 +83,7 @@ git clone <YOUR_REPO_LINK>
 cd TEMPLATE && git submodule update --init --recursive
 ```
 
-[Pixi](https://pixi.sh/latest/) is all that's needed to locally to resolve dependencies if:
+[Pixi](https://pixi.sh/latest/) (version 0.62.2) is all that's needed to locally to resolve dependencies if:
 - Using CPU only environments on x86-64 Linux
 - Using GPU compatible environments while having a matching CUDA version installed on the x86-64 Linux host system (CUDA ver. 12.6)
 
@@ -115,15 +115,27 @@ Then, from within either the project parent folder or the Docker image home dire
 to activate the environment(s).
 
 ```bash
+# You may need to increase ulimits before running GPU-intensive tasks:
+# ulimit -n 64000  # Increase file descriptor limit
+# ulimit -u 8192   # Increase process limit (helps for multi-GPU training)
+
 pixi s  # Activate environment, add -e for specific env,
-# Envs: gpu|ros2-gpu|ros2-cpu|genesis-gpu|genesis-ros2-gpu|isaaclab-gpu|isaaclab-ros2-gpu
+# Envs: gpu|ros2-gpu|ros2-cpu|genesis-gpu|genesis-ros2-gpu|isaaclab-gpu|isaaclab-ros2-gpu|isaaclab-newton-gpu
 
-# For ROS, run "colcon build" or "pixi r build-ros" to build the ros2_ws
-# colcon build is auto-configured by ros2_ws/colcon-defaults.yaml
+
+# On some systems (e.g., RHEL 9.4), you may need the following
+# export CONDA_OVERRIDE_GLIBC=2.35
+# For Isaac Lab (PhysX)
+pixi r -e isaaclab-gpu install-isaaclab
+# To use: pixi s -e isaaclab-gpu
+# For Isaac Lab Newton (Warp-based)
+pixi r install-isaaclab-newton
+# To use: pixi s -e isaaclab-newton-gpu
+
+# For ROS, build the ros2_ws (colcon build is auto-configured by ros2_ws/colcon-defaults.yaml)
+pixi r build-ros
 # To build your package, clone it into ros2_ws/src, and add its name to the colcon-defaults.yaml
-
-# For Isaac Lab, do "pixi r install-isaaclab" to install all deps
-
+# To use: pixi s -e ros2-gpu or ros2-cpu
 # Genesis + Isaac Lab environments are still a bit flaky despite my best efforts ;(
 ```
 

@@ -15,10 +15,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Initialize submodules
+        run: |
+          export PIXI_PROJECT_ROOT=$(pwd)
+          bash scripts/get_submodules_and_patches.bash
+
       - name: Install Pixi
-        uses: prefix-dev/setup-pixi@v0.3.0
+        uses: prefix-dev/setup-pixi@v0.8.8
         with:
-          pixi-version: v0.43.3
+          pixi-version: v0.62.2
 
       - name: Run lint
         run: |
