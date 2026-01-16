@@ -130,7 +130,7 @@ pixi r -e isaaclab-gpu install-isaaclab
 # To use: pixi s -e isaaclab-gpu
 # For Isaac Lab Newton (Warp-based)
 pixi r install-isaaclab-newton
-# To use: pixi s -e isaaclab-newton
+# To use: pixi s -e isaaclab-newton-gpu
 
 # For ROS, build the ros2_ws (colcon build is auto-configured by ros2_ws/colcon-defaults.yaml)
 pixi r build-ros
