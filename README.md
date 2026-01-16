@@ -135,7 +135,7 @@ pixi r install-isaaclab-newton
 # For ROS, build the ros2_ws (colcon build is auto-configured by ros2_ws/colcon-defaults.yaml)
 pixi r build-ros
 # To build your package, clone it into ros2_ws/src, and add its name to the colcon-defaults.yaml
-
+# To use: pixi s -e ros2-gpu or ros2-cpu
 # Genesis + Isaac Lab environments are still a bit flaky despite my best efforts ;(
 ```
 
