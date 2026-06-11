@@ -1,0 +1,24 @@
+# Retread source package for Genesis World.
+# The root pixi.toml consumes this as `genesis-pack = { path = "./genesis-pack" }`.
+
+[package]
+name = "genesis-pack"
+version = "1.1.1"
+
+[package.build]
+backend = { name = "pixi-build-retread", version = ">=1.5.9", channels = [
+  "https://prefix.dev/garylvov",
+  "https://prefix.dev/conda-forge",
+] }
+
+[package.build.config]
+retread-relax = "patch-then-minor-then-major-then-last-resort"
+retread-build-number = 0
+retread-python = "3.12"
+
+[package.build.config.retread-wheels]
+genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", rev = "8de7e456d10436f9fea908fafad59a01c58aea9c", bundle = "genesis-pack" }
+"pyopengl-accelerate" = { version = "==3.1.10", bundle = "genesis-pack" }
+
+[package.build.config.retread-name-map]
+opencv-python = "py-opencv"

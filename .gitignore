@@ -18,6 +18,7 @@ parts/
 sdist/
 var/
 wheels/
+.wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -100,6 +101,14 @@ rosbag2*
 demonstrations/*
 
 IsaacLab/*
-egl_probe/*
 IsaacLab
-egl_probe
+
+# pixi-build-retread generated artifacts
+isaac-pack/wheels/
+isaac-pack/retread-audit-*.json
+isaac-pack/retread-probe-trace-*.json
+isaac-pack/RETREAD-SOLVE-FAILED-*.md
+genesis-pack/wheels/
+genesis-pack/retread-audit-*.json
+genesis-pack/retread-probe-trace-*.json
+genesis-pack/RETREAD-SOLVE-FAILED-*.md
