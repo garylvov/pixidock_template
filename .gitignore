@@ -103,12 +103,19 @@ demonstrations/*
 IsaacLab/*
 IsaacLab
 
-# pixi-build-retread generated artifacts
+# pixi-build-retread generated artifacts.
+# Ignore wheels/ (multi-GB, reproducible from the lock) and the audit/
+# probe-trace JSON, but DO commit the courier install lock (relaxed state, no
+# wheels) so a cold clone can replay + install without rebuilding.
 isaac-pack/wheels/
 isaac-pack/retread-audit-*.json
 isaac-pack/retread-probe-trace-*.json
 isaac-pack/RETREAD-SOLVE-FAILED-*.md
+!isaac-pack/retread-*.lock.json
 genesis-pack/wheels/
 genesis-pack/retread-audit-*.json
 genesis-pack/retread-probe-trace-*.json
 genesis-pack/RETREAD-SOLVE-FAILED-*.md
+!genesis-pack/retread-*.lock.json
+# Dead blueprint fence artifact from the pre-courier path.
+isaac-pack/retread-pypi/
