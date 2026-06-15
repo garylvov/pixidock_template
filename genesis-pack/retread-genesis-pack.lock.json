@@ -1,0 +1,209 @@
+{
+  "schema": 4,
+  "retread_version": "2.1.1",
+  "bundle": "genesis-pack",
+  "version": "1.1.1",
+  "python": "3.12",
+  "inputs_hash": "c199772babc9653600c8e906dfde94752c7be79e26516ec94c85fec4976c608e",
+  "root_requirements": [
+    "genesis-pack-pypi==1.1.1"
+  ],
+  "wheels": [
+    {
+      "name": "genesis-world",
+      "version": "1.1.1",
+      "origin": "built",
+      "filename": "genesis_world-1.1.1-py3-none-any.whl"
+    },
+    {
+      "name": "pyopengl-accelerate",
+      "version": "3.1.10",
+      "origin": "index",
+      "filename": "pyopengl_accelerate-3.1.10-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+    },
+    {
+      "name": "quadrants",
+      "version": "1.0.3b3",
+      "origin": "index",
+      "filename": "quadrants-1.0.3b3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/9f/df/b6398a48288e2b94ece946fd66c8cfbd59d7e4e6738e1a5914a69d2a7d25/quadrants-1.0.3b3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl#sha256=9e689615365a9a162f9d1e3f060adecd016d19cd601a8fb19e8838eb1711aecc"
+    },
+    {
+      "name": "dracopy",
+      "version": "2.0.0",
+      "origin": "index",
+      "filename": "dracopy-2.0.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/4e/b7/28dff0bc2f992df437aaeeaeffba8f2f1ec031f054cedfc0390ea4300370/dracopy-2.0.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl#sha256=4d6ea2821545b5fa1cfb1ca2911ea6425a2606932cf4fac2f9b1f2d4ccb6e52d"
+    },
+    {
+      "name": "pygel3d",
+      "version": "0.6.1",
+      "origin": "built",
+      "filename": "PyGEL3D-0.6.1-999retread-py3-none-any.whl"
+    },
+    {
+      "name": "gs-madrona",
+      "version": "0.0.7.post2",
+      "origin": "index",
+      "filename": "gs_madrona-0.0.7.post2-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/98/66/f37ae87d648cdd0e51de56b5afae42d3daf31e78a26443da87795963c7f3/gs_madrona-0.0.7.post2-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl#sha256=9ade022b34caffba60fca29d71b3322067abe4b7aaecf0e8aa3b231a2d676038"
+    },
+    {
+      "name": "pysplashsurf",
+      "version": "0.14.1.0",
+      "origin": "built",
+      "filename": "pysplashsurf-0.14.1.0-999retread-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+    }
+  ],
+  "conda_run_deps": [
+    {
+      "name": "python",
+      "spec": "3.12.*"
+    },
+    {
+      "name": "psutil",
+      "spec": ""
+    },
+    {
+      "name": "pydantic",
+      "spec": ">=2.11.0"
+    },
+    {
+      "name": "numpy",
+      "spec": ">=1.26.4,<3"
+    },
+    {
+      "name": "frozendict",
+      "spec": ""
+    },
+    {
+      "name": "trimesh",
+      "spec": ">=4.8.2"
+    },
+    {
+      "name": "xacro",
+      "spec": ""
+    },
+    {
+      "name": "igl",
+      "spec": "!=2.6.2"
+    },
+    {
+      "name": "py-cpuinfo",
+      "spec": ""
+    },
+    {
+      "name": "mujoco-python",
+      "spec": ">=3.2.5"
+    },
+    {
+      "name": "moviepy",
+      "spec": "*"
+    },
+    {
+      "name": "pyglet",
+      "spec": ">=1.5,!=2.1.8"
+    },
+    {
+      "name": "freetype-py",
+      "spec": ""
+    },
+    {
+      "name": "pyopengl",
+      "spec": ">=3.1.4"
+    },
+    {
+      "name": "numba",
+      "spec": ""
+    },
+    {
+      "name": "pymeshlab",
+      "spec": ""
+    },
+    {
+      "name": "pycollada",
+      "spec": ""
+    },
+    {
+      "name": "pygltflib",
+      "spec": ">=1.16,<1.17"
+    },
+    {
+      "name": "vtk-base",
+      "spec": ""
+    },
+    {
+      "name": "pillow",
+      "spec": "*"
+    },
+    {
+      "name": "py-opencv",
+      "spec": ""
+    },
+    {
+      "name": "scikit-image",
+      "spec": ">=0.25.2,<0.26"
+    },
+    {
+      "name": "coacd",
+      "spec": ""
+    },
+    {
+      "name": "rtree",
+      "spec": ""
+    },
+    {
+      "name": "z3-solver",
+      "spec": "<4.15.5.0"
+    },
+    {
+      "name": "openexr-python",
+      "spec": ""
+    },
+    {
+      "name": "fast-simplification",
+      "spec": ">=0.1.12"
+    },
+    {
+      "name": "colorama",
+      "spec": ""
+    },
+    {
+      "name": "dill",
+      "spec": ""
+    },
+    {
+      "name": "rich",
+      "spec": ">=1.0.0"
+    },
+    {
+      "name": "setuptools",
+      "spec": ">=59.6.0,<=79.0.1"
+    },
+    {
+      "name": "cffi",
+      "spec": ">=1.16.0"
+    },
+    {
+      "name": "plotly",
+      "spec": ">=5.24.1,<5.25"
+    },
+    {
+      "name": "scipy",
+      "spec": ""
+    },
+    {
+      "name": "uv",
+      "spec": ""
+    },
+    {
+      "name": "python_abi",
+      "spec": "3.12.* *_cp312"
+    }
+  ],
+  "index_urls": [
+    "https://pypi.org/simple/",
+    "https://pypi.nvidia.com",
+    "https://py.mujoco.org"
+  ]
+}
