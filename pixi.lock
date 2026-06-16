@@ -1143,7 +1143,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/wslink-2.5.7-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/xacro-2.1.1-pyhcf101f3_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
-      - conda_source: genesis-pack[a180490b] @ ./genesis-pack
+      - conda_source: genesis-pack[90168e2d] @ ./genesis-pack
       - pypi: https://files.pythonhosted.org/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/38/69/2912ab63036e21c72748019e1d8e09e8a1fc3368b3e83fc27898a1858575/jaxlib-0.10.1-cp312-cp312-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/3a/cb/28ce52eb94390dda42599c98ea0204d74799e4d8047a0eb559b6fd648056/ml_dtypes-0.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
@@ -2059,7 +2059,7 @@ environments:
       - conda: https://prefix.dev/robostack-humble/linux-64/ros-humble-yaml-cpp-vendor-8.0.2-np2py312h2ed9cc7_18.conda
       - conda: https://prefix.dev/robostack-humble/linux-64/ros-humble-zstd-vendor-0.15.16-np2py312h2ed9cc7_18.conda
       - conda: https://prefix.dev/robostack-humble/linux-64/ros2-distro-mutex-0.9.0-humble_18.conda
-      - conda_source: genesis-pack[a180490b] @ ./genesis-pack
+      - conda_source: genesis-pack[90168e2d] @ ./genesis-pack
       - pypi: https://files.pythonhosted.org/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/38/69/2912ab63036e21c72748019e1d8e09e8a1fc3368b3e83fc27898a1858575/jaxlib-0.10.1-cp312-cp312-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/3a/cb/28ce52eb94390dda42599c98ea0204d74799e4d8047a0eb559b6fd648056/ml_dtypes-0.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
@@ -2979,7 +2979,7 @@ environments:
       - conda: https://prefix.dev/robostack-jazzy/linux-64/ros-jazzy-yaml-cpp-vendor-9.0.1-np2py312h2ed9cc7_16.conda
       - conda: https://prefix.dev/robostack-jazzy/linux-64/ros-jazzy-zstd-vendor-0.26.9-np2py312h2ed9cc7_16.conda
       - conda: https://prefix.dev/robostack-jazzy/linux-64/ros2-distro-mutex-0.14.0-jazzy_16.conda
-      - conda_source: genesis-pack[a180490b] @ ./genesis-pack
+      - conda_source: genesis-pack[90168e2d] @ ./genesis-pack
       - pypi: https://files.pythonhosted.org/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/38/69/2912ab63036e21c72748019e1d8e09e8a1fc3368b3e83fc27898a1858575/jaxlib-0.10.1-cp312-cp312-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/3a/cb/28ce52eb94390dda42599c98ea0204d74799e4d8047a0eb559b6fd648056/ml_dtypes-0.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
@@ -4238,7 +4238,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/wheel-0.47.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/widgetsnbextension-4.0.15-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
-      - conda_source: isaac-pack[8d3f7471] @ ./isaac-pack
+      - conda_source: isaac-pack[7a9e4c1f] @ ./isaac-pack
       - pypi: https://files.pythonhosted.org/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/38/69/2912ab63036e21c72748019e1d8e09e8a1fc3368b3e83fc27898a1858575/jaxlib-0.10.1-cp312-cp312-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/4c/03/5b668e78eff52a459c707e442a3cbd3e0f8b74d08a4b92111a07159aff11/mujoco_mjx-3.9.0-py3-none-any.whl
@@ -5300,7 +5300,7 @@ environments:
       - conda: https://prefix.dev/robostack-humble/linux-64/ros-humble-yaml-cpp-vendor-8.0.2-np2py312h2ed9cc7_18.conda
       - conda: https://prefix.dev/robostack-humble/linux-64/ros-humble-zstd-vendor-0.15.16-np2py312h2ed9cc7_18.conda
       - conda: https://prefix.dev/robostack-humble/linux-64/ros2-distro-mutex-0.9.0-humble_18.conda
-      - conda_source: isaac-pack[8d3f7471] @ ./isaac-pack
+      - conda_source: isaac-pack[7a9e4c1f] @ ./isaac-pack
       - pypi: https://files.pythonhosted.org/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/38/69/2912ab63036e21c72748019e1d8e09e8a1fc3368b3e83fc27898a1858575/jaxlib-0.10.1-cp312-cp312-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/4c/03/5b668e78eff52a459c707e442a3cbd3e0f8b74d08a4b92111a07159aff11/mujoco_mjx-3.9.0-py3-none-any.whl
@@ -6364,7 +6364,7 @@ environments:
       - conda: https://prefix.dev/robostack-jazzy/linux-64/ros-jazzy-yaml-cpp-vendor-9.0.1-np2py312h2ed9cc7_16.conda
       - conda: https://prefix.dev/robostack-jazzy/linux-64/ros-jazzy-zstd-vendor-0.26.9-np2py312h2ed9cc7_16.conda
       - conda: https://prefix.dev/robostack-jazzy/linux-64/ros2-distro-mutex-0.14.0-jazzy_16.conda
-      - conda_source: isaac-pack[8d3f7471] @ ./isaac-pack
+      - conda_source: isaac-pack[7a9e4c1f] @ ./isaac-pack
       - pypi: https://files.pythonhosted.org/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/38/69/2912ab63036e21c72748019e1d8e09e8a1fc3368b3e83fc27898a1858575/jaxlib-0.10.1-cp312-cp312-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/5c/6e/5087e0347188f6970aba1ffbd0018754d23c3f3461e9f21785f2f27a02c2/jax-0.10.1-py3-none-any.whl
@@ -35676,7 +35676,7 @@ packages:
     - ros2-distro-mutex >=0.14.0,<0.15.0a0
   size: 2334
   timestamp: 1771181243372
-- conda_source: genesis-pack[a180490b] @ ./genesis-pack
+- conda_source: genesis-pack[90168e2d] @ ./genesis-pack
   variants:
     python: '3.12'
   depends:
@@ -35716,6 +35716,7 @@ packages:
   - scipy
   - uv
   - python_abi 3.12.* *_cp312
+  - python_abi 3.12.* *_cp312
   host_packages:
   - conda: https://prefix.dev/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda
   - conda: https://prefix.dev/conda-forge/linux-64/bzip2-1.0.8-hda65f42_9.conda
@@ -35743,7 +35744,7 @@ packages:
   - conda: https://prefix.dev/conda-forge/noarch/setuptools-82.0.1-pyh332efcf_0.conda
   - conda: https://prefix.dev/conda-forge/noarch/tzdata-2025c-hc9c84f9_1.conda
   - conda: https://prefix.dev/conda-forge/noarch/wheel-0.47.0-pyhd8ed1ab_0.conda
-- conda_source: isaac-pack[8d3f7471] @ ./isaac-pack
+- conda_source: isaac-pack[7a9e4c1f] @ ./isaac-pack
   variants:
     python: '3.12'
   depends:
@@ -35854,6 +35855,7 @@ packages:
   - setuptools-scm >=8.0.0,<9.0.0
   - docstring_parser >=0.16.0,<0.17
   - uv
+  - python_abi 3.12.* *_cp312
   - python_abi 3.12.* *_cp312
   host_packages:
   - conda: https://prefix.dev/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda
