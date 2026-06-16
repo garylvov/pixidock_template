@@ -53,6 +53,12 @@ genesis-ros2-gpu = { features = ["gpu", "genesis", "ros2", ]} # Advanced users ;
 # Isaac Lab v3.0.0-beta pack includes Isaac Sim 6, PhysX, and Newton.
 isaaclab-gpu = { features = ["isaaclab", "gpu"] }
 isaaclab-ros2-gpu = { features = ["isaaclab", "ros2", "gpu"] }
+
+# ROS 2 Jazzy variants (mirror the Humble envs; see [feature.ros2-jazzy]).
+ros2-jazzy-gpu = { features = ["gpu", "ros2-jazzy"] }
+ros2-jazzy-cpu = { features = ["cpu", "ros2-jazzy"] }
+genesis-ros2-jazzy-gpu = { features = ["gpu", "genesis", "ros2-jazzy"] }
+isaaclab-ros2-jazzy-gpu = { features = ["isaaclab", "ros2-jazzy", "gpu"] }
 # Now, for the other environment configurations.
 # Feel free to ignore and delete features you don't need!
 
@@ -142,6 +148,47 @@ bag = "ros2 bag record -s mcap --all"
 build-ros = "colcon build"
 [feature.ros2.target.unix.activation]
 scripts = ["humble_ws/install/setup.bash", "scripts/config-ros2-colcon.bash"]
+
+#### ROS 2 Jazzy Environment----------------------------------------------------------------------
+# Mirrors [feature.ros2] (Humble) for the jazzy_ws colcon workspace. Builds with
+# `pixi run -e ros2-jazzy-cpu build-ros-jazzy`; the activation sources the jazzy
+# overlay + points COLCON_DEFAULTS_FILE at jazzy_ws/colcon-defaults.yaml.
+[feature.ros2-jazzy]
+# "https://prefix.dev/robostack-[humble|jazzy|kilted]"
+channels = ["https://prefix.dev/robostack-jazzy", "https://prefix.dev/conda-forge", ]
+[feature.ros2-jazzy.dependencies]
+# For minimal dep set
+ros-jazzy-ros-core = "*"
+# For full feature set
+ros-jazzy-rviz2 = "*"
+ros-jazzy-rosbag2 = "*"
+ros-jazzy-rosbag2-storage-mcap = "*"
+
+compilers = "*"
+cmake = "*"
+pkg-config = "*"
+make = "*"
+ninja = "*"
+
+colcon-common-extensions = "*" # needed for using jazzy_ws/colcon-defaults.yaml
+colcon-mixin = "*"
+colcon-devtools = "*"
+colcon-parallel-executor = "*"
+colcon-defaults = "*"
+colcon-package-selection = "*"
+colcon-python-setup-py = "*"
+colcon-recursive-crawl = "*"
+colcon-ros = "*"
+
+# Same setuptools cap as Humble: setuptools 80+ drops `--editable`, breaking
+# colcon-python-setup-py builds of ROS 2 Python packages.
+setuptools = ">=59.6.0,<=79.0.1"
+
+[feature.ros2-jazzy.tasks]
+bag-jazzy = "ros2 bag record -s mcap --all"
+build-ros-jazzy = "colcon build"
+[feature.ros2-jazzy.target.unix.activation]
+scripts = ["jazzy_ws/install/setup.bash", "scripts/config-ros2-colcon-jazzy.bash"]
 
 ### Isaac Lab / Isaac Sim Environment-----------------------------------------------------------
 # Isaac Sim 6.0.0.0:
