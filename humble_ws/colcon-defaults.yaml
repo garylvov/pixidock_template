@@ -15,9 +15,6 @@ build:
   # To build your package, clone it into humble_ws/src, and add its name to packages-select below.
   packages-select:
     - synchros2
-  mixin:
-    # Multithreaded linker to speed up linking step during compilation
-    - lld
-    - compile-commands
-    # Debug info and build testing for dev workflows
-    - rel-with-deb-info
+  cmake-args:
+    - -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    - -DCMAKE_BUILD_TYPE=RelWithDebInfo

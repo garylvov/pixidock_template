@@ -45,14 +45,16 @@ test = { features = ["test", "cpu"] } # This environment is relied upon by defau
 ## The following environment combinations are optional and can safely be removed if not needed.
 gpu = { features = ["gpu", ] }
 test-gpu = { features = ["gpu", "test", ] }
-ros2-gpu = { features = [ "gpu", "ros2", ]}
-ros2-cpu = { features = ["cpu", "ros2"]}
+ros2-humble-gpu = { features = [ "gpu", "ros2-humble", ]}
+ros2-humble-cpu = { features = ["cpu", "ros2-humble"]}
 genesis-gpu = { features = ["gpu", "genesis"]}
-genesis-ros2-gpu = { features = ["gpu", "genesis", "ros2", ]} # Advanced users ;)
+genesis-ros2-humble-gpu = { features = ["gpu", "genesis", "ros2-humble", ]} # Advanced users ;)
 
 # Isaac Lab v3.0.0-beta pack includes Isaac Sim 6, PhysX, and Newton.
 isaaclab-gpu = { features = ["isaaclab", "gpu"] }
-isaaclab-ros2-gpu = { features = ["isaaclab", "ros2", "gpu"] }
+isaaclab-ros2-humble-gpu = { features = ["isaaclab", "ros2-humble", "gpu"] }
+isaaclab-gpu-latest = { features = ["isaaclab-latest", "gpu"] }
+newton-gpu = { features = ["newton", "gpu"] }
 
 # ROS 2 Jazzy variants (mirror the Humble envs; see [feature.ros2-jazzy]).
 ros2-jazzy-gpu = { features = ["gpu", "ros2-jazzy"] }
@@ -112,10 +114,10 @@ genesis-pack = { path = "./genesis-pack" }
 scripts = ["scripts/config-genesis.bash"]
 
 #### ROS 2 Environment---------------------------------------------------------------------------
-[feature.ros2]
+[feature.ros2-humble]
 # "https://prefix.dev/robostack-[humble|jazzy|kilted]"
 channels = ["https://prefix.dev/robostack-humble", "https://prefix.dev/conda-forge", ]
-[feature.ros2.dependencies]
+[feature.ros2-humble.dependencies]
 # For minimal dep set
 ros-humble-ros-core	= "*"
 # For full feature set
@@ -143,14 +145,14 @@ colcon-ros = "*"
 # " error: option --editable not recognized for setuptools==80.1.0 " occurs for building ROS 2 Humble Python Packages
 setuptools = ">=59.6.0,<=79.0.1"
 
-[feature.ros2.tasks]
-bag = "ros2 bag record -s mcap --all"
-build-ros = "colcon build"
-[feature.ros2.target.unix.activation]
-scripts = ["humble_ws/install/setup.bash", "scripts/config-ros2-colcon.bash"]
+[feature.ros2-humble.tasks]
+bag-humble = "ros2 bag record -s mcap --all"
+build-ros-humble = "colcon build"
+[feature.ros2-humble.target.unix.activation]
+scripts = ["scripts/config-ros2-colcon-humble.bash"]
 
 #### ROS 2 Jazzy Environment----------------------------------------------------------------------
-# Mirrors [feature.ros2] (Humble) for the jazzy_ws colcon workspace. Builds with
+# Mirrors [feature.ros2-humble] for the jazzy_ws colcon workspace. Builds with
 # `pixi run -e ros2-jazzy-cpu build-ros-jazzy`; the activation sources the jazzy
 # overlay + points COLCON_DEFAULTS_FILE at jazzy_ws/colcon-defaults.yaml.
 [feature.ros2-jazzy]
@@ -188,7 +190,7 @@ setuptools = ">=59.6.0,<=79.0.1"
 bag-jazzy = "ros2 bag record -s mcap --all"
 build-ros-jazzy = "colcon build"
 [feature.ros2-jazzy.target.unix.activation]
-scripts = ["jazzy_ws/install/setup.bash", "scripts/config-ros2-colcon-jazzy.bash"]
+scripts = ["scripts/config-ros2-colcon-jazzy.bash"]
 
 ### Isaac Lab / Isaac Sim Environment-----------------------------------------------------------
 # Isaac Sim 6.0.0.0:
@@ -217,5 +219,34 @@ binutils_linux-64 = ">=2.40"
 cmake = ">3.6"
 numpy = "==2.3.1"
 ipywidgets = "==8.1.5"
+[feature.isaaclab.target.unix.activation]
+scripts = ["scripts/config-isaacsim.bash"]
 [feature.isaaclab.system-requirements]
 libc = "2.35"
+
+### Isaac Lab Latest Environment-----------------------------------------------------------------
+# Mirrors [feature.isaaclab], but consumes isaac-pack-latest/ with IsaacLab and
+# sibling packages pinned to 28a37cecdd433c22d9eabd6a5954add9f13a8951.
+[feature.isaaclab-latest]
+[feature.isaaclab-latest.dependencies]
+isaac-pack-latest = { path = "./isaac-pack-latest" }
+sysroot_linux-64 = ">=2.35"
+# Need newer GCC/binutils to work with glibc 2.39's .relr.dyn sections
+gxx_linux-64 = ">=12"
+gcc_linux-64 = ">=12"
+binutils_linux-64 = ">=2.40"
+cmake = ">3.6"
+numpy = "==2.3.1"
+ipywidgets = "==8.1.5"
+[feature.isaaclab-latest.target.unix.activation]
+scripts = ["scripts/config-isaacsim.bash"]
+[feature.isaaclab-latest.system-requirements]
+libc = "2.35"
+
+### Newton Environment---------------------------------------------------------------------------
+# Newton is pinned from source in newton-pack-latest/.
+[feature.newton.dependencies]
+newton-pack-latest = { path = "./newton-pack-latest" }
+mujoco-python = ">=3.8,<3.9"
+mujoco-warp = ">=3.8.0.3,<3.9"
+newton-actuators = ">=0.1.0,<0.1.1"

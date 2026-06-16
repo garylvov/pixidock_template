@@ -1,0 +1,42 @@
+{
+  "schema": 4,
+  "retread_version": "2.3.0",
+  "bundle": "newton-pack-latest",
+  "version": "1.3.0",
+  "python": "3.12",
+  "inputs_hash": "d1a2f18bd026c06c106ed24ce08759740562b6c124d3acebe745ff0d6ecf2af9",
+  "root_requirements": [
+    "newton-pack-latest-pypi==1.3.0"
+  ],
+  "wheels": [
+    {
+      "name": "newton",
+      "version": "1.3.0",
+      "origin": "built",
+      "filename": "newton-1.3.0-py3-none-any.whl"
+    }
+  ],
+  "conda_run_deps": [
+    {
+      "name": "python",
+      "spec": "3.12.*"
+    },
+    {
+      "name": "warp-lang",
+      "spec": ">=1.14.0"
+    },
+    {
+      "name": "uv",
+      "spec": ""
+    },
+    {
+      "name": "python_abi",
+      "spec": "3.12.* *_cp312"
+    }
+  ],
+  "index_urls": [
+    "https://pypi.org/simple/",
+    "https://pypi.nvidia.com",
+    "https://py.mujoco.org"
+  ]
+}

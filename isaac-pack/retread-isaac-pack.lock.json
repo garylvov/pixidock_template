@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "retread_version": "2.2.0",
+  "retread_version": "2.3.0",
   "bundle": "isaac-pack",
   "version": "4.5.22",
   "python": "3.12",
@@ -46,16 +46,16 @@
       "filename": "isaaclab_rl-0.5.0-py3-none-any.whl"
     },
     {
-      "name": "rl-games",
-      "version": "1.6.1",
-      "origin": "built",
-      "filename": "rl_games-1.6.1-py3-none-any.whl"
-    },
-    {
       "name": "skrl",
       "version": "2.1.0",
       "origin": "built",
       "filename": "skrl-2.1.0-999retread-py3-none-any.whl"
+    },
+    {
+      "name": "gym",
+      "version": "0.26.2",
+      "origin": "built",
+      "filename": "gym-0.26.2-999retread-py3-none-any.whl"
     },
     {
       "name": "standard-distutils",
@@ -65,10 +65,10 @@
       "url": "https://files.pythonhosted.org/packages/fc/1b/b8068593d405562f19ef8dd0b1858709db05fe44c9d25d1dbecc9e1666f8/standard_distutils-3.11.9-py3-none-any.whl#sha256=9ba3300167f1c95d5a24e9ac2eb323ad6cb146ec0bea703851a7720e8ffd7878"
     },
     {
-      "name": "gym",
-      "version": "0.26.2",
+      "name": "rl-games",
+      "version": "1.6.1",
       "origin": "built",
-      "filename": "gym-0.26.2-999retread-py3-none-any.whl"
+      "filename": "rl_games-1.6.1-py3-none-any.whl"
     },
     {
       "name": "isaaclab-tasks",
@@ -924,6 +924,10 @@
     {
       "name": "uv",
       "spec": ""
+    },
+    {
+      "name": "python_abi",
+      "spec": "3.12.* *_cp312"
     },
     {
       "name": "python_abi",
