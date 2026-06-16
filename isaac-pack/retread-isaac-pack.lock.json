@@ -1,10 +1,10 @@
 {
   "schema": 4,
-  "retread_version": "2.1.2",
+  "retread_version": "2.2.0",
   "bundle": "isaac-pack",
   "version": "4.5.22",
   "python": "3.12",
-  "inputs_hash": "9042eb390c1a1465e2445065b7e3df1f1bde44a5e5ca27b5c23db0cfe50edd60",
+  "inputs_hash": "7861b0ec744ecf8b04281530894aa533f206e6dd11ba3f8bb3be3d3185dacdee",
   "root_requirements": [
     "isaac-pack-pypi==4.5.22"
   ],
@@ -58,17 +58,17 @@
       "filename": "skrl-2.1.0-999retread-py3-none-any.whl"
     },
     {
-      "name": "gym",
-      "version": "0.26.2",
-      "origin": "built",
-      "filename": "gym-0.26.2-999retread-py3-none-any.whl"
-    },
-    {
       "name": "standard-distutils",
       "version": "3.11.9",
       "origin": "index",
       "filename": "standard_distutils-3.11.9-py3-none-any.whl",
       "url": "https://files.pythonhosted.org/packages/fc/1b/b8068593d405562f19ef8dd0b1858709db05fe44c9d25d1dbecc9e1666f8/standard_distutils-3.11.9-py3-none-any.whl#sha256=9ba3300167f1c95d5a24e9ac2eb323ad6cb146ec0bea703851a7720e8ffd7878"
+    },
+    {
+      "name": "gym",
+      "version": "0.26.2",
+      "origin": "built",
+      "filename": "gym-0.26.2-999retread-py3-none-any.whl"
     },
     {
       "name": "isaaclab-tasks",
@@ -229,32 +229,37 @@
     {
       "name": "aiohttp",
       "version": "3.12.14",
-      "origin": "built",
-      "filename": "aiohttp-3.12.14-999retread-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+      "origin": "index",
+      "filename": "aiohttp-3.12.14-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/73/12/2530fb2b08773f717ab2d249ca7a982ac66e32187c62d49e2c86c9bba9b4/aiohttp-3.12.14-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl#sha256=9888e60c2c54eaf56704b17feb558c7ed6b7439bca1e07d4818ab878f2083660"
     },
     {
       "name": "click",
       "version": "8.1.7",
-      "origin": "built",
-      "filename": "click-8.1.7-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "click-8.1.7-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/00/2e/d53fa4befbf2cfa713304affc7ca780ce4fc1fd8710527771b58311a3229/click-8.1.7-py3-none-any.whl#sha256=ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28"
     },
     {
       "name": "fastapi",
       "version": "0.117.1",
-      "origin": "built",
-      "filename": "fastapi-0.117.1-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "fastapi-0.117.1-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/6d/45/d9d3e8eeefbe93be1c50060a9d9a9f366dba66f288bb518a9566a23a8631/fastapi-0.117.1-py3-none-any.whl#sha256=33c51a0d21cab2b9722d4e56dbb9316f3687155be6b276191790d8da03507552"
     },
     {
       "name": "attrs",
       "version": "25.1.0",
-      "origin": "built",
-      "filename": "attrs-25.1.0-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "attrs-25.1.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/fc/30/d4986a882011f9df997a55e6becd864812ccfcd821d64aac8570ee39f719/attrs-25.1.0-py3-none-any.whl#sha256=c75a69e28a550a7e93789579c22aa26b0f5b83b75dc4e08fe092980051e1090a"
     },
     {
       "name": "multidict",
       "version": "6.1.0",
-      "origin": "built",
-      "filename": "multidict-6.1.0-999retread-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+      "origin": "index",
+      "filename": "multidict-6.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/d3/c8/529101d7176fe7dfe1d99604e48d69c5dfdcadb4f06561f465c8ef12b4df/multidict-6.1.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl#sha256=4b820514bfc0b98a30e3d85462084779900347e4d49267f747ff54060cc33925"
     },
     {
       "name": "async-timeout",
@@ -273,14 +278,16 @@
     {
       "name": "idna",
       "version": "3.10",
-      "origin": "built",
-      "filename": "idna-3.10-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "idna-3.10-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl#sha256=946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3"
     },
     {
       "name": "aiosignal",
       "version": "1.4.0",
-      "origin": "built",
-      "filename": "aiosignal-1.4.0-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "aiosignal-1.4.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/fb/76/641ae371508676492379f16e2fa48f4e2c11741bd63c48be4b12a6b09cba/aiosignal-1.4.0-py3-none-any.whl#sha256=053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e"
     },
     {
       "name": "wrapt",
@@ -292,8 +299,9 @@
     {
       "name": "aioitertools",
       "version": "0.11.0",
-      "origin": "built",
-      "filename": "aioitertools-0.11.0-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "aioitertools-0.11.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/45/66/d1a9fd8e6ff88f2157cb145dd054defb0fd7fe2507fe5a01347e7c690eab/aioitertools-0.11.0-py3-none-any.whl#sha256=04b95e3dab25b449def24d7df809411c10e62aab0cbe31a50ca4e68748c43394"
     },
     {
       "name": "charset-normalizer",
@@ -319,26 +327,30 @@
     {
       "name": "jinja2",
       "version": "3.1.5",
-      "origin": "built",
-      "filename": "jinja2-3.1.5-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "jinja2-3.1.5-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/bd/0f/2ba5fbcd631e3e88689309dbe978c5769e883e4b84ebfe7da30b43275c5a/jinja2-3.1.5-py3-none-any.whl#sha256=aba0f4dc9ed8013c424088f68a5c226f7d6097ed89b246d7749c2ec4175c6adb"
     },
     {
       "name": "aiobotocore",
       "version": "2.25.1",
-      "origin": "built",
-      "filename": "aiobotocore-2.25.1-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "aiobotocore-2.25.1-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/95/2a/d275ec4ce5cd0096665043995a7d76f5d0524853c76a3d04656de49f8808/aiobotocore-2.25.1-py3-none-any.whl#sha256=eb6daebe3cbef5b39a0bb2a97cffbe9c7cb46b2fcc399ad141f369f3c2134b1f"
     },
     {
       "name": "urllib3",
       "version": "2.6.3",
-      "origin": "built",
-      "filename": "urllib3-2.6.3-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "urllib3-2.6.3-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl#sha256=bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4"
     },
     {
       "name": "requests",
       "version": "2.32.3",
-      "origin": "built",
-      "filename": "requests-2.32.3-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "requests-2.32.3-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/f9/9b/335f9764261e915ed497fcdeb11df5dfd6f7bf257d4a6a2a686d80da4d54/requests-2.32.3-py3-none-any.whl#sha256=70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6"
     },
     {
       "name": "nest-asyncio",
@@ -350,26 +362,30 @@
     {
       "name": "contourpy",
       "version": "1.3.3",
-      "origin": "built",
-      "filename": "contourpy-1.3.3-999retread-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+      "origin": "index",
+      "filename": "contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/cc/8f/ec6289987824b29529d0dfda0d74a07cec60e54b9c92f3c9da4c0ac732de/contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl#sha256=4d00e655fcef08aba35ec9610536bfe90267d7ab5ba944f7032549c55a146da1"
     },
     {
       "name": "fonttools",
       "version": "4.61.1",
-      "origin": "built",
-      "filename": "fonttools-4.61.1-999retread-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl"
+      "origin": "index",
+      "filename": "fonttools-4.61.1-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/b7/37/82dbef0f6342eb01f54bca073ac1498433d6ce71e50c3c3282b655733b31/fonttools-4.61.1-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl#sha256=10d88e55330e092940584774ee5e8a6971b01fc2f4d3466a1d6c158230880796"
     },
     {
       "name": "pyparsing",
       "version": "3.3.2",
-      "origin": "built",
-      "filename": "pyparsing-3.3.2-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "pyparsing-3.3.2-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/10/bd/c038d7cc38edc1aa5bf91ab8068b63d4308c66c4c8bb3cbba7dfbc049f9c/pyparsing-3.3.2-py3-none-any.whl#sha256=850ba148bd908d7e2411587e247a1e4f0327839c40e2e5e6d05a007ecc69911d"
     },
     {
       "name": "cycler",
       "version": "0.12.1",
-      "origin": "built",
-      "filename": "cycler-0.12.1-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "cycler-0.12.1-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl#sha256=85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30"
     },
     {
       "name": "kiwisolver",
@@ -381,8 +397,9 @@
     {
       "name": "python-dateutil",
       "version": "2.9.0.post0",
-      "origin": "built",
-      "filename": "python_dateutil-2.9.0.post0-999retread-py2.py3-none-any.whl"
+      "origin": "index",
+      "filename": "python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl#sha256=a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"
     },
     {
       "name": "six",
@@ -394,8 +411,9 @@
     {
       "name": "scipy",
       "version": "1.17.0",
-      "origin": "built",
-      "filename": "scipy-1.17.0-999retread-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+      "origin": "index",
+      "filename": "scipy-1.17.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/d1/fe/66d73b76d378ba8cc2fe605920c0c75092e3a65ae746e1e767d9d020a75a/scipy-1.17.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl#sha256=9eeb9b5f5997f75507814ed9d298ab23f62cf79f5a3ef90031b1ee2506abdb5b"
     },
     {
       "name": "pynvvideocodec",
@@ -407,8 +425,9 @@
     {
       "name": "cryptography",
       "version": "46.0.5",
-      "origin": "built",
-      "filename": "cryptography-46.0.5-999retread-cp38-abi3-manylinux_2_34_x86_64.whl"
+      "origin": "index",
+      "filename": "cryptography-46.0.5-cp38-abi3-manylinux_2_34_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/99/0f/a3076874e9c88ecb2ecc31382f6e7c21b428ede6f55aafa1aa272613e3cd/cryptography-46.0.5-cp38-abi3-manylinux_2_34_x86_64.whl#sha256=a3d507bb6a513ca96ba84443226af944b0f7f47dcc9a399d110cd6146481d24c"
     },
     {
       "name": "jmespath",
@@ -420,26 +439,30 @@
     {
       "name": "fsspec",
       "version": "2025.12.0",
-      "origin": "built",
-      "filename": "fsspec-2025.12.0-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "fsspec-2025.12.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/51/c7/b64cae5dba3a1b138d7123ec36bb5ccd39d39939f18454407e5468f4763f/fsspec-2025.12.0-py3-none-any.whl#sha256=8bf1fe301b7d8acfa6e8571e3b1c3d158f909666642431cc78a1b7b4dbc5ec5b"
     },
     {
       "name": "mpmath",
       "version": "1.3.0",
-      "origin": "built",
-      "filename": "mpmath-1.3.0-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "mpmath-1.3.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/43/e3/7d92a15f894aa0c9c4b49b8ee9ac9850d6e63b03c9c32c0367a13ae62209/mpmath-1.3.0-py3-none-any.whl#sha256=a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c"
     },
     {
       "name": "networkx",
       "version": "3.6.1",
-      "origin": "built",
-      "filename": "networkx-3.6.1-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "networkx-3.6.1-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl#sha256=d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762"
     },
     {
       "name": "sympy",
       "version": "1.14.0",
-      "origin": "built",
-      "filename": "sympy-1.14.0-999retread-py3-none-any.whl"
+      "origin": "index",
+      "filename": "sympy-1.14.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl#sha256=e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5"
     },
     {
       "name": "omniverseclient",

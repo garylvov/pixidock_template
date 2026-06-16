@@ -1,10 +1,10 @@
 {
   "schema": 4,
-  "retread_version": "2.1.2",
+  "retread_version": "2.2.0",
   "bundle": "genesis-pack",
   "version": "1.1.1",
   "python": "3.12",
-  "inputs_hash": "eee47d3193e4b763afe19a4221a6559fc527ec9bfaac294752ccc9eaa1aef43b",
+  "inputs_hash": "c3541183bf92bc8e3a307b202dce940ecab50514fa2108e66c8a718c5fb6d92e",
   "root_requirements": [
     "genesis-pack-pypi==1.1.1"
   ],
@@ -195,10 +195,6 @@
     {
       "name": "uv",
       "spec": ""
-    },
-    {
-      "name": "python_abi",
-      "spec": "3.12.* *_cp312"
     },
     {
       "name": "python_abi",

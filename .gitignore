@@ -119,3 +119,7 @@ genesis-pack/RETREAD-SOLVE-FAILED-*.md
 !genesis-pack/retread-*.lock.json
 # Dead blueprint fence artifact from the pre-courier path.
 isaac-pack/retread-pypi/
+
+# retread progress logs (build/install phase markers)
+*-pack/retread-progress-*.log
+retread-progress-*.log
