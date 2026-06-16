@@ -1,6 +1,6 @@
 {
   "schema": 4,
-  "retread_version": "2.3.0",
+  "retread_version": "2.3.1",
   "bundle": "isaac-pack-latest",
   "version": "6.1.11",
   "python": "3.12",

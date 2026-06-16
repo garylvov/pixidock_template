@@ -1,10 +1,10 @@
 {
   "schema": 4,
-  "retread_version": "2.3.0",
+  "retread_version": "2.3.1",
   "bundle": "isaac-pack",
   "version": "4.5.22",
   "python": "3.12",
-  "inputs_hash": "7861b0ec744ecf8b04281530894aa533f206e6dd11ba3f8bb3be3d3185dacdee",
+  "inputs_hash": "29e2afa399fcc653e7cdd284facf733fb362a2df42222775ed5148e85872cfaf",
   "root_requirements": [
     "isaac-pack-pypi==4.5.22"
   ],
@@ -678,6 +678,14 @@
       "spec": ">=4.67.1,<4.68"
     },
     {
+      "name": "cloudpickle",
+      "spec": ">=1.2.0"
+    },
+    {
+      "name": "gym-notices",
+      "spec": ">=0.0.4"
+    },
+    {
       "name": "pyyaml",
       "spec": ">=6.0,<7.0"
     },
@@ -696,14 +704,6 @@
     {
       "name": "wandb",
       "spec": ">=0.13.11"
-    },
-    {
-      "name": "cloudpickle",
-      "spec": ">=1.2.0"
-    },
-    {
-      "name": "gym-notices",
-      "spec": ">=0.0.4"
     },
     {
       "name": "numba",
