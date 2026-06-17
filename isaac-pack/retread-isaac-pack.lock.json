@@ -1,10 +1,10 @@
 {
   "schema": 9,
-  "retread_version": "2.7.1",
+  "retread_version": "2.8.0",
   "bundle": "isaac-pack",
   "version": "4.5.22",
   "python": "3.12",
-  "inputs_hash": "d7f5c81c3e0aa11382221563b97b7af00e65d7731dd73e35f37968a753404e48",
+  "inputs_hash": "4d87e8c4dbedcf6a346e161efe9e7579ccd13a6328dc00a5505fa19712b1e565",
   "root_requirements": [
     "isaac-pack-pypi==4.5.22"
   ],
@@ -180,15 +180,15 @@
         "standard-distutils; extra == \"rl-games\"",
         "rsl-rl-lib>=5.0.1,<5.1 ; extra == 'rsl-rl'",
         "onnxscript>=0.5; extra == \"rsl-rl\"",
-        "tqdm; extra == \"all\"",
-        "onnxscript>=0.5; extra == \"all\"",
-        "standard-distutils; extra == \"all\"",
-        "rich; extra == \"all\"",
-        "stable-baselines3>=2.6; extra == \"all\"",
-        "rsl-rl-lib>=5.0.1,<5.1 ; extra == 'all'",
         "rl-games @ git+https://github.com/isaac-sim/rl_games.git@python3.11 ; extra == \"all\"",
-        "aiohttp>=3.13.3,<3.14 ; extra == 'all'",
+        "rsl-rl-lib>=5.0.1,<5.1 ; extra == 'all'",
         "skrl>=1.4.3; extra == \"all\"",
+        "rich; extra == \"all\"",
+        "standard-distutils; extra == \"all\"",
+        "aiohttp>=3.13.3,<3.14 ; extra == 'all'",
+        "tqdm; extra == \"all\"",
+        "stable-baselines3>=2.6; extra == \"all\"",
+        "onnxscript>=0.5; extra == \"all\"",
         "gym; extra == \"all\""
       ],
       "must_ship": true,
@@ -200,14 +200,6 @@
           "all"
         ]
       }
-    },
-    {
-      "name": "standard-distutils",
-      "version": "3.11.9",
-      "origin": "index",
-      "filename": "standard_distutils-3.11.9-py3-none-any.whl",
-      "url": "https://files.pythonhosted.org/packages/fc/1b/b8068593d405562f19ef8dd0b1858709db05fe44c9d25d1dbecc9e1666f8/standard_distutils-3.11.9-py3-none-any.whl#sha256=9ba3300167f1c95d5a24e9ac2eb323ad6cb146ec0bea703851a7720e8ffd7878",
-      "must_ship": false
     },
     {
       "name": "rl-games",
@@ -270,6 +262,14 @@
       "upstream_url": "https://files.pythonhosted.org/packages/44/de/eca16c14e27a986ddc0314711a6bc42bb70c247073c7f62c390e4ffaa5ed/skrl-2.1.0-py3-none-any.whl#sha256=5d0cf61fcf81243018220dacbd4a04c84250c1e67274aaeac1779cd53db44e23"
     },
     {
+      "name": "standard-distutils",
+      "version": "3.11.9",
+      "origin": "index",
+      "filename": "standard_distutils-3.11.9-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/fc/1b/b8068593d405562f19ef8dd0b1858709db05fe44c9d25d1dbecc9e1666f8/standard_distutils-3.11.9-py3-none-any.whl#sha256=9ba3300167f1c95d5a24e9ac2eb323ad6cb146ec0bea703851a7720e8ffd7878",
+      "must_ship": false
+    },
+    {
       "name": "gym",
       "version": "0.26.2",
       "origin": "built",
@@ -294,29 +294,29 @@
         "opencv-python>=3.0; extra == \"other\"",
         "matplotlib>=3.0; extra == \"other\"",
         "moviepy>=1.0.0; extra == \"other\"",
-        "box2d-py==2.3.5; extra == \"testing\"",
-        "opencv-python>=3.0; extra == \"testing\"",
-        "imageio>=2.14.1; extra == \"testing\"",
+        "mujoco_py<2.2,>=2.1; extra == \"testing\"",
         "matplotlib>=3.0; extra == \"testing\"",
         "moviepy>=1.0.0; extra == \"testing\"",
-        "mujoco_py<2.2,>=2.1; extra == \"testing\"",
-        "swig==4.*; extra == \"testing\"",
+        "box2d-py==2.3.5; extra == \"testing\"",
+        "opencv-python>=3.0; extra == \"testing\"",
         "lz4>=3.1.0; extra == \"testing\"",
-        "mujoco==2.2; extra == \"testing\"",
         "pygame==2.1.0; extra == \"testing\"",
+        "mujoco==2.2; extra == \"testing\"",
+        "swig==4.*; extra == \"testing\"",
+        "imageio>=2.14.1; extra == \"testing\"",
         "pytest==7.0.1; extra == \"testing\"",
-        "box2d-py==2.3.5; extra == \"all\"",
-        "pygame==2.1.0; extra == \"all\"",
-        "opencv-python>=3.0; extra == \"all\"",
-        "imageio>=2.14.1; extra == \"all\"",
+        "mujoco_py<2.2,>=2.1; extra == \"all\"",
         "matplotlib>=3.0; extra == \"all\"",
         "moviepy>=1.0.0; extra == \"all\"",
-        "mujoco_py<2.2,>=2.1; extra == \"all\"",
+        "ale-py~=0.8.0; extra == \"all\"",
+        "box2d-py==2.3.5; extra == \"all\"",
+        "pytest==7.0.1; extra == \"all\"",
         "swig==4.*; extra == \"all\"",
         "lz4>=3.1.0; extra == \"all\"",
+        "pygame==2.1.0; extra == \"all\"",
         "mujoco==2.2; extra == \"all\"",
-        "ale-py~=0.8.0; extra == \"all\"",
-        "pytest==7.0.1; extra == \"all\""
+        "opencv-python>=3.0; extra == \"all\"",
+        "imageio>=2.14.1; extra == \"all\""
       ],
       "must_ship": false,
       "sdist_source": {

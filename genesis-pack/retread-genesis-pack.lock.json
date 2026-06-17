@@ -1,10 +1,10 @@
 {
   "schema": 9,
-  "retread_version": "2.7.1",
+  "retread_version": "2.8.0",
   "bundle": "genesis-pack",
   "version": "1.1.1",
   "python": "3.12",
-  "inputs_hash": "f124e3b0164e1e542a0b6ba4280f37e1f9b0966db1e0bc27998bdcd9e0be50e6",
+  "inputs_hash": "fe9333c764eb5eaf7253c9543449a81de367ea9427e609cfa490fd64be785b85",
   "root_requirements": [
     "genesis-pack-pypi==1.1.1"
   ],

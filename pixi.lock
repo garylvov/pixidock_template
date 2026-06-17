@@ -4986,7 +4986,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/wheel-0.47.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/widgetsnbextension-4.0.15-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
-      - conda_source: isaac-pack-latest[d57bafc3] @ ./isaac-pack-latest
+      - conda_source: isaac-pack-latest[f4ce0b44] @ ./isaac-pack-latest
       - pypi: https://files.pythonhosted.org/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/38/69/2912ab63036e21c72748019e1d8e09e8a1fc3368b3e83fc27898a1858575/jaxlib-0.10.1-cp312-cp312-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/5c/6e/5087e0347188f6970aba1ffbd0018754d23c3f3461e9f21785f2f27a02c2/jax-0.10.1-py3-none-any.whl
@@ -37753,7 +37753,7 @@ packages:
   - conda: https://prefix.dev/conda-forge/noarch/setuptools-82.0.1-pyh332efcf_0.conda
   - conda: https://prefix.dev/conda-forge/noarch/tzdata-2025c-hc9c84f9_1.conda
   - conda: https://prefix.dev/conda-forge/noarch/wheel-0.47.0-pyhd8ed1ab_0.conda
-- conda_source: isaac-pack-latest[d57bafc3] @ ./isaac-pack-latest
+- conda_source: isaac-pack-latest[f4ce0b44] @ ./isaac-pack-latest
   variants:
     python: '3.12'
   depends:
@@ -37802,13 +37802,13 @@ packages:
   - tensorboard
   - moviepy
   - tqdm >=4.67.1,<4.68
+  - cloudpickle >=1.2.0
+  - gym-notices >=0.0.4
   - pyyaml >=6.0,<7.0
   - ray-core >=2.45.0,<3.0.0
   - setproctitle >=1.2.2,<2.0.0
   - tensorboardx >=2.5,<3.0
   - wandb >=0.13.11
-  - cloudpickle >=1.2.0
-  - gym-notices >=0.0.4
   - pycares >=5.0.1,<5.1
   - websockets >=12.0.0,<12.1
   - aiofiles >=23.2.1,<23.3
