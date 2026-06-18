@@ -1,0 +1,36 @@
+# Retread source package for Newton.
+# The root pixi.toml consumes this as `newton-pack-latest = { path = "./newton-pack-latest" }`.
+
+[package]
+name = "newton-pack-latest"
+version = "1.3.0"
+
+[package.build]
+backend = { name = "pixi-build-retread", version = ">=2.8.0", channels = [
+  "https://prefix.dev/garylvov",
+  "https://prefix.dev/conda-forge",
+] }
+
+[package.build.config]
+# courier mode is the default (v2.1.0+); installs the bundled wheels via the
+# conda post-link script (requires run-post-link-scripts = "insecure" in the
+# consumer's .pixi/config.toml).
+retread-relax = "patch-then-minor-then-major-then-last-resort"
+retread-build-number = 0
+retread-python = "3.12"
+retread-compression-level = 1
+# v1.4.0+ pack-wide default bundle group: collapses every entry below into one
+# conda output named `newton-pack-latest`.
+retread-bundle = "newton-pack-latest"
+
+[package.build.config.retread-git-sources.newton]
+url = "https://github.com/newton-physics/newton.git"
+rev = "ce11136b3a28390944f7fe5a32801b31d8aa5670"
+
+[package.build.config.retread-wheels]
+newton = { from = "newton", extras = ["sim"] }
+
+[package.build.config.retread-name-map]
+opencv-python = "py-opencv"
+opencv-python-headless = "py-opencv"
+torch = "pytorch"

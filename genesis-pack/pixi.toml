@@ -1,0 +1,30 @@
+# Retread source package for Genesis World.
+# The root pixi.toml consumes this as `genesis-pack = { path = "./genesis-pack" }`.
+
+[package]
+name = "genesis-pack"
+version = "1.1.1"
+
+[package.build]
+backend = { name = "pixi-build-retread", version = ">=2.8.0", channels = [
+  "https://prefix.dev/garylvov",
+  "https://prefix.dev/conda-forge",
+] }
+
+[package.build.config]
+# courier mode is the default (v2.1.0+); installs the bundled wheels via the
+# conda post-link script (requires run-post-link-scripts = "insecure" in the
+# consumer's .pixi/config.toml).
+retread-relax = "patch-then-minor-then-major-then-last-resort"
+retread-build-number = 0
+retread-python = "3.12"
+# v1.4.0+ pack-wide default bundle group: collapses every entry below into one
+# conda output named `genesis-pack`.
+retread-bundle = "genesis-pack"
+
+[package.build.config.retread-wheels]
+genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", rev = "8de7e456d10436f9fea908fafad59a01c58aea9c" }
+"pyopengl-accelerate" = { version = "==3.1.10" }
+
+[package.build.config.retread-name-map]
+opencv-python = "py-opencv"

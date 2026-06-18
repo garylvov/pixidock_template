@@ -1,0 +1,43 @@
+# Retread source package for Isaac Sim 6.0 + IsaacLab v3.0.0-beta.
+# The root pixi.toml consumes this as `isaac-pack = { path = "./isaac-pack" }`.
+
+[package]
+name = "isaac-pack"
+version = "6.0.0"
+
+[package.build]
+backend = { name = "pixi-build-retread", version = ">=2.8.0", channels = [
+  "https://prefix.dev/garylvov",
+  "https://prefix.dev/conda-forge",
+] }
+
+[package.build.config]
+# courier mode is the default (v2.1.0+); installs the bundled wheels via the
+# conda post-link script (requires run-post-link-scripts = "insecure" in the
+# consumer's .pixi/config.toml).
+retread-relax = "patch-then-minor-then-major-then-last-resort"
+retread-build-number = 2
+retread-python = "3.12"
+retread-compression-level = 1
+# v1.4.0+ pack-wide default bundle group: collapses every entry below into one
+# conda output named `isaac-pack`.
+retread-bundle = "isaac-pack"
+
+[package.build.config.retread-git-sources.isaaclab]
+url = "https://github.com/isaac-sim/IsaacLab.git"
+rev = "a4a7602f29e755e2673fe0022ea35566df6dd7d5"
+
+[package.build.config.retread-wheels]
+isaacsim = { version = "==6.0.0.0", index = "https://pypi.nvidia.com", extras = ["all", "extscache"] }
+isaaclab = { from = "isaaclab", subdirectory = "source/isaaclab" }
+isaaclab-assets = { from = "isaaclab", subdirectory = "source/isaaclab_assets" }
+isaaclab-tasks = { from = "isaaclab", subdirectory = "source/isaaclab_tasks" }
+isaaclab-rl = { from = "isaaclab", subdirectory = "source/isaaclab_rl", extras = ["all"] }
+isaaclab-mimic = { from = "isaaclab", subdirectory = "source/isaaclab_mimic" }
+isaaclab-physx = { from = "isaaclab", subdirectory = "source/isaaclab_physx" }
+isaaclab-newton = { from = "isaaclab", subdirectory = "source/isaaclab_newton", extras = ["all"] }
+
+[package.build.config.retread-name-map]
+opencv-python = "py-opencv"
+opencv-python-headless = "py-opencv"
+torch = "pytorch"

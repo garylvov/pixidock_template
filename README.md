@@ -8,8 +8,9 @@ This template shamelessly targets only 64 bit linux systems while favoring NVIDI
 
 Also, this template includes environments containing popular libraries for roboticists, as I am a roboticist, and I created this template largely for myself. However, it really could be used
 for any Python project, especially if interfacing with the GPU. The robotics environments can easily be deleted; get rid of the envs/deps you don't need!
-For those who like robots, there are environments for [PyTorch](https://pytorch.org/), [PyTorch3d](https://pytorch3d.org/), [ROS 2](https://www.ros.org/), ROS 2 with GPU, [Genesis Simulator](https://genesis-world.readthedocs.io/en/latest/), [NVIDIA Isaac Lab](https://isaac-sim.github.io/IsaacLab/main/index.html) (NVIDIA Isaac Sim with PhysX physics), and [Isaac Lab Newton](https://github.com/isaac-sim/IsaacLab) (Isaac Lab with NVIDIA's Warp-based Newton physics engine for GPU-accelerated simulation).
+For those who like robots, there are environments for [PyTorch](https://pytorch.org/), [PyTorch3d](https://pytorch3d.org/), [ROS 2](https://www.ros.org/), ROS 2 with GPU, [Genesis Simulator](https://genesis-world.readthedocs.io/en/latest/), [NVIDIA Isaac Lab](https://isaac-sim.github.io/IsaacLab/main/index.html) with both PhysX and Newton physics in one Isaac Sim environment, and standalone [Newton](https://newton-physics.github.io/newton/) with GPU support.
 Check out the [pixi.toml](pixi.toml) to see all environments.
+The Isaac Lab and Newton source packs are generated with [pixi-build-retread](https://prefix.dev/channels/garylvov/packages/pixi-build-retread).
 
 [Pixi](https://pixi.sh/latest/) and [Docker](https://www.docker.com/) are two tools that together, in my opinion, can create a largely hermetic,  reproducible, and neat Python environment.
 I think it's better than just ```pip``` and/or ```apt```  installing, or using ```virtualenv```, or [uv alone](https://docs.astral.sh/uv/#installation), ```conda```, or ```mamba```, or other virtualization tools.
@@ -40,7 +41,7 @@ Option B: Help everybody by [opening an issue with a package request on RoboStac
 Option C: Building the library within a ROS workspace with RoboStack
 
 The desired library may not be available on the RoboStack package index, but it maybe can still be built as part of the ROS workspace.
-Run <code>pixi r build-ros</code> to build the [synchros2](https://github.com/bdaiinstitute/ros_utilities/wiki) package from source in <code>ros2_ws</code> directory to see an example.
+Run <code>pixi r -e ros2-humble-cpu build-ros-humble</code> to build the [synchros2](https://github.com/RAI-Opensource/synchros2) package from source in the <code>humble_ws</code> directory to see an example.
 However, [be wary of relying on rosdep](https://github.com/huggingface/lerobot).
 
 Option D: Running the library within Docker with it's own standalone version of ROS 2, that communicates through ROS 2 with this template package
@@ -120,22 +121,20 @@ to activate the environment(s).
 # ulimit -u 8192   # Increase process limit (helps for multi-GPU training)
 
 pixi s  # Activate environment, add -e for specific env,
-# Envs: gpu|ros2-gpu|ros2-cpu|genesis-gpu|genesis-ros2-gpu|isaaclab-gpu|isaaclab-ros2-gpu|isaaclab-newton-gpu
+# Envs: gpu|ros2-humble-gpu|ros2-humble-cpu|ros2-jazzy-gpu|ros2-jazzy-cpu|genesis-gpu|genesis-ros2-humble-gpu|genesis-ros2-jazzy-gpu|isaaclab-gpu|isaaclab-ros2-humble-gpu|isaaclab-ros2-jazzy-gpu|isaaclab-gpu-latest|newton-gpu
 
 
 # On some systems (e.g., RHEL 9.4), you may need the following
 # export CONDA_OVERRIDE_GLIBC=2.35
-# For Isaac Lab (PhysX)
-pixi r -e isaaclab-gpu install-isaaclab
+# Isaac Lab v3.0.0-beta with Isaac Sim 6 includes both PhysX and Newton.
 # To use: pixi s -e isaaclab-gpu
-# For Isaac Lab Newton (Warp-based)
-pixi r install-isaaclab-newton
-# To use: pixi s -e isaaclab-newton-gpu
+# To use the newer IsaacLab source pin: pixi s -e isaaclab-gpu-latest
+# To use standalone Newton: pixi s -e newton-gpu
 
-# For ROS, build the ros2_ws (colcon build is auto-configured by ros2_ws/colcon-defaults.yaml)
-pixi r build-ros
-# To build your package, clone it into ros2_ws/src, and add its name to the colcon-defaults.yaml
-# To use: pixi s -e ros2-gpu or ros2-cpu
+# For ROS, build the humble_ws (colcon build is auto-configured by humble_ws/colcon-defaults.yaml)
+pixi r -e ros2-humble-cpu build-ros-humble
+# To build your package, clone it into humble_ws/src, and add its name to the colcon-defaults.yaml
+# To use: pixi s -e ros2-humble-gpu or ros2-humble-cpu
 # Genesis + Isaac Lab environments are still a bit flaky despite my best efforts ;(
 ```
 
