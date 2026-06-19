@@ -1,84 +1,92 @@
 {
-  "schema": 9,
-  "retread_version": "2.8.0",
+  "schema": 10,
+  "retread_version": "2.9.0",
   "bundle": "genesis-pack",
   "version": "1.1.1",
   "python": "3.12",
-  "inputs_hash": "fe9333c764eb5eaf7253c9543449a81de367ea9427e609cfa490fd64be785b85",
+  "inputs_hash": "44b329f2bf8fee1203bf5002a049012b16c7e89adc94016e5d5d5aa5c498ac82",
   "root_requirements": [
     "genesis-pack-pypi==1.1.1"
   ],
   "wheels": [
+    {
+      "name": "dracopy",
+      "version": "2.0.0",
+      "origin": "index",
+      "filename": "dracopy-2.0.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/4e/b7/28dff0bc2f992df437aaeeaeffba8f2f1ec031f054cedfc0390ea4300370/dracopy-2.0.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl#sha256=4d6ea2821545b5fa1cfb1ca2911ea6425a2606932cf4fac2f9b1f2d4ccb6e52d",
+      "must_ship": false
+    },
     {
       "name": "genesis-world",
       "version": "1.1.1",
       "origin": "built",
       "filename": "genesis_world-1.1.1-py3-none-any.whl",
       "requires_dist": [
-        "psutil",
-        "quadrants>=1.0.2,<1.1",
-        "pydantic>=2.11.0",
-        "numpy>=1.26.4",
-        "frozendict",
-        "trimesh>=4.8.2",
-        "xacro",
-        "libigl!=2.6.2",
-        "py-cpuinfo",
-        "mujoco>=3.2.5",
-        "moviepy>=2.0.0",
-        "pyglet!=2.1.8,>=1.5",
-        "freetype-py",
-        "PyOpenGL>=3.1.4",
-        "numba",
-        "pymeshlab",
-        "pycollada",
-        "pygltflib>=1.16,<1.17",
         "DracoPy",
-        "tetgen>=0.8.2,<0.9",
-        "PyGEL3D",
-        "vtk",
-        "Pillow>11.0",
-        "opencv-python",
-        "scikit-image",
-        "coacd",
-        "rtree",
-        "z3-solver<4.15.5.0",
         "OpenEXR",
-        "gs-madrona>=0.0.7,<0.1 ; (platform_machine == 'AMD64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')",
-        "fast_simplification>=0.1.12",
-        "pysplashsurf==0.14.*",
-        "black; extra == \"dev\"",
-        "pytest; extra == \"dev\"",
-        "pytest-xdist; extra == \"dev\"",
-        "pytest-forked; extra == \"dev\"",
-        "pytest-timeout; extra == \"dev\"",
-        "pytest-print; extra == \"dev\"",
-        "setproctitle; extra == \"dev\"",
-        "syrupy; extra == \"dev\"",
-        "huggingface_hub[hf_xet]; extra == \"dev\"",
-        "wandb; extra == \"dev\"",
-        "ipython; extra == \"dev\"",
-        "mujoco<3.7.0,>=3.5.0; extra == \"dev\"",
-        "matplotlib>=3.7.0; extra == \"dev\"",
+        "Pillow>11.0",
+        "PyGEL3D",
+        "PyOpenGL>=3.1.4",
         "av; extra == \"dev\"",
-        "scipy; extra == \"dev\"",
-        "pre_commit; extra == \"dev\"",
-        "sphinx>=6.2.1,<6.3 ; extra == 'docs'",
-        "sphinx-autobuild; extra == \"docs\"",
-        "pydata_sphinx_theme; extra == \"docs\"",
-        "sphinxcontrib.spelling; extra == \"docs\"",
-        "sphinx-autodoc-typehints; extra == \"docs\"",
-        "sphinx_copybutton; extra == \"docs\"",
-        "myst-parser; extra == \"docs\"",
-        "sphinx-subfigure; extra == \"docs\"",
-        "sphinxcontrib-video; extra == \"docs\"",
-        "sphinx-togglebutton; extra == \"docs\"",
-        "sphinx_design; extra == \"docs\"",
-        "pybind11[global]; extra == \"render\"",
-        "open3d; (python_version < \"3.13\" and platform_machine != \"aarch64\") and extra == \"render\"",
+        "black; extra == \"dev\"",
+        "coacd",
+        "fast_simplification>=0.1.12",
+        "filelock; extra == \"usd\"",
+        "freetype-py",
+        "frozendict",
+        "gs-madrona>=0.0.7,<0.1 ; (platform_machine == 'AMD64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')",
+        "huggingface_hub[hf_xet]; extra == \"dev\"",
         "imgui-bundle; python_version >= \"3.11\" and extra == \"render\"",
+        "ipython; extra == \"dev\"",
+        "libigl!=2.6.2",
+        "matplotlib>=3.7.0; extra == \"dev\"",
+        "moviepy>=2.0.0",
+        "mujoco<3.7.0,>=3.5.0; extra == \"dev\"",
+        "mujoco>=3.2.5",
+        "myst-parser; extra == \"docs\"",
+        "numba",
+        "numpy>=1.26.4",
+        "open3d; (python_version < \"3.13\" and platform_machine != \"aarch64\") and extra == \"render\"",
+        "opencv-python",
+        "pre_commit; extra == \"dev\"",
+        "psutil",
+        "py-cpuinfo",
+        "pybind11[global]; extra == \"render\"",
+        "pycollada",
+        "pydantic>=2.11.0",
+        "pydata_sphinx_theme; extra == \"docs\"",
+        "pyglet!=2.1.8,>=1.5",
+        "pygltflib>=1.16,<1.17",
+        "pymeshlab",
+        "pysplashsurf==0.14.*",
+        "pytest-forked; extra == \"dev\"",
+        "pytest-print; extra == \"dev\"",
+        "pytest-timeout; extra == \"dev\"",
+        "pytest-xdist; extra == \"dev\"",
+        "pytest; extra == \"dev\"",
+        "quadrants>=1.0.2,<1.1",
+        "rtree",
+        "scikit-image",
+        "scipy; extra == \"dev\"",
+        "setproctitle; extra == \"dev\"",
+        "sphinx-autobuild; extra == \"docs\"",
+        "sphinx-autodoc-typehints; extra == \"docs\"",
+        "sphinx-subfigure; extra == \"docs\"",
+        "sphinx-togglebutton; extra == \"docs\"",
+        "sphinx>=6.2.1,<6.3 ; extra == 'docs'",
+        "sphinx_copybutton; extra == \"docs\"",
+        "sphinx_design; extra == \"docs\"",
+        "sphinxcontrib-video; extra == \"docs\"",
+        "sphinxcontrib.spelling; extra == \"docs\"",
+        "syrupy; extra == \"dev\"",
+        "tetgen>=0.8.2,<0.9",
+        "trimesh>=4.8.2",
         "usd-core>=25.11,<25.12 ; extra == 'usd'",
-        "filelock; extra == \"usd\""
+        "vtk",
+        "wandb; extra == \"dev\"",
+        "xacro",
+        "z3-solver<4.15.5.0"
       ],
       "must_ship": true,
       "git_source": {
@@ -87,35 +95,11 @@
       }
     },
     {
-      "name": "pyopengl-accelerate",
-      "version": "3.1.10",
+      "name": "gs-madrona",
+      "version": "0.0.7.post2",
       "origin": "index",
-      "filename": "pyopengl_accelerate-3.1.10-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
-      "must_ship": false
-    },
-    {
-      "name": "quadrants",
-      "version": "1.0.3b3",
-      "origin": "index",
-      "filename": "quadrants-1.0.3b3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
-      "url": "https://files.pythonhosted.org/packages/9f/df/b6398a48288e2b94ece946fd66c8cfbd59d7e4e6738e1a5914a69d2a7d25/quadrants-1.0.3b3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl#sha256=9e689615365a9a162f9d1e3f060adecd016d19cd601a8fb19e8838eb1711aecc",
-      "requires_dist": [
-        "numpy>=1.26.0",
-        "colorama",
-        "dill",
-        "pydantic>=2.0.0",
-        "rich>=1.0.0",
-        "setuptools>=77.0.0",
-        "cffi>=1.16.0"
-      ],
-      "must_ship": false
-    },
-    {
-      "name": "dracopy",
-      "version": "2.0.0",
-      "origin": "index",
-      "filename": "dracopy-2.0.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
-      "url": "https://files.pythonhosted.org/packages/4e/b7/28dff0bc2f992df437aaeeaeffba8f2f1ec031f054cedfc0390ea4300370/dracopy-2.0.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl#sha256=4d6ea2821545b5fa1cfb1ca2911ea6425a2606932cf4fac2f9b1f2d4ccb6e52d",
+      "filename": "gs_madrona-0.0.7.post2-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/98/66/f37ae87d648cdd0e51de56b5afae42d3daf31e78a26443da87795963c7f3/gs_madrona-0.0.7.post2-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl#sha256=9ade022b34caffba60fca29d71b3322067abe4b7aaecf0e8aa3b231a2d676038",
       "must_ship": false
     },
     {
@@ -132,11 +116,10 @@
       "upstream_url": "https://files.pythonhosted.org/packages/cb/fb/eee3d9698b38c7005a500205f2559bf1f2983ecc232cb7ad2f7cc518ed4e/PyGEL3D-0.6.1-py3-none-any.whl#sha256=6403447c1a2d3c592871ad7ec7c30854e299149cd1532b46c78c5f43009d06f2"
     },
     {
-      "name": "gs-madrona",
-      "version": "0.0.7.post2",
+      "name": "pyopengl-accelerate",
+      "version": "3.1.10",
       "origin": "index",
-      "filename": "gs_madrona-0.0.7.post2-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
-      "url": "https://files.pythonhosted.org/packages/98/66/f37ae87d648cdd0e51de56b5afae42d3daf31e78a26443da87795963c7f3/gs_madrona-0.0.7.post2-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl#sha256=9ade022b34caffba60fca29d71b3322067abe4b7aaecf0e8aa3b231a2d676038",
+      "filename": "pyopengl_accelerate-3.1.10-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
       "must_ship": false
     },
     {
@@ -145,121 +128,38 @@
       "origin": "built",
       "filename": "pysplashsurf-0.14.1.0-999retread-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
       "requires_dist": [
-        "numpy",
-        "meshio ; extra == 'meshio'"
+        "meshio ; extra == 'meshio'",
+        "numpy"
       ],
       "must_ship": false,
       "upstream_url": "https://files.pythonhosted.org/packages/16/f6/1870e6faadb0eae58c2ac4c03e47ecff954717d5da68de8d43e41b037c66/pysplashsurf-0.14.1.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl#sha256=27a96c2e8350b14715a9c13987ece9747cbfca30736f9d95e27edf61c5978510"
+    },
+    {
+      "name": "quadrants",
+      "version": "1.0.3b3",
+      "origin": "index",
+      "filename": "quadrants-1.0.3b3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/9f/df/b6398a48288e2b94ece946fd66c8cfbd59d7e4e6738e1a5914a69d2a7d25/quadrants-1.0.3b3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl#sha256=9e689615365a9a162f9d1e3f060adecd016d19cd601a8fb19e8838eb1711aecc",
+      "requires_dist": [
+        "cffi>=1.16.0",
+        "colorama",
+        "dill",
+        "numpy>=1.26.0",
+        "pydantic>=2.0.0",
+        "rich>=1.0.0",
+        "setuptools>=77.0.0"
+      ],
+      "must_ship": false
     }
   ],
   "conda_run_deps": [
     {
-      "name": "python",
-      "spec": "3.12.*"
-    },
-    {
-      "name": "psutil",
-      "spec": ""
-    },
-    {
-      "name": "pydantic",
-      "spec": ">=2.11.0"
-    },
-    {
-      "name": "numpy",
-      "spec": ">=1.26.4,<3"
-    },
-    {
-      "name": "frozendict",
-      "spec": ""
-    },
-    {
-      "name": "trimesh",
-      "spec": ">=4.8.2"
-    },
-    {
-      "name": "xacro",
-      "spec": ""
-    },
-    {
-      "name": "igl",
-      "spec": "!=2.6.2"
-    },
-    {
-      "name": "py-cpuinfo",
-      "spec": ""
-    },
-    {
-      "name": "mujoco-python",
-      "spec": ">=3.2.5"
-    },
-    {
-      "name": "moviepy",
-      "spec": "*"
-    },
-    {
-      "name": "pyglet",
-      "spec": ">=1.5,!=2.1.8"
-    },
-    {
-      "name": "freetype-py",
-      "spec": ""
-    },
-    {
-      "name": "pyopengl",
-      "spec": ">=3.1.4"
-    },
-    {
-      "name": "numba",
-      "spec": ""
-    },
-    {
-      "name": "pymeshlab",
-      "spec": ""
-    },
-    {
-      "name": "pycollada",
-      "spec": ""
-    },
-    {
-      "name": "pygltflib",
-      "spec": ">=1.16,<1.17"
-    },
-    {
-      "name": "vtk-base",
-      "spec": ""
-    },
-    {
-      "name": "pillow",
-      "spec": "*"
-    },
-    {
-      "name": "py-opencv",
-      "spec": ""
-    },
-    {
-      "name": "scikit-image",
-      "spec": ">=0.25.2,<0.26"
+      "name": "cffi",
+      "spec": ">=1.16.0"
     },
     {
       "name": "coacd",
       "spec": ""
-    },
-    {
-      "name": "rtree",
-      "spec": ""
-    },
-    {
-      "name": "z3-solver",
-      "spec": "<4.15.5.0"
-    },
-    {
-      "name": "openexr-python",
-      "spec": ""
-    },
-    {
-      "name": "fast-simplification",
-      "spec": ">=0.1.12"
     },
     {
       "name": "colorama",
@@ -270,32 +170,132 @@
       "spec": ""
     },
     {
-      "name": "rich",
-      "spec": ">=1.0.0"
+      "name": "fast-simplification",
+      "spec": ">=0.1.12"
     },
     {
-      "name": "setuptools",
-      "spec": ">=59.6.0,<=79.0.1"
+      "name": "freetype-py",
+      "spec": ""
     },
     {
-      "name": "cffi",
-      "spec": ">=1.16.0"
+      "name": "frozendict",
+      "spec": ""
+    },
+    {
+      "name": "igl",
+      "spec": "!=2.6.2"
+    },
+    {
+      "name": "moviepy",
+      "spec": "*"
+    },
+    {
+      "name": "mujoco-python",
+      "spec": ">=3.2.5"
+    },
+    {
+      "name": "numba",
+      "spec": ""
+    },
+    {
+      "name": "numpy",
+      "spec": ">=1.26.4,<3"
+    },
+    {
+      "name": "openexr-python",
+      "spec": ""
+    },
+    {
+      "name": "pillow",
+      "spec": "*"
     },
     {
       "name": "plotly",
       "spec": ">=5.24.1,<5.25"
     },
     {
+      "name": "psutil",
+      "spec": ""
+    },
+    {
+      "name": "py-cpuinfo",
+      "spec": ""
+    },
+    {
+      "name": "py-opencv",
+      "spec": ""
+    },
+    {
+      "name": "pycollada",
+      "spec": ""
+    },
+    {
+      "name": "pydantic",
+      "spec": ">=2.11.0"
+    },
+    {
+      "name": "pyglet",
+      "spec": ">=1.5,!=2.1.8"
+    },
+    {
+      "name": "pygltflib",
+      "spec": ">=1.16,<1.17"
+    },
+    {
+      "name": "pymeshlab",
+      "spec": ""
+    },
+    {
+      "name": "pyopengl",
+      "spec": ">=3.1.4"
+    },
+    {
+      "name": "python",
+      "spec": "3.12.*"
+    },
+    {
+      "name": "python_abi",
+      "spec": "3.12.* *_cp312"
+    },
+    {
+      "name": "rich",
+      "spec": ">=1.0.0"
+    },
+    {
+      "name": "rtree",
+      "spec": ""
+    },
+    {
+      "name": "scikit-image",
+      "spec": ">=0.25.2,<0.26"
+    },
+    {
       "name": "scipy",
       "spec": ""
+    },
+    {
+      "name": "setuptools",
+      "spec": ">=59.6.0,<=79.0.1"
+    },
+    {
+      "name": "trimesh",
+      "spec": ">=4.8.2"
     },
     {
       "name": "uv",
       "spec": ""
     },
     {
-      "name": "python_abi",
-      "spec": "3.12.* *_cp312"
+      "name": "vtk-base",
+      "spec": ""
+    },
+    {
+      "name": "xacro",
+      "spec": ""
+    },
+    {
+      "name": "z3-solver",
+      "spec": "<4.15.5.0"
     }
   ],
   "index_urls": [
@@ -2836,6 +2836,7 @@
     "cmake-lint",
     "cmake-package-check",
     "cmake-parse",
+    "cmake-parser",
     "cmakelang",
     "cmakelint",
     "cmap",
@@ -4197,6 +4198,7 @@
     "diffoscope",
     "diffpriv",
     "diffprivlib",
+    "diffpy-apps",
     "diffpy-cmi",
     "diffpy-distanceprinter",
     "diffpy-fourigui",
@@ -7075,6 +7077,7 @@
     "groq",
     "groundingdino-py",
     "grouper",
+    "growbikenet",
     "grpc-google-iam-v1",
     "grpc-interceptor",
     "grpc-stubs",
@@ -7489,6 +7492,7 @@
     "htmx-flask",
     "htmy",
     "htpolynet",
+    "htrmopo",
     "httmock",
     "http-ece",
     "http3",
@@ -8365,6 +8369,7 @@
     "jsx-lexer",
     "jtd",
     "jug",
+    "julday",
     "julearn",
     "julia",
     "juliacall",
@@ -8492,6 +8497,7 @@
     "jupyter-telemetry",
     "jupyter-templates",
     "jupyter-themer",
+    "jupyter-tiler",
     "jupyter-to-medium",
     "jupyter-ui-poll",
     "jupyter-videochat",
@@ -8704,6 +8710,7 @@
     "jwskate",
     "jxlpy",
     "jyg",
+    "k-diagram",
     "k3d",
     "kadi-apy",
     "kafka-python",
@@ -9564,6 +9571,8 @@
     "lxml-html-clean",
     "lxml-stubs",
     "lxmlh",
+    "lyric-component-ts-transpiling",
+    "lyric-js-worker",
     "lyric-task",
     "lyricsmaster",
     "lyteidl",
@@ -15588,6 +15597,7 @@
     "qtwirl",
     "qtypes",
     "quacc",
+    "quaccatoo",
     "quackosm",
     "quadax",
     "quadprog",
@@ -15735,6 +15745,8 @@
     "rapidfuzz-capi",
     "rapidgzip",
     "rapidminer",
+    "rapidminer-ai-core",
+    "rapidminer-ai-runtime",
     "rapidocr",
     "rapidpe-rift-pipe",
     "rapidpy",
@@ -17123,6 +17135,7 @@
     "skops",
     "skorch",
     "skore",
+    "skore-cli",
     "skore-hub-project",
     "skore-local-project",
     "skore-mlflow-project",
@@ -18652,6 +18665,7 @@
     "tox-gh",
     "tox-poetry-installer",
     "tox-uv",
+    "tox-uv-bare",
     "tox-venv",
     "toy-api",
     "toyplot",
@@ -19673,6 +19687,7 @@
     "wasmtime",
     "wassima",
     "wat-inspector",
+    "watch-duck",
     "watchdog",
     "watchdog-gevent",
     "watchfiles",
@@ -20394,5 +20409,9 @@
     "zxcvbn",
     "zxing-cpp",
     "zxpy"
+  ],
+  "entry_specs": [
+    "genesis-world@git:8de7e456d10436f9fea908fafad59a01c58aea9c",
+    "pyopengl-accelerate==3.1.10"
   ]
 }
