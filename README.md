@@ -144,6 +144,29 @@ All run commands must occur from within the project parent folder or Docker imag
 
 Here is where to put the entrypoints your user may care about.
 
+### Adding a dependency to a retread pack (incremental)
+
+The `*-pack*/` directories are [pixi-build-retread](https://github.com/garylvov/pixi-build-retread)
+packs (backend pinned `>=2.10.0`). Each has a committed `retread-*.lock.json` capturing its
+resolved closure.
+
+To add a dependency to a pack, add it under `[package.build.config.retread-wheels]` in the
+pack's `pixi.toml`, then install with `RETREAD_INCREMENTAL=1`:
+
+```bash
+# e.g. add `iniconfig = { version = "==2.0.0" }` to newton-pack-latest/pixi.toml, then:
+RETREAD_INCREMENTAL=1 pixi install -e newton-gpu
+```
+
+With `RETREAD_INCREMENTAL=1`, retread **reuses the committed lock's closure and resolves only
+the new dependency** instead of re-resolving everything (much faster on large packs like
+`isaac-pack`). If the new dependency conflicts with a locked version, it safely escalates to a
+full cold resolve. Without the env var (the default), every install is a full resolve. Note that
+since retread `>=2.10.0`, full resolves **favor the committed lock's versions** by default
+(disable with `RETREAD_NO_FAVOR_LOCK=1`), so even a cold re-resolve keeps unrelated versions
+stable. Optionally set `RETREAD_VERIFY_LOCALADD=1` to log an internal-consistency check of the
+resulting closure.
+
 ## Community Contributions
 
 If something doesn't work, please create a GitHub issue!

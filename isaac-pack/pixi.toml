@@ -6,7 +6,7 @@ name = "isaac-pack"
 version = "6.0.0"
 
 [package.build]
-backend = { name = "pixi-build-retread", version = ">=2.8.0", channels = [
+backend = { name = "pixi-build-retread", version = ">=2.10.0", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/conda-forge",
 ] }
@@ -36,6 +36,11 @@ isaaclab-rl = { from = "isaaclab", subdirectory = "source/isaaclab_rl", extras =
 isaaclab-mimic = { from = "isaaclab", subdirectory = "source/isaaclab_mimic" }
 isaaclab-physx = { from = "isaaclab", subdirectory = "source/isaaclab_physx" }
 isaaclab-newton = { from = "isaaclab", subdirectory = "source/isaaclab_newton", extras = ["all"] }
+# Same-repo sibling (retread >=2.10.0): visualizers' upstream install_requires
+# names isaaclab (a sibling wheel here, not on PyPI) -- satisfied from the
+# sibling; its omitted kit/newton/rerun/viser subpackages are recovered from
+# source via injection.
+isaaclab-visualizers = { from = "isaaclab", subdirectory = "source/isaaclab_visualizers", extras = ["all"] }
 
 [package.build.config.retread-name-map]
 opencv-python = "py-opencv"
