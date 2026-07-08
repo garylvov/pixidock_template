@@ -147,8 +147,9 @@ Here is where to put the entrypoints your user may care about.
 ### Adding a dependency to a retread pack (incremental)
 
 The `*-pack*/` directories are [pixi-build-retread](https://github.com/garylvov/pixi-build-retread)
-packs (backend pinned `>=2.10.0`). Each has a committed `retread-*.lock.json` capturing its
-resolved closure.
+packs (backend pinned `>=4.1.0` from [prefix.dev/garylvov](https://prefix.dev/garylvov)). Each has
+a committed `retread-*.lock.json` capturing its resolved closure. The uv closure engine is the
+default (spelled out as `retread-resolver = "uv"` in each pack; set `"legacy"` to fall back).
 
 To add a dependency to a pack, add it under `[package.build.config.retread-wheels]` in the
 pack's `pixi.toml`, then install with `RETREAD_INCREMENTAL=1`:
@@ -166,6 +167,26 @@ since retread `>=2.10.0`, full resolves **favor the committed lock's versions** 
 (disable with `RETREAD_NO_FAVOR_LOCK=1`), so even a cold re-resolve keeps unrelated versions
 stable. Optionally set `RETREAD_VERIFY_LOCALADD=1` to log an internal-consistency check of the
 resulting closure.
+
+### Retread fast path (shared filesystems / clusters)
+
+On machines where the project and caches live on slow shared storage (SLURM clusters,
+EC2 + EFS), retread can reroute caches and env storage to fast machine-local disk:
+
+```bash
+# Activate the fast path (reroutes caches/envs to local disk; auto-disengages
+# on machines that already have fast local storage):
+eval "$(pixi-build-retread fast --print-env)"
+
+pixi install -e isaaclab-gpu   # materializes from the envs-persist snapshot
+                               # (lock-hash match) or a no-resolve frozen rebuild
+
+# After changing an env, refresh its snapshot:
+pixi-build-retread fast --persist isaaclab-gpu
+```
+
+Reactivation on a warm node is resolve-free: with a matching lock hash the env is
+restored by parallel copy from the persisted snapshot instead of re-solving.
 
 ## Community Contributions
 
