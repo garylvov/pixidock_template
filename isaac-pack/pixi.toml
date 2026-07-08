@@ -18,9 +18,10 @@ backend = { name = "pixi-build-retread", version = ">=4.1.0", channels = [
 retread-relax = "patch-then-minor-then-major-then-last-resort"
 retread-build-number = 2
 retread-python = "3.12"
-# uv is the default closure engine (v4.0.0+); spelled out here for clarity.
-# Fall back with retread-resolver = "legacy" if needed.
-retread-resolver = "uv"
+# uv is the default closure engine (v4.0.0+), but it rejects this closure's
+# pinned prerelease deps (isaacsim-core -> tinyobjloader==2.0.0rc13) and does
+# not consume the committed lock's prerelease pins, so use the legacy engine.
+retread-resolver = "legacy"
 retread-compression-level = 1
 # v1.4.0+ pack-wide default bundle group: collapses every entry below into one
 # conda output named `isaac-pack`.

@@ -118,3 +118,6 @@ isaac-pack/retread-pypi/
 # retread progress logs (build/install phase markers)
 *-pack*/retread-progress-*.log
 retread-progress-*.log
+
+# retread solve ledgers (local scratch state from `pixi-build-retread solve`)
+*-pack*/.retread/
