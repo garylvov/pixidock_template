@@ -87,6 +87,10 @@ CUDA_HOME = "$CONDA_PREFIX"
 # Thank you to Matthew Feickert for the system requirements tip!
 # https://pixi.sh/latest/workspace/system_requirements/
 # https://matthewfeickert-talks.github.io/reproducible-ml-for-scientists-with-pixi-scipy-2025/cuda-conda
+# NOTE: this legacy [system-requirements] table works on pixi 0.70-0.72
+# (0.71+ only warns that it is deprecated). The pixi 0.71+ rich `platforms`
+# form is also supported by retread >=4.1.0, e.g. in [workspace]:
+#   platforms = [{ platform = "linux-64", glibc = "2.35", cuda = "12" }]
 cuda   = "12"
 [feature.gpu.dependencies]
 # Keep the torch family on conda. conda-forge's PyTorch 2.10 GPU builds require CUDA 12.9.
@@ -222,6 +226,8 @@ ipywidgets = "==8.1.5"
 [feature.isaaclab.target.unix.activation]
 scripts = ["scripts/config-isaacsim.bash"]
 [feature.isaaclab.system-requirements]
+# Legacy form (works on pixi 0.70-0.72); the 0.71+ rich `platforms` form is
+# also supported -- see the note on [feature.gpu.system-requirements].
 libc = "2.35"
 
 ### Isaac Lab Latest Environment-----------------------------------------------------------------
@@ -241,6 +247,8 @@ ipywidgets = "==8.1.5"
 [feature.isaaclab-latest.target.unix.activation]
 scripts = ["scripts/config-isaacsim.bash"]
 [feature.isaaclab-latest.system-requirements]
+# Legacy form (works on pixi 0.70-0.72); the 0.71+ rich `platforms` form is
+# also supported -- see the note on [feature.gpu.system-requirements].
 libc = "2.35"
 
 ### Newton Environment---------------------------------------------------------------------------
