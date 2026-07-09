@@ -6,21 +6,22 @@ name = "isaac-pack"
 version = "6.0.0"
 
 [package.build]
-backend = { name = "pixi-build-retread", version = ">=4.3.0", channels = [
+backend = { name = "pixi-build-retread", version = ">=4.4.0", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/conda-forge",
 ] }
 
 [package.build.config]
-# courier mode is the default (v2.1.0+); installs the bundled wheels via the
-# conda post-link script (requires run-post-link-scripts = "insecure" in the
-# consumer's .pixi/config.toml).
+# courier mode is the default (v2.1.0+). retread-courier-mode = "activation"
+# installs the bundled wheels lazily on first `pixi run`/`shell` via the
+# activate.d self-heal guard -- no conda post-link script, so no
+# `run-post-link-scripts = "insecure"` is needed in the consumer's .pixi/config.toml.
+retread-courier-mode = "activation"
 retread-relax = "patch-then-minor-then-major-then-last-resort"
 retread-build-number = 2
 retread-python = "3.12"
-# uv is the default closure engine (v4.0.0+); spelled out here for clarity.
-# Fall back with retread-resolver = "legacy" if needed.
-retread-resolver = "uv"
+# uv is the only closure engine as of v4.4.0 (the legacy resolver knob was
+# removed); the wheel closure is always computed by uv.
 retread-compression-level = 1
 # v1.4.0+ pack-wide default bundle group: collapses every entry below into one
 # conda output named `isaac-pack`.
