@@ -147,8 +147,14 @@ Here is where to put the entrypoints your user may care about.
 ### Adding a dependency to a retread pack (incremental)
 
 The `*-pack*/` directories are [pixi-build-retread](https://github.com/garylvov/pixi-build-retread)
-packs (backend pinned `>=2.10.0`). Each has a committed `retread-*.lock.json` capturing its
+packs (backend pinned `>=3.0.3`). Each has a committed `retread-*.lock.json` capturing its
 resolved closure.
+
+> **Backend 4.x note:** the published backend is now `4.x`. Its uv closure disables
+> build-from-source and pre-releases, so sdist-only or pre-release transitive deps of Isaac Sim
+> (e.g. `idna-ssl`, `tinyobjloader==2.0.0rc13`) must be supplied as direct-URL wheels under
+> `[package.build.config.retread-wheels]`, or built incrementally with `RETREAD_INCREMENTAL=1`
+> (reuses the committed lock's closure). See the imprint retread env fix for the pattern.
 
 To add a dependency to a pack, add it under `[package.build.config.retread-wheels]` in the
 pack's `pixi.toml`, then install with `RETREAD_INCREMENTAL=1`:

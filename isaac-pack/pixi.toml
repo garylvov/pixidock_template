@@ -6,7 +6,7 @@ name = "isaac-pack"
 version = "6.0.0"
 
 [package.build]
-backend = { name = "pixi-build-retread", version = ">=2.10.0", channels = [
+backend = { name = "pixi-build-retread", version = ">=3.0.3", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/conda-forge",
 ] }
