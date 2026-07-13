@@ -82,6 +82,12 @@ test = "python -m pytest test/* -v"
 # Set CUDA_HOME for torch.compile/Triton to find ptxas
 [feature.gpu.activation.env]
 CUDA_HOME = "$CONDA_PREFIX"
+# Prioritize the env's own libs on the loader path. Two reasons on shared HPC
+# (OSCAR/CCV): (1) some site module systems leak libstdc++ into LD_LIBRARY_PATH,
+# shadowing conda's newer one (GLIBCXX_3.4.30 ImportError); (2) conda pytorch's
+# libtorch_cuda.so needs conda nccl (in $CONDA_PREFIX/lib) rather than a stale
+# bundled CUDA lib. Prepending $CONDA_PREFIX/lib makes the env authoritative.
+LD_LIBRARY_PATH = "$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
 
 [feature.gpu.system-requirements]
 # Thank you to Matthew Feickert for the system requirements tip!
