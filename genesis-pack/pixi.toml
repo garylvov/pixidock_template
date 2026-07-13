@@ -19,7 +19,15 @@ backend = { name = "pixi-build-retread", version = ">=4.5.10", channels = [
 # `run-post-link-scripts = "insecure"` is needed in the consumer's .pixi/config.toml.
 retread-courier = true
 retread-relax = "patch-then-minor-then-major-then-last-resort"
-retread-build-number = 0
+# Genesis requires the PyPI `tetgen` (pyvista's Python binding, 0.7-0.8.x). conda-forge
+# has a same-named but DIFFERENT package `tetgen` 1.5-1.6 (Hang Si's C++ mesh tool);
+# retread's name-based prefer-conda routing routes the requirement to conda, whose
+# 1.5-1.6 cannot satisfy `>=0.8.2,<0.9` -> "no candidates" and the genesis env fails to
+# solve. Keep tetgen on PyPI so the correct 0.8.x binding resolves. (Relax can't fix
+# this -- it's a routing/name-collision, not an over-strict version; v5-P1's
+# prefer-conda-VALIDATED routing would auto-derive this. Same class as awscrt/numba.)
+retread-keep-pypi = ["tetgen"]
+retread-build-number = 1
 retread-python = "3.12"
 # uv is the only closure engine as of v4.4.0 (the legacy resolver knob was
 # removed); the wheel closure is always computed by uv.
