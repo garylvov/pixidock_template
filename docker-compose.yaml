@@ -14,8 +14,7 @@ services:
     volumes:
       - ./src:/workspace/src
       - ./test:/workspace/test
-      - ./humble_ws:/workspace/humble_ws
-      - ./jazzy_ws:/workspace/jazzy_ws
+      - ./ros2_ws:/workspace/ros2_ws
       - ./scripts:/workspace/scripts
       - ./pixi.lock:/workspace/pixi.lock
       - ./pixi.toml:/workspace/pixi.toml

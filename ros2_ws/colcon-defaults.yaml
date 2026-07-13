@@ -6,15 +6,18 @@ build:
   # https://colcon.readthedocs.io/en/released/reference/executor-arguments.html
   executor: parallel
   # num_paralel_workers : auto configured to be number of CPU cores by default with 'parallel' executor
-  # Limit package discovery to jazzy_ws/src
+  # Limit package discovery to ros2_ws/src
   base-paths:
-    - jazzy_ws/src
-  build-base: jazzy_ws/build
-  install-base: jazzy_ws/install
+    - ros2_ws/src
+  build-base: ros2_ws/build
+  install-base: ros2_ws/install
   # Need to add packages to build here
-  # To build your package, clone it into jazzy_ws/src, and add its name to packages-select below.
+  # To build your package, clone it into ros2_ws/src, and add it's name to packages-select below.
   packages-select:
     - synchros2
-  cmake-args:
-    - -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-    - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+  mixin:
+    # Multithreaded linker to speed up linking step during compilation
+    - lld
+    - compile-commands
+    # Debug info and build testing for dev workflows
+    - rel-with-deb-info
