@@ -3,25 +3,22 @@ channels = ["https://prefix.dev/conda-forge"]
 name = "TEMPLATE"
 platforms = ["linux-64"]
 version = "0.1.0"
-preview = ["pixi-build"]
-build-variants = { python = ["3.12"] }
 # Map conda pywin32 to satisfy pypi pywin32 requirement (isaacsim needs pywin32 but it's Windows-only on PyPI)
 conda-pypi-map = { "https://prefix.dev/conda-forge" = "patches/conda_pypi_map.json" }
 
 # Global PyPI options - extra indexes for NVIDIA and MuJoCo packages
 [pypi-options]
 extra-index-urls = ["https://pypi.nvidia.com", "https://py.mujoco.org"]
-index-strategy = "unsafe-best-match"
 
 # Override malformed dependencies from mujoco-warp and newton git packages
-# [pypi-options.dependency-overrides]
-# warp-lang = ">=1.11.0.dev0"
-# mujoco = ">=3.3.7"
+[pypi-options.dependency-overrides]
+warp-lang = ">=1.11.0.dev0"
+mujoco = ">=3.3.7"
 
 #### Base Bare Bones Environment
 
 [dependencies] # Global dependencies across all environments
-python = "==3.12"
+python = "==3.11"
 pip = ">=25.1.1,<26"
 hatchling = ">=1.27.0,<2"
 numpy = ">=1.26.4,<3"
@@ -30,6 +27,9 @@ jupyter = ">=1.1.1,<2"
 ipywidgets = ">=8.1.5,<9"
 toml = ">=0.10.2,<0.11"
 
+[feature.cpu]
+[feature.cpu.dependencies]
+python = "==3.11" # We define Python here to avoid conflicts with other features
 
 [tasks]
 # Git submodule initialization + apply patches
@@ -45,26 +45,21 @@ test = { features = ["test", "cpu"] } # This environment is relied upon by defau
 ## The following environment combinations are optional and can safely be removed if not needed.
 gpu = { features = ["gpu", ] }
 test-gpu = { features = ["gpu", "test", ] }
-ros2-humble-gpu = { features = [ "gpu", "ros2-humble", ]}
-ros2-humble-cpu = { features = ["cpu", "ros2-humble"]}
+ros2-gpu = { features = [ "gpu", "ros2", ]}
+ros2-cpu = { features = ["cpu", "ros2"]}
 genesis-gpu = { features = ["gpu", "genesis"]}
-genesis-ros2-humble-gpu = { features = ["gpu", "genesis", "ros2-humble", ]} # Advanced users ;)
+genesis-ros2-gpu = { features = ["gpu", "genesis", "ros2", ]} # Advanced users ;)
 
-# Isaac Lab v3.0.0-beta pack includes Isaac Sim 6, PhysX, and Newton.
-isaaclab-gpu = { features = ["isaaclab", "gpu"] }
-isaaclab-ros2-humble-gpu = { features = ["isaaclab", "ros2-humble", "gpu"] }
-isaaclab-gpu-latest = { features = ["isaaclab-latest", "gpu"] }
-newton-gpu = { features = ["newton", "gpu"] }
+# Isaac Lab is not yet compatible with the other environments, due to Python and Torch version conflicts
+# use on it's own for now. See below for more info.
+isaaclab-gpu = {features = ["isaaclab", "isaaclab-physx", "gpu" ]}
+isaaclab-ros2-gpu ={ features = ["isaaclab", "isaaclab-physx", "ros2", "gpu"]}
 
-# ROS 2 Jazzy variants (mirror the Humble envs; see [feature.ros2-jazzy]).
-ros2-jazzy-gpu = { features = ["gpu", "ros2-jazzy"] }
-ros2-jazzy-cpu = { features = ["cpu", "ros2-jazzy"] }
-genesis-ros2-jazzy-gpu = { features = ["gpu", "genesis", "ros2-jazzy"] }
-isaaclab-ros2-jazzy-gpu = { features = ["isaaclab", "ros2-jazzy", "gpu"] }
+# Isaac Lab Newton - uses Newton physics engine instead of PhysX
+# Newton uses NVIDIA Warp for GPU-accelerated physics simulation
+isaaclab-newton-gpu = {features = ["isaaclab", "isaaclab-newton", "gpu"]}
 # Now, for the other environment configurations.
 # Feel free to ignore and delete features you don't need!
-
-[feature.cpu]
 
 #### Test Environment----------------------------------------------------------------------------
 # This environment is relied upon by default by the CI in .github/workflows/pre-commit.yml
@@ -87,41 +82,44 @@ CUDA_HOME = "$CONDA_PREFIX"
 # Thank you to Matthew Feickert for the system requirements tip!
 # https://pixi.sh/latest/workspace/system_requirements/
 # https://matthewfeickert-talks.github.io/reproducible-ml-for-scientists-with-pixi-scipy-2025/cuda-conda
-# NOTE: this legacy [system-requirements] table works on pixi 0.70-0.72
-# (0.71+ only warns that it is deprecated). The pixi 0.71+ rich `platforms`
-# form is also supported by retread >=4.1.0, e.g. in [workspace]:
-#   platforms = [{ platform = "linux-64", glibc = "2.35", cuda = "12" }]
 cuda   = "12"
 [feature.gpu.dependencies]
-# Keep the torch family on conda. conda-forge's PyTorch 2.10 GPU builds require CUDA 12.9.
-cuda-version = "==12.9"
-cuda-nvcc_linux-64 = "12.9.*"
-cuda-toolkit = "12.9.*"
-pytorch-gpu = "==2.10.0"
-torchvision = "==0.25.0"
-torchaudio = "==2.10.0"
+# CUDA 12.8 required for Blackwell GPU (sm_120) support with torch.compile/Triton
+# https://pytorch.org/blog/pytorch-2-7/
+cuda-version = "==12.8"
+cuda-nvcc_linux-64 = "12.8.*"
+cuda-toolkit = "12.8.*"
+pytorch-gpu = ">=2.7.1,<3"
+torchvision = ">=0.22.0,<0.23.0"
 imageio = ">=2.37.0,<3"
 scikit-image = ">=0.25.2,<0.26"
 
 [feature.gpu.pypi-dependencies]
 # Special thank you to @MiroPsota for these wheels
 # https://github.com/facebookresearch/pytorch3d/discussions/1752?
-pytorch3d = { version = "==0.7.9+d9839a9pt2.10.0cu128", index = "https://miropsota.github.io/torch_packages_builder" }
+pytorch3d = { version = "==0.7.8+5043d15pt2.7.0cu128", index = "https://miropsota.github.io/torch_packages_builder" }
 mujoco = ">=3.3.3"
 mujoco-mjx = "*"
 
 #### Genesis Simulation Environment------------------------------------------------------------
 [feature.genesis.dependencies]
-genesis-pack = { path = "./genesis-pack" }
-# numpy = "==1.26.4" # otherwise, genesis complains:
+numpy = "==1.26.4" # otherwise, genesis complains:
+pyopengl="*"
+[feature.genesis.pypi-options.dependency-overrides]
+# Override moviepy's pillow<12.0 constraint (conda pins pillow==12.1.0)
+pillow = ">=9.2.0"
+[feature.genesis.pypi-dependencies]
+PyOpenGL_accelerate = "*"
+genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", tag = "ec40996d4959d9a347e03c1a2ae63a27089d3952" }
+# genesis-world = ">=0.2.1, <0.3" # Only available built wheels at the moment, for a more stable release
 [feature.genesis.target.unix.activation]
 scripts = ["scripts/config-genesis.bash"]
 
 #### ROS 2 Environment---------------------------------------------------------------------------
-[feature.ros2-humble]
+[feature.ros2]
 # "https://prefix.dev/robostack-[humble|jazzy|kilted]"
 channels = ["https://prefix.dev/robostack-humble", "https://prefix.dev/conda-forge", ]
-[feature.ros2-humble.dependencies]
+[feature.ros2.dependencies]
 # For minimal dep set
 ros-humble-ros-core	= "*"
 # For full feature set
@@ -135,7 +133,7 @@ pkg-config = "*"
 make = "*"
 ninja = "*"
 
-colcon-common-extensions = "*" # needed for using humble_ws/colcon-defaults.yaml
+colcon-common-extensions = "*" # needed for using ros2_ws/colcon-defaults.yaml
 colcon-mixin = "*"
 # Maybe extra colcon stuff...
 colcon-devtools = "*"
@@ -149,112 +147,114 @@ colcon-ros = "*"
 # " error: option --editable not recognized for setuptools==80.1.0 " occurs for building ROS 2 Humble Python Packages
 setuptools = ">=59.6.0,<=79.0.1"
 
-[feature.ros2-humble.tasks]
-bag-humble = "ros2 bag record -s mcap --all"
-build-ros-humble = "colcon build"
-[feature.ros2-humble.target.unix.activation]
-scripts = ["scripts/config-ros2-colcon-humble.bash"]
+[feature.ros2.tasks]
+bag = "ros2 bag record -s mcap --all"
+build-ros = "colcon build"
+[feature.ros2.target.unix.activation]
+scripts = ["ros2_ws/install/setup.bash", "scripts/config-ros2-colcon.bash"]
 
-#### ROS 2 Jazzy Environment----------------------------------------------------------------------
-# Mirrors [feature.ros2-humble] for the jazzy_ws colcon workspace. Builds with
-# `pixi run -e ros2-jazzy-cpu build-ros-jazzy`; the activation sources the jazzy
-# overlay + points COLCON_DEFAULTS_FILE at jazzy_ws/colcon-defaults.yaml.
-[feature.ros2-jazzy]
-# "https://prefix.dev/robostack-[humble|jazzy|kilted]"
-channels = ["https://prefix.dev/robostack-jazzy", "https://prefix.dev/conda-forge", ]
-[feature.ros2-jazzy.dependencies]
-# For minimal dep set
-ros-jazzy-ros-core = "*"
-# For full feature set
-ros-jazzy-rviz2 = "*"
-ros-jazzy-rosbag2 = "*"
-ros-jazzy-rosbag2-storage-mcap = "*"
-
-compilers = "*"
-cmake = "*"
-pkg-config = "*"
-make = "*"
-ninja = "*"
-
-colcon-common-extensions = "*" # needed for using jazzy_ws/colcon-defaults.yaml
-colcon-mixin = "*"
-colcon-devtools = "*"
-colcon-parallel-executor = "*"
-colcon-defaults = "*"
-colcon-package-selection = "*"
-colcon-python-setup-py = "*"
-colcon-recursive-crawl = "*"
-colcon-ros = "*"
-
-# Same setuptools cap as Humble: setuptools 80+ drops `--editable`, breaking
-# colcon-python-setup-py builds of ROS 2 Python packages.
-setuptools = ">=59.6.0,<=79.0.1"
-
-[feature.ros2-jazzy.tasks]
-bag-jazzy = "ros2 bag record -s mcap --all"
-build-ros-jazzy = "colcon build"
-[feature.ros2-jazzy.target.unix.activation]
-scripts = ["scripts/config-ros2-colcon-jazzy.bash"]
-
-### Isaac Lab / Isaac Sim Environment-----------------------------------------------------------
-# Isaac Sim 6.0.0.0:
-#   Python 3.12, NumPy 2.3.1, PyTorch 2.10.0, torchvision 0.25.0, torchaudio 2.10.0
-# IsaacLab is pulled through isaac-pack/ with pixi-build-retread at v3.0.0-beta (a4a7602).
-#
-# Upstream IsaacLab dependency shape, if expressed as "all IsaacLab extras except Isaac Sim":
-#   isaaclab[all]
-# In source/isaaclab/setup.py, the "all" extra expands to the IsaacLab subpackages only:
-#   assets, physx, contrib, mimic, newton, rl, tasks, teleop, visualizers[all]
-# It intentionally does not include the separate "isaacsim" extra. We keep Isaac Sim 6 explicit in
-# isaac-pack/pixi.toml instead, because the upstream "isaacsim" extra is stale for this release line.
-#
-# Direct Pixi PyPI Git-dependency sketch for that upstream shape:
-#   [feature.isaaclab.pypi-dependencies]
-#   isaaclab = { git = "https://github.com/isaac-sim/IsaacLab.git", rev = "a4a7602f29e755e2673fe0022ea35566df6dd7d5", subdirectory = "source/isaaclab", extras = ["all"] }
-# The active retread config expands the sibling IsaacLab packages from the same Git revision instead.
+### Isaac Sim Environment-----------------------------------------------------------------------
+# Warning; not as compatible as the other environments; use with caution
+# Isaac Sim 5.1.0 now supports Python 3.11!
 [feature.isaaclab]
 [feature.isaaclab.dependencies]
-isaac-pack = { path = "./isaac-pack" }
 sysroot_linux-64 = ">=2.35"
 # Need newer GCC/binutils to work with glibc 2.39's .relr.dyn sections
 gxx_linux-64 = ">=12"
 gcc_linux-64 = ">=12"
 binutils_linux-64 = ">=2.40"
 cmake = ">3.6"
-numpy = "==2.3.1"
+# Pin versions required by isaacsim-kernel to override conda's defaults
+psutil = "==5.9.8"
+propcache = "==0.2.1"
+aiohappyeyeballs = "==2.4.4"
+pytz = "==2024.1"
+frozenlist = "==1.5.0"
+charset-normalizer = "==3.3.2"
+watchdog = "==4.0.0"
+aiosignal = "==1.3.2"
+coverage = "==7.4.4"
+typing-extensions = "==4.12.2"
+idna = "==3.10"
+yarl= "==1.18.3"
+multidict = "==6.1.0"
+attrs = "==25.1.0"
+click = "==8.1.7"
+aiohttp = "==3.11.11"
+sympy = "==1.13.3"
+networkx = "==3.3"
+fsspec = "==2024.6.1"
+filelock = "==3.13.1"
+cryptography = "==44.0.0"
+pyyaml = "==6.0.2"
+tornado = "==6.5.1"
+packaging = "==23.0"
+kiwisolver = "==1.4.4"
+cycler = "==0.11.0"
+pyparsing = "==3.0.9"
+fonttools = "==4.55.3"
+contourpy = "==1.3.1"
+matplotlib = "==3.10.3"
+markupsafe = "==2.1.3"
+nest-asyncio = "==1.5.6"
+# Conda pywin32 stub satisfies isaacsim's pywin32 requirement on Linux
+pywin32 = ">=306"
 ipywidgets = "==8.1.5"
-[feature.isaaclab.target.unix.activation]
-scripts = ["scripts/config-isaacsim.bash"]
 [feature.isaaclab.system-requirements]
-# Legacy form (works on pixi 0.70-0.72); the 0.71+ rich `platforms` form is
-# also supported -- see the note on [feature.gpu.system-requirements].
 libc = "2.35"
 
-### Isaac Lab Latest Environment-----------------------------------------------------------------
-# Mirrors [feature.isaaclab], but consumes isaac-pack-latest/ with IsaacLab and
-# sibling packages pinned to 28a37cecdd433c22d9eabd6a5954add9f13a8951.
-[feature.isaaclab-latest]
-[feature.isaaclab-latest.dependencies]
-isaac-pack-latest = { path = "./isaac-pack-latest" }
-sysroot_linux-64 = ">=2.35"
-# Need newer GCC/binutils to work with glibc 2.39's .relr.dyn sections
-gxx_linux-64 = ">=12"
-gcc_linux-64 = ">=12"
-binutils_linux-64 = ">=2.40"
-cmake = ">3.6"
-numpy = "==2.3.1"
-ipywidgets = "==8.1.5"
-[feature.isaaclab-latest.target.unix.activation]
-scripts = ["scripts/config-isaacsim.bash"]
-[feature.isaaclab-latest.system-requirements]
-# Legacy form (works on pixi 0.70-0.72); the 0.71+ rich `platforms` form is
-# also supported -- see the note on [feature.gpu.system-requirements].
-libc = "2.35"
+[feature.isaaclab.pypi-options.dependency-overrides]
+# Careful: Isaac Lab PhysX and Newton may depend on different numpy versions
+numpy = "*"
+torch = "==2.7.1"
+pillow = ">=11.0.0"
+scipy = ">=1.16.0"
+pywin32 = "*"
+triton = "==3.3.0"
+requests = "==2.32.5"
+isaacsim-kernel = "==5.1.0.0"
+starlette = "==0.49.1"
+[feature.isaaclab.pypi-dependencies]
+isaacsim = { version = "==5.1.0", index = "https://pypi.nvidia.com", extras = ["all", "extscache"] }
+# Patched egl_probe (CMake 3.5+ fix)
+egl-probe = { path = "patches/egl_probe", editable = true }
+### Isaac Lab PhysX Feature (use with isaaclab feature)----------------------------------------
+[feature.isaaclab-physx]
+[feature.isaaclab-physx.tasks]
+# Install Isaac Lab from specific commit (requires submodules)
+# https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
+install-isaaclab = { cmd = "cd IsaacLab && ./isaaclab.sh -i", depends-on = ["gitmod"] }
+[feature.isaaclab-physx.pypi-dependencies]
+# IsaacLab PhysX packages (editable install from IsaacLab submodule)
+isaaclab        = { path = "IsaacLab/source/isaaclab", editable = true }
+isaaclab-assets = { path = "IsaacLab/source/isaaclab_assets", editable = true }
+isaaclab-tasks  = { path = "IsaacLab/source/isaaclab_tasks", editable = true }
+isaaclab-rl     = { path = "IsaacLab/source/isaaclab_rl", editable = true }
+isaaclab-mimic  = { path = "IsaacLab/source/isaaclab_mimic", editable = true }
 
-### Newton Environment---------------------------------------------------------------------------
-# Newton is pinned from source in newton-pack-latest/.
-[feature.newton.dependencies]
-newton-pack-latest = { path = "./newton-pack-latest" }
-mujoco-python = ">=3.8,<3.9"
-mujoco-warp = ">=3.8.0.3,<3.9"
-newton-actuators = ">=0.1.0,<0.1.1"
+### Isaac Lab Newton Feature (use with isaaclab feature)---------------------------------------
+# Newton uses NVIDIA Warp for GPU-accelerated physics simulation
+[feature.isaaclab-newton]
+[feature.isaaclab-newton.tasks]
+# Install Isaac Lab Newton from specific commit (requires submodules)
+install-isaaclab-newton = { cmd = "cd IsaacLabNewton && ./isaaclab.sh -i", depends-on = ["gitmod"] }
+# Override packages that have malformed (index: ...) syntax in their dependencies
+[feature.isaaclab-newton.pypi-options.dependency-overrides]
+warp-lang = ">=1.11.0.dev0"
+mujoco = ">=3.3.7"
+
+[feature.isaaclab-newton.pypi-dependencies]
+# Pre-install these before other packages resolve them with malformed index syntax
+warp-lang = { version = ">=1.11.0.dev0", index = "https://pypi.nvidia.com" }
+mujoco = { version = ">=3.3.7", index = "https://py.mujoco.org" }
+omniverseclient = { version = "*", index = "https://pypi.nvidia.com" }
+# IsaacLab Newton packages (editable install from IsaacLabNewton submodule)
+# Note: Newton doesn't have isaaclab_mimic - it has isaaclab_newton and experimental packages instead
+# Note: mujoco-warp and newton have malformed metadata - they must be installed separately via:
+#   pip install "mujoco-warp @ git+https://github.com/google-deepmind/mujoco_warp.git@e9a67538f2c14486121635074c5a5fd6ca55fa83"
+#   pip install "newton @ git+https://github.com/newton-physics/newton.git@beta-0.2.1"
+isaaclab        = { path = "IsaacLabNewton/source/isaaclab", editable = true }
+isaaclab-assets = { path = "IsaacLabNewton/source/isaaclab_assets", editable = true }
+isaaclab-tasks  = { path = "IsaacLabNewton/source/isaaclab_tasks", editable = true }
+isaaclab-rl     = { path = "IsaacLabNewton/source/isaaclab_rl", editable = true }
+isaaclab-newton = { path = "IsaacLabNewton/source/isaaclab_newton", editable = true }
