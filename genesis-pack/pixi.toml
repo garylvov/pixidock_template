@@ -6,17 +6,18 @@ name = "genesis-pack"
 version = "1.1.1"
 
 [package.build]
-backend = { name = "pixi-build-retread", version = ">=4.4.0", channels = [
+backend = { name = "pixi-build-retread", version = ">=4.5.0", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/conda-forge",
 ] }
 
 [package.build.config]
-# courier mode is the default (v2.1.0+). retread-courier-mode = "activation"
-# installs the bundled wheels lazily on first `pixi run`/`shell` via the
-# activate.d self-heal guard -- no conda post-link script, so no
+# Courier delivery of the bundled wheels. v4.5.0 replaced the old string knob
+# `retread-courier-mode = "activation"` with the boolean `retread-courier = true`;
+# wheels still install lazily on first `pixi run`/`shell` via the activate.d
+# self-heal guard -- no conda post-link script, so no
 # `run-post-link-scripts = "insecure"` is needed in the consumer's .pixi/config.toml.
-retread-courier-mode = "activation"
+retread-courier = true
 retread-relax = "patch-then-minor-then-major-then-last-resort"
 retread-build-number = 0
 retread-python = "3.12"
