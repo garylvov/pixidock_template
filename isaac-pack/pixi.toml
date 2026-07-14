@@ -1,0 +1,58 @@
+# Retread source package for Isaac Sim 6.0 + IsaacLab v3.0.0-beta.
+# The root pixi.toml consumes this as `isaac-pack = { path = "./isaac-pack" }`.
+
+[package]
+name = "isaac-pack"
+version = "6.0.0"
+
+[package.build]
+# Pinned EXACTLY to 4.6.3, not floated with >=. 4.6.3 is the only backend
+# validated end-to-end (it locks the 25-env imprint workspace green with zero
+# hand-written workaround pins). 4.6.4-4.6.7 are published but unproven, and
+# 4.6.4's PyPI-index change shifts the closure. Do not relax this to >= without
+# re-validating, or a fresh solve will silently pick a newer, unproven backend.
+backend = { name = "pixi-build-retread", version = "==4.6.3", channels = [
+  "https://prefix.dev/garylvov",
+  "https://prefix.dev/pixi-build-backends",
+  "https://prefix.dev/conda-forge",
+] }
+
+[package.build.config]
+# courier mode is the default (v2.1.0+). retread-courier-mode = "activation"
+# installs the bundled wheels lazily on first `pixi run`/`shell` via the
+# activate.d self-heal guard -- no conda post-link script, so no
+# `run-post-link-scripts = "insecure"` is needed in the consumer's .pixi/config.toml.
+retread-courier-mode = "activation"
+retread-relax = "patch-then-minor-then-major-then-last-resort"
+retread-build-number = 2
+retread-python = "3.12"
+# uv is the only closure engine as of v4.4.0 (the legacy resolver knob was
+# removed); the wheel closure is always computed by uv.
+retread-compression-level = 1
+# v1.4.0+ pack-wide default bundle group: collapses every entry below into one
+# conda output named `isaac-pack`.
+retread-bundle = "isaac-pack"
+
+[package.build.config.retread-git-sources.isaaclab]
+url = "https://github.com/isaac-sim/IsaacLab.git"
+rev = "a4a7602f29e755e2673fe0022ea35566df6dd7d5"
+
+[package.build.config.retread-wheels]
+isaacsim = { version = "==6.0.0.0", index = "https://pypi.nvidia.com", extras = ["all", "extscache"] }
+isaaclab = { from = "isaaclab", subdirectory = "source/isaaclab" }
+isaaclab-assets = { from = "isaaclab", subdirectory = "source/isaaclab_assets" }
+isaaclab-tasks = { from = "isaaclab", subdirectory = "source/isaaclab_tasks" }
+isaaclab-rl = { from = "isaaclab", subdirectory = "source/isaaclab_rl", extras = ["all"] }
+isaaclab-mimic = { from = "isaaclab", subdirectory = "source/isaaclab_mimic" }
+isaaclab-physx = { from = "isaaclab", subdirectory = "source/isaaclab_physx" }
+isaaclab-newton = { from = "isaaclab", subdirectory = "source/isaaclab_newton", extras = ["all"] }
+# Same-repo sibling (retread >=2.10.0): visualizers' upstream install_requires
+# names isaaclab (a sibling wheel here, not on PyPI) -- satisfied from the
+# sibling; its omitted kit/newton/rerun/viser subpackages are recovered from
+# source via injection.
+isaaclab-visualizers = { from = "isaaclab", subdirectory = "source/isaaclab_visualizers", extras = ["all"] }
+
+[package.build.config.retread-name-map]
+opencv-python = "py-opencv"
+opencv-python-headless = "py-opencv"
+torch = "pytorch"

@@ -18,6 +18,7 @@ parts/
 sdist/
 var/
 wheels/
+.wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -100,6 +101,24 @@ rosbag2*
 demonstrations/*
 
 IsaacLab/*
-egl_probe/*
 IsaacLab
-egl_probe
+
+# pixi's local environment + build-metadata cache (never committed; regenerated
+# on `pixi install`/`pixi lock`).
+.pixi/
+
+# pixi-build-retread generated artifacts.
+# Ignore wheels/ (multi-GB, reproducible from the lock) and the audit/
+# probe-trace JSON, but DO commit the courier install lock (relaxed state, no
+# wheels) so a cold clone can replay + install without rebuilding.
+*-pack*/wheels/
+*-pack*/retread-audit-*.json
+*-pack*/retread-probe-trace-*.json
+*-pack*/RETREAD-SOLVE-FAILED-*.md
+!*-pack*/retread-*.lock.json
+# Dead blueprint fence artifact from the pre-courier path.
+isaac-pack/retread-pypi/
+
+# retread progress logs (build/install phase markers)
+*-pack*/retread-progress-*.log
+retread-progress-*.log

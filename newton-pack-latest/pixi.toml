@@ -1,0 +1,46 @@
+# Retread source package for Newton.
+# The root pixi.toml consumes this as `newton-pack-latest = { path = "./newton-pack-latest" }`.
+
+[package]
+name = "newton-pack-latest"
+version = "1.3.0"
+
+[package.build]
+# Pinned EXACTLY to 4.6.3, not floated with >=. 4.6.3 is the only backend
+# validated end-to-end (it locks the 25-env imprint workspace green with zero
+# hand-written workaround pins). 4.6.4-4.6.7 are published but unproven, and
+# 4.6.4's PyPI-index change shifts the closure. Do not relax this to >= without
+# re-validating, or a fresh solve will silently pick a newer, unproven backend.
+backend = { name = "pixi-build-retread", version = "==4.6.3", channels = [
+  "https://prefix.dev/garylvov",
+  "https://prefix.dev/pixi-build-backends",
+  "https://prefix.dev/conda-forge",
+] }
+
+[package.build.config]
+# courier mode is the default (v2.1.0+). retread-courier-mode = "activation"
+# installs the bundled wheels lazily on first `pixi run`/`shell` via the
+# activate.d self-heal guard -- no conda post-link script, so no
+# `run-post-link-scripts = "insecure"` is needed in the consumer's .pixi/config.toml.
+retread-courier-mode = "activation"
+retread-relax = "patch-then-minor-then-major-then-last-resort"
+retread-build-number = 0
+retread-python = "3.12"
+# uv is the only closure engine as of v4.4.0 (the legacy resolver knob was
+# removed); the wheel closure is always computed by uv.
+retread-compression-level = 1
+# v1.4.0+ pack-wide default bundle group: collapses every entry below into one
+# conda output named `newton-pack-latest`.
+retread-bundle = "newton-pack-latest"
+
+[package.build.config.retread-git-sources.newton]
+url = "https://github.com/newton-physics/newton.git"
+rev = "ce11136b3a28390944f7fe5a32801b31d8aa5670"
+
+[package.build.config.retread-wheels]
+newton = { from = "newton", extras = ["sim"] }
+
+[package.build.config.retread-name-map]
+opencv-python = "py-opencv"
+opencv-python-headless = "py-opencv"
+torch = "pytorch"
