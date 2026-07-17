@@ -24,12 +24,9 @@ jobs:
         uses: prefix-dev/setup-pixi@v0.10.0
         with:
           pixi-version: v0.73.0
-          # A cold Retread backend bootstrap may refresh metadata without
-          # changing the committed lock. Check the lock explicitly below.
-          locked: false
-
-      - name: Verify lock is current
-        run: git diff --exit-code -- pixi.lock
+          # Consume the committed Retread source-package records. An unlocked
+          # install needlessly rebuilds every pack and reopens upstream drift.
+          locked: true
 
       - name : Run test
         run: |
