@@ -24,9 +24,9 @@ jobs:
         uses: prefix-dev/setup-pixi@v0.10.0
         with:
           pixi-version: v0.73.0
-          # Consume the committed Retread source-package records. An unlocked
-          # install needlessly rebuilds every pack and reopens upstream drift.
-          locked: true
+          # Consume the committed Retread source-package records verbatim.
+          # Re-solving here needlessly reopens unrelated upstream drift.
+          frozen: true
 
       - name: Run lint
         run: |
