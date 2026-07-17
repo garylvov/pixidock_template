@@ -1,10 +1,10 @@
 {
   "schema": 12,
-  "retread_version": "4.10.9",
+  "retread_version": "4.10.10",
   "bundle": "newton-pack-latest",
   "version": "1.3.0",
   "python": "3.12",
-  "inputs_hash": "e2cc3f7ca5d3b7d384eabc759f84b7f417ce92f2e3d21c8a1235b46beb28a80d",
+  "inputs_hash": "27e973c680190744cc4508681f7a1613fc5d911282fb165fef39a38a45ebb610",
   "root_requirements": [
     "newton-pack-latest-pypi==1.3.0"
   ],

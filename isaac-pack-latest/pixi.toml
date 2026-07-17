@@ -7,14 +7,16 @@ version = "6.0.0"
 
 [package.build]
 # Keep the backend exact so a fresh solve cannot silently change its closure.
-# 4.10.9 avoids per-member metadata ranges and invalidates ZIP 2.4 wheel outputs.
-backend = { name = "pixi-build-retread", version = "==4.10.9", channels = [
+# 4.10.10 also shortcuts directly unsatisfiable conda-route validations.
+backend = { name = "pixi-build-retread", version = "==4.10.10", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/pixi-build-backends",
   "https://prefix.dev/conda-forge",
 ] }
 
 [package.build.config]
+# Treat the exact backend pin as part of the committed solve-record identity.
+retread-pin-version = true
 # courier mode is the default (v2.1.0+). retread-courier-mode = "activation"
 # installs the bundled wheels lazily on first `pixi run`/`shell` via the
 # activate.d self-heal guard -- no conda post-link script, so no
@@ -26,10 +28,9 @@ retread-python = "3.12"
 # uv is the only closure engine as of v4.4.0 (the legacy resolver knob was
 # removed); the wheel closure is always computed by uv.
 retread-compression-level = 1
-# flatdict 4.0.1 only publishes an sdist on PyPI, and its legacy build imports
-# pkg_resources without declaring setuptools. Use conda-forge's exact 4.0.1
-# noarch build instead of failing the otherwise equivalent source build.
-retread-force-conda = ["flatdict"]
+# Keep flatdict on conda so both Isaac packs use the same reproducible route
+# and never fall back to legacy sdist build behavior.
+retread-conda-deps = ["flatdict"]
 # v1.4.0+ pack-wide default bundle group: collapses every entry below into one
 # conda output named `isaac-pack-latest`.
 retread-bundle = "isaac-pack-latest"
