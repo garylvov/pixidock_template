@@ -1,7 +1,11 @@
 [workspace]
 channels = ["https://prefix.dev/conda-forge"]
 name = "TEMPLATE"
-platforms = ["linux-64"]
+platforms = [
+  { name = "linux-64-base", platform = "linux-64" },
+  { name = "linux-64-cuda-12", platform = "linux-64", cuda = "12" },
+  { name = "linux-64-cuda-12-glibc-2-35", platform = "linux-64", cuda = "12", glibc = "2.35" },
+]
 version = "0.1.0"
 preview = ["pixi-build"]
 build-variants = { python = ["3.12"] }
@@ -32,6 +36,9 @@ numpy = ">=1.26.4,<3"
 matplotlib = ">=3.10.3,<4"
 jupyter = ">=1.1.1,<2"
 ipywidgets = ">=8.1.5,<9"
+# IPython 9.13+ requires psutil>=7, while Isaac Sim 6 requires psutil==5.9.8.
+# 9.12.0 is the newest release before that incompatible dependency was added.
+ipython = "==9.12.0"
 toml = ">=0.10.2,<0.11"
 
 
@@ -43,49 +50,40 @@ scripts = ["scripts/post-install.bash"] # pip  install the package in editable m
 
 #### All possible environment combinations
 [environments]
-cpu = { features = ["cpu"] } # All you need for bare-bones
-test = { features = ["test", "cpu"] } # This environment is relied upon by default by the CI
+default = { features = ["platform-base"] }
+cpu = { features = ["platform-base", "cpu"] } # All you need for bare-bones
+test = { features = ["platform-base", "test", "cpu"] } # This environment is relied upon by default by the CI
 
 ## The following environment combinations are optional and can safely be removed if not needed.
-gpu = { features = ["gpu", ] }
-test-gpu = { features = ["gpu", "test", ] }
-ros2-humble-gpu = { features = [ "gpu", "ros2-humble", ]}
-ros2-humble-cpu = { features = ["cpu", "ros2-humble"]}
-genesis-gpu = { features = ["gpu", "genesis"]}
-genesis-ros2-humble-gpu = { features = ["gpu", "genesis", "ros2-humble", ]} # Advanced users ;)
+gpu = { features = ["platform-cuda", "gpu", ] }
+test-gpu = { features = ["platform-cuda", "gpu", "test", ] }
+ros2-humble-gpu = { features = ["platform-cuda", "gpu", "ros2-humble", ]}
+ros2-humble-cpu = { features = ["platform-base", "cpu", "ros2-humble"]}
+genesis-gpu = { features = ["platform-cuda", "gpu", "genesis"]}
+genesis-ros2-humble-gpu = { features = ["platform-cuda", "gpu", "genesis", "ros2-humble", ]} # Advanced users ;)
 
 # Isaac Lab v3.0.0-beta pack includes Isaac Sim 6, PhysX, and Newton.
-# [lock-skip:retread-4.6.3-gitclone-self-deadlock] The three envs below consume
-# isaac-pack (IsaacLab v3.0.0-beta @ a4a7602). Building that pack DETERMINISTICALLY
-# deadlocks the pixi-build-retread 4.6.3 backend: the backend process takes an
-# exclusive flock WRITE on its git-clone lock file
-# (retread-git-clones/isaac-sim_IsaacLab.git/<rev>.lock) and then, on separate fds,
-# blocks its own worker threads waiting for that same lock — a self-deadlock
-# (verified in /proc/locks: holder pid == every waiter pid; wchan
-# locks_lock_inode_wait; CPU frozen). Reproduced across two independent cold
-# solves, once with a warm clone and once with a freshly purged clone, so it is a
-# backend concurrency bug, NOT a workspace dependency conflict and NOT clone
-# corruption. isaac-pack-latest (same IsaacLab repo, rev 28a37ce) builds cleanly
-# under the same 4.6.3, so the sibling isaaclab-gpu-latest env below is unaffected.
-# The isaac-pack files + [feature.isaaclab] wiring are kept intact; re-enable these
-# envs once the backend git-clone lock bug is fixed (or the pack's rev is bumped to
-# one that builds, e.g. isaac-pack-latest's).
-# isaaclab-gpu = { features = ["isaaclab", "gpu"] }
-# isaaclab-ros2-humble-gpu = { features = ["isaaclab", "ros2-humble", "gpu"] }
-# isaaclab-ros2-jazzy-gpu (Jazzy variant, defined in the Jazzy block below) is
-# lock-skipped for the same reason.
-isaaclab-gpu-latest = { features = ["isaaclab-latest", "gpu"] }
-newton-gpu = { features = ["newton", "gpu"] }
+isaaclab-gpu = { features = ["platform-isaac", "isaaclab", "gpu"] }
+isaaclab-gpu-latest = { features = ["platform-isaac", "isaaclab-latest", "gpu"] }
+newton-gpu = { features = ["platform-cuda", "newton", "gpu"] }
 
 # ROS 2 Jazzy variants (mirror the Humble envs; see [feature.ros2-jazzy]).
-ros2-jazzy-gpu = { features = ["gpu", "ros2-jazzy"] }
-ros2-jazzy-cpu = { features = ["cpu", "ros2-jazzy"] }
-genesis-ros2-jazzy-gpu = { features = ["gpu", "genesis", "ros2-jazzy"] }
-# [lock-skip:retread-4.6.3-gitclone-self-deadlock] consumes isaac-pack — see the
-# isaaclab-gpu lock-skip note in the block above for the full root cause.
-# isaaclab-ros2-jazzy-gpu = { features = ["isaaclab", "ros2-jazzy", "gpu"] }
+ros2-jazzy-gpu = { features = ["platform-cuda", "gpu", "ros2-jazzy"] }
+ros2-jazzy-cpu = { features = ["platform-base", "cpu", "ros2-jazzy"] }
+genesis-ros2-jazzy-gpu = { features = ["platform-cuda", "gpu", "genesis", "ros2-jazzy"] }
+# Keep ROS 2 and Isaac Lab in separate environments: Isaac Sim's OpenUSD 25.8
+# pins TBB 2021.13, while the ROS GPU stack requires TBB 2022.3 or newer.
 # Now, for the other environment configurations.
 # Feel free to ignore and delete features you don't need!
+
+[feature.platform-base]
+platforms = ["linux-64-base"]
+
+[feature.platform-cuda]
+platforms = ["linux-64-cuda-12"]
+
+[feature.platform-isaac]
+platforms = ["linux-64-cuda-12-glibc-2-35"]
 
 [feature.cpu]
 
@@ -100,21 +98,11 @@ test = "python -m pytest test/* -v"
 
 #### GPU Environment-----------------------------------------------------------------------------
 [feature.gpu]
-# Channels would go here.
 
 # Set CUDA_HOME for torch.compile/Triton to find ptxas
 [feature.gpu.activation.env]
 CUDA_HOME = "$CONDA_PREFIX"
 
-[feature.gpu.system-requirements]
-# Thank you to Matthew Feickert for the system requirements tip!
-# https://pixi.sh/latest/workspace/system_requirements/
-# https://matthewfeickert-talks.github.io/reproducible-ml-for-scientists-with-pixi-scipy-2025/cuda-conda
-# NOTE: this legacy [system-requirements] table works on pixi 0.70-0.72
-# (0.71+ only warns that it is deprecated). The pixi 0.71+ rich `platforms`
-# form is also supported by retread >=4.1.0, e.g. in [workspace]:
-#   platforms = [{ platform = "linux-64", glibc = "2.35", cuda = "12" }]
-cuda   = "12"
 [feature.gpu.dependencies]
 # Keep the torch family on conda. conda-forge's PyTorch 2.10 GPU builds require CUDA 12.9.
 cuda-version = "==12.9"
@@ -248,11 +236,6 @@ numpy = "==2.3.1"
 ipywidgets = "==8.1.5"
 [feature.isaaclab.target.unix.activation]
 scripts = ["scripts/config-isaacsim.bash"]
-[feature.isaaclab.system-requirements]
-# Legacy form (works on pixi 0.70-0.72); the 0.71+ rich `platforms` form is
-# also supported -- see the note on [feature.gpu.system-requirements].
-libc = "2.35"
-
 ### Isaac Lab Latest Environment-----------------------------------------------------------------
 # Mirrors [feature.isaaclab], but consumes isaac-pack-latest/ with IsaacLab and
 # sibling packages pinned to 28a37cecdd433c22d9eabd6a5954add9f13a8951.
@@ -269,11 +252,6 @@ numpy = "==2.3.1"
 ipywidgets = "==8.1.5"
 [feature.isaaclab-latest.target.unix.activation]
 scripts = ["scripts/config-isaacsim.bash"]
-[feature.isaaclab-latest.system-requirements]
-# Legacy form (works on pixi 0.70-0.72); the 0.71+ rich `platforms` form is
-# also supported -- see the note on [feature.gpu.system-requirements].
-libc = "2.35"
-
 ### Newton Environment---------------------------------------------------------------------------
 # Newton is pinned from source in newton-pack-latest/.
 [feature.newton.dependencies]

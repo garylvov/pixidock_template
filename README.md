@@ -84,9 +84,9 @@ git clone <YOUR_REPO_LINK>
 cd TEMPLATE && git submodule update --init --recursive
 ```
 
-[Pixi](https://pixi.sh/latest/) (version 0.62.2) is all that's needed to locally to resolve dependencies if:
+[Pixi](https://pixi.sh/latest/) (version 0.73.0) is all that's needed to locally resolve dependencies if:
 - Using CPU only environments on x86-64 Linux
-- Using GPU compatible environments while having a matching CUDA version installed on the x86-64 Linux host system (CUDA ver. 12.6)
+- Using GPU compatible environments while having a matching CUDA version installed on the x86-64 Linux host system (CUDA 12.9)
 
 Otherwise, Docker (and Docker Compose) can be used to address GPU driver version mismatches through virtualization, while autoinstalling all dependencies.
 This approach ensures the environment matches the project requirements exactly if possible.
@@ -97,7 +97,7 @@ Installing dependencies through Pixi locally WITHOUT Docker is highly recommende
 To use Pixi locally on the base system run the following installation command.
 
 ```bash
-curl -fsSL https://pixi.sh/install.sh | bash
+curl -fsSL https://pixi.sh/install.sh | PIXI_VERSION=0.73.0 bash
 ```
 
 If using Docker, install [Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and [Docker Compose](https://docs.docker.com/compose/install/linux/#install-using-the-repository) on the host system, and enter the container prior to running any commands with the following.
@@ -121,7 +121,7 @@ to activate the environment(s).
 # ulimit -u 8192   # Increase process limit (helps for multi-GPU training)
 
 pixi s  # Activate environment, add -e for specific env,
-# Envs: gpu|ros2-humble-gpu|ros2-humble-cpu|ros2-jazzy-gpu|ros2-jazzy-cpu|genesis-gpu|genesis-ros2-humble-gpu|genesis-ros2-jazzy-gpu|isaaclab-gpu|isaaclab-ros2-humble-gpu|isaaclab-ros2-jazzy-gpu|isaaclab-gpu-latest|newton-gpu
+# Envs: gpu|ros2-humble-gpu|ros2-humble-cpu|ros2-jazzy-gpu|ros2-jazzy-cpu|genesis-gpu|genesis-ros2-humble-gpu|genesis-ros2-jazzy-gpu|isaaclab-gpu|isaaclab-gpu-latest|newton-gpu
 
 
 # On some systems (e.g., RHEL 9.4), you may need the following
@@ -129,6 +129,7 @@ pixi s  # Activate environment, add -e for specific env,
 # Isaac Lab v3.0.0-beta with Isaac Sim 6 includes both PhysX and Newton.
 # To use: pixi s -e isaaclab-gpu
 # To use the newer IsaacLab source pin: pixi s -e isaaclab-gpu-latest
+# ROS 2 and Isaac Lab use separate environments because their TBB ABI pins conflict.
 # To use standalone Newton: pixi s -e newton-gpu
 
 # For ROS, build the humble_ws (colcon build is auto-configured by humble_ws/colcon-defaults.yaml)
@@ -147,10 +148,12 @@ Here is where to put the entrypoints your user may care about.
 ### Adding a dependency to a retread pack (incremental)
 
 The `*-pack*/` directories are [pixi-build-retread](https://github.com/garylvov/pixi-build-retread)
-packs (backend pinned `>=4.4.0` from [prefix.dev/garylvov](https://prefix.dev/garylvov)). Each has
-a committed `retread-*.lock.json` capturing its resolved closure. uv is the only closure engine as
-of v4.4.0 (the legacy resolver was removed); the wheel closure is always computed by uv. Each pack
-sets `retread-courier-mode = "activation"`, so the bundled wheels install lazily on first `pixi
+packs (backend pinned `==4.10.9` from [prefix.dev/garylvov](https://prefix.dev/garylvov)). Retread
+emits target-qualified `retread-*.lock.json` closure locks during successful pack builds such as
+`pixi build --path <pack>`; commit those stable locks when generated, but not transient audit or
+probe-trace JSON. uv is the only closure engine as of v4.4.0 (the legacy resolver was removed); the
+wheel closure is always computed by uv.
+Each pack sets `retread-courier-mode = "activation"`, so the bundled wheels install lazily on first `pixi
 run`/`shell` via the activate.d self-heal guard -- no conda post-link script and **no
 `run-post-link-scripts = "insecure"`** in `.pixi/config.toml`. Conda/PyPI conflicts auto-resolved
 during a solve persist as overrides in each pack's `.retread` ledger.

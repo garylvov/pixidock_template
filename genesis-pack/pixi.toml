@@ -6,12 +6,9 @@ name = "genesis-pack"
 version = "1.1.1"
 
 [package.build]
-# Pinned EXACTLY to 4.6.3, not floated with >=. 4.6.3 is the only backend
-# validated end-to-end (it locks the 25-env imprint workspace green with zero
-# hand-written workaround pins). 4.6.4-4.6.7 are published but unproven, and
-# 4.6.4's PyPI-index change shifts the closure. Do not relax this to >= without
-# re-validating, or a fresh solve will silently pick a newer, unproven backend.
-backend = { name = "pixi-build-retread", version = "==4.6.3", channels = [
+# Keep the backend exact so a fresh solve cannot silently change its closure.
+# 4.10.9 avoids per-member metadata ranges and invalidates ZIP 2.4 wheel outputs.
+backend = { name = "pixi-build-retread", version = "==4.10.9", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/pixi-build-backends",
   "https://prefix.dev/conda-forge",
@@ -33,7 +30,10 @@ retread-python = "3.12"
 retread-bundle = "genesis-pack"
 
 [package.build.config.retread-wheels]
-genesis-world = { git = "https://github.com/Genesis-Embodied-AI/Genesis.git", rev = "8de7e456d10436f9fea908fafad59a01c58aea9c" }
+# The v1.1.1 Git tree contains required submodule gitlinks. Retread deliberately
+# refuses to build an uninitialized tree. Upstream publishes a wheel for the
+# corresponding exact v1.1.1 release (tagged at 8de7e456).
+genesis-world = { version = "==1.1.1" }
 "pyopengl-accelerate" = { version = "==3.1.10" }
 
 [package.build.config.retread-name-map]
