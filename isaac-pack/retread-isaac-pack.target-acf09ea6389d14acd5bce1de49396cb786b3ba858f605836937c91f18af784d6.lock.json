@@ -1,10 +1,10 @@
 {
   "schema": 12,
-  "retread_version": "4.10.17",
+  "retread_version": "4.10.21",
   "bundle": "isaac-pack",
   "version": "4.5.22",
   "python": "3.12",
-  "inputs_hash": "a131fc0f5753959f797acd84ba1bdef5698c3da61f200f5d7eadb8c3dfbcd826",
+  "inputs_hash": "9237339a9a9183fc415233ec9df97acb82b7cb49c5aa2d7e631fd5de31d51d65",
   "root_requirements": [
     "isaac-pack-pypi==4.5.22"
   ],
@@ -1048,21 +1048,6 @@
       "must_ship": false
     },
     {
-      "name": "lxml",
-      "version": "4.9.4",
-      "origin": "index",
-      "filename": "lxml-4.9.4-cp312-cp312-manylinux_2_28_x86_64.whl",
-      "url": "https://files.pythonhosted.org/packages/be/9e/5d88b189e91fae65140dc29904946297b3d9cfdf5449d4bc6e657a3ffc2d/lxml-4.9.4-cp312-cp312-manylinux_2_28_x86_64.whl",
-      "sha256": "e8f9f93a23634cfafbad6e46ad7d09e0f4a25a2400e4a64b1b7b7c0fbaa06d9d",
-      "requires_dist": [
-        "BeautifulSoup4 ; extra == 'htmlsoup'",
-        "Cython ==0.29.37 ; extra == 'source'",
-        "cssselect >=0.7 ; extra == 'cssselect'",
-        "html5lib ; extra == 'html5'"
-      ],
-      "must_ship": false
-    },
-    {
       "name": "mujoco-usd-converter",
       "version": "0.1.0",
       "origin": "index",
@@ -1965,6 +1950,10 @@
       "spec": ">=0.46.0,<0.47"
     },
     {
+      "name": "lxml",
+      "spec": ">=5.2.2,<7"
+    },
+    {
       "name": "moviepy",
       "spec": ""
     },
@@ -2091,6 +2080,10 @@
     {
       "name": "python_abi",
       "spec": "3.12.* *_cp312"
+    },
+    {
+      "name": "pytorch",
+      "spec": ">=2.10,<2.11"
     },
     {
       "name": "pytz",
@@ -9620,6 +9613,7 @@
     "ibm-platform-services",
     "ibm-quantum-schemas",
     "ibm-watson",
+    "ibm-watsonx-ai",
     "ibm-watsonx-orchestrate-clients",
     "ibm-watsonx-orchestrate-core",
     "ibmcloudant",
@@ -9729,6 +9723,7 @@
     "imaxt-multiscale-plugin",
     "imbalanced-learn",
     "imdclient",
+    "imdtrack",
     "imexam",
     "imf-reader",
     "img2pdf",
@@ -20042,6 +20037,9 @@
     "subprocess32",
     "subrun",
     "substrait",
+    "substrait-antlr",
+    "substrait-extensions",
+    "substrait-protobuf",
     "substrate-interface",
     "substring",
     "subsurface",

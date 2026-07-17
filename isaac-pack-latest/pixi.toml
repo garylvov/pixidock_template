@@ -7,8 +7,8 @@ version = "6.0.0"
 
 [package.build]
 # Keep the backend exact so a fresh solve cannot silently change its closure.
-# 4.10.10 also shortcuts directly unsatisfiable conda-route validations.
-backend = { name = "pixi-build-retread", version = "==4.10.17", channels = [
+# 4.10.21 validates routed dependencies against co-activated sibling packs.
+backend = { name = "pixi-build-retread", version = "==4.10.21", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/pixi-build-backends",
   "https://prefix.dev/conda-forge",
@@ -43,6 +43,10 @@ ipython = "==9.12.0"
 # packaging 26. Replace both wheel constraints graph-wide and retain the
 # conda-owned 26.x runtime selected by the workspace.
 packaging = ">=23,<27"
+# IsaacLab 3 requires dex-retargeting 0.5, which requires lxml>=5.2.2.
+# NVIDIA's usd-to-urdf 1.0.3 carries a stale lxml<5 metadata cap; replace it
+# with IsaacLab's newer direct floor so Retread can keep lxml on conda.
+lxml = ">=5.2.2,<7"
 
 [package.build.config.retread-git-sources.isaaclab]
 url = "https://github.com/isaac-sim/IsaacLab.git"
@@ -62,8 +66,3 @@ isaaclab-newton = { from = "isaaclab", subdirectory = "source/isaaclab_newton", 
 # sibling; its omitted kit/newton/rerun/viser subpackages are recovered from
 # source via injection.
 isaaclab-visualizers = { from = "isaaclab", subdirectory = "source/isaaclab_visualizers", extras = ["all"] }
-
-[package.build.config.retread-name-map]
-opencv-python = "py-opencv"
-opencv-python-headless = "py-opencv"
-torch = "pytorch"

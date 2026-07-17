@@ -1,10 +1,10 @@
 {
   "schema": 12,
-  "retread_version": "4.10.17",
+  "retread_version": "4.10.21",
   "bundle": "isaac-pack-latest",
   "version": "6.1.11",
   "python": "3.12",
-  "inputs_hash": "af7190ea5b262d3e3c1a0c41beaf1549abb575e5d32f94d1456678191df996d5",
+  "inputs_hash": "f09cba0d61fda14e56eefcaadf89585aebf7aaa22cf917309aff4fe092db2b1f",
   "root_requirements": [
     "isaac-pack-latest-pypi==6.1.11"
   ],
@@ -1868,6 +1868,10 @@
     {
       "name": "python_abi",
       "spec": "3.12.* *_cp312"
+    },
+    {
+      "name": "pytorch",
+      "spec": ">=2.10,<2.11"
     },
     {
       "name": "pytz",
@@ -9397,6 +9401,7 @@
     "ibm-platform-services",
     "ibm-quantum-schemas",
     "ibm-watson",
+    "ibm-watsonx-ai",
     "ibm-watsonx-orchestrate-clients",
     "ibm-watsonx-orchestrate-core",
     "ibmcloudant",
@@ -9506,6 +9511,7 @@
     "imaxt-multiscale-plugin",
     "imbalanced-learn",
     "imdclient",
+    "imdtrack",
     "imexam",
     "imf-reader",
     "img2pdf",
@@ -19819,6 +19825,9 @@
     "subprocess32",
     "subrun",
     "substrait",
+    "substrait-antlr",
+    "substrait-extensions",
+    "substrait-protobuf",
     "substrate-interface",
     "substring",
     "subsurface",

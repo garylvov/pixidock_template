@@ -1,10 +1,10 @@
 {
   "schema": 12,
-  "retread_version": "4.10.17",
+  "retread_version": "4.10.21",
   "bundle": "newton-pack-latest",
   "version": "1.3.0",
   "python": "3.12",
-  "inputs_hash": "48a7ea4b8ab739c29c3a953c04bb3a2d738196acff4419349451dd39797da5ad",
+  "inputs_hash": "65ef21c962398829e843d95ea4c442e5d4d35b77c21bf1b03441363667b6c1e1",
   "root_requirements": [
     "newton-pack-latest-pypi==1.3.0"
   ],
@@ -7528,6 +7528,7 @@
     "ibm-platform-services",
     "ibm-quantum-schemas",
     "ibm-watson",
+    "ibm-watsonx-ai",
     "ibm-watsonx-orchestrate-clients",
     "ibm-watsonx-orchestrate-core",
     "ibmcloudant",
@@ -7637,6 +7638,7 @@
     "imaxt-multiscale-plugin",
     "imbalanced-learn",
     "imdclient",
+    "imdtrack",
     "imexam",
     "imf-reader",
     "img2pdf",
@@ -17950,6 +17952,9 @@
     "subprocess32",
     "subrun",
     "substrait",
+    "substrait-antlr",
+    "substrait-extensions",
+    "substrait-protobuf",
     "substrate-interface",
     "substring",
     "subsurface",
