@@ -8,7 +8,7 @@ version = "1.3.0"
 [package.build]
 # Keep the backend exact so a fresh solve cannot silently change its closure.
 # 4.10.10 also shortcuts directly unsatisfiable conda-route validations.
-backend = { name = "pixi-build-retread", version = "==4.10.10", channels = [
+backend = { name = "pixi-build-retread", version = "==4.10.17", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/pixi-build-backends",
   "https://prefix.dev/conda-forge",
