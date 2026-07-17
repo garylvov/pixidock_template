@@ -1,0 +1,39 @@
+# Retread source package for Genesis World.
+# The root pixi.toml consumes this as `genesis-pack = { path = "./genesis-pack" }`.
+
+[package]
+name = "genesis-pack"
+version = "1.1.1"
+
+[package.build]
+# Keep the backend exact so a fresh solve cannot silently change its closure.
+# 4.10.21 validates routed dependencies against co-activated sibling packs.
+backend = { name = "pixi-build-retread", version = "==4.10.21", channels = [
+  "https://prefix.dev/garylvov",
+  "https://prefix.dev/pixi-build-backends",
+  "https://prefix.dev/conda-forge",
+] }
+
+[package.build.config]
+# Treat the exact backend pin as part of the committed solve-record identity.
+retread-pin-version = true
+# courier mode is the default (v2.1.0+). retread-courier-mode = "activation"
+# installs the bundled wheels lazily on first `pixi run`/`shell` via the
+# activate.d self-heal guard -- no conda post-link script, so no
+# `run-post-link-scripts = "insecure"` is needed in the consumer's .pixi/config.toml.
+retread-courier-mode = "activation"
+retread-relax = "patch-then-minor-then-major-then-last-resort"
+retread-build-number = 0
+retread-python = "3.12"
+# uv is the only closure engine as of v4.4.0 (the legacy resolver knob was
+# removed); the wheel closure is always computed by uv.
+# v1.4.0+ pack-wide default bundle group: collapses every entry below into one
+# conda output named `genesis-pack`.
+retread-bundle = "genesis-pack"
+
+[package.build.config.retread-wheels]
+# The v1.1.1 Git tree contains required submodule gitlinks. Retread deliberately
+# refuses to build an uninitialized tree. Upstream publishes a wheel for the
+# corresponding exact v1.1.1 release (tagged at 8de7e456).
+genesis-world = { version = "==1.1.1" }
+"pyopengl-accelerate" = { version = "==3.1.10" }

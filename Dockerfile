@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -fsSL https://pixi.sh/install.sh | bash
+ARG PIXI_VERSION=0.73.0
+RUN curl -fsSL https://pixi.sh/install.sh | env PIXI_VERSION="${PIXI_VERSION}" bash
 ENV PATH="/root/.pixi/bin:${PATH}"
 WORKDIR /workspace
 COPY . /workspace/
