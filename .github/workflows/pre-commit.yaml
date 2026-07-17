@@ -30,4 +30,4 @@ jobs:
 
       - name: Run lint
         run: |
-          pixi run --environment test lint
+          pixi run --frozen --environment test lint

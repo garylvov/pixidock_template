@@ -30,4 +30,4 @@ jobs:
 
       - name : Run test
         run: |
-          pixi run --environment test test
+          pixi run --frozen --environment test test
