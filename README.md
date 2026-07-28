@@ -148,7 +148,7 @@ Here is where to put the entrypoints your user may care about.
 ### Adding a dependency to a retread pack (incremental)
 
 The `*-pack*/` directories are [pixi-build-retread](https://github.com/garylvov/pixi-build-retread)
-packs (backend pinned `==4.10.9` from [prefix.dev/garylvov](https://prefix.dev/garylvov)). Retread
+packs (backend pinned `==4.10.42` from [prefix.dev/garylvov](https://prefix.dev/garylvov)). Retread
 emits target-qualified `retread-*.lock.json` closure locks during successful pack builds such as
 `pixi build --path <pack>`; commit those stable locks when generated, but not transient audit or
 probe-trace JSON. uv is the only closure engine as of v4.4.0 (the legacy resolver was removed); the

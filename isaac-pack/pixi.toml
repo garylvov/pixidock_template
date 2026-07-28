@@ -7,8 +7,8 @@ version = "6.0.0"
 
 [package.build]
 # Keep the backend exact so a fresh solve cannot silently change its closure.
-# 4.10.21 validates routed dependencies against co-activated sibling packs.
-backend = { name = "pixi-build-retread", version = "==4.10.21", channels = [
+# 4.10.42 validates routed dependencies against co-activated sibling packs.
+backend = { name = "pixi-build-retread", version = "==4.10.42", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/pixi-build-backends",
   "https://prefix.dev/conda-forge",
@@ -23,7 +23,7 @@ retread-pin-version = true
 # `run-post-link-scripts = "insecure"` is needed in the consumer's .pixi/config.toml.
 retread-courier-mode = "activation"
 retread-relax = "patch-then-minor-then-major-then-last-resort"
-retread-build-number = 2
+retread-build-number = 3
 retread-python = "3.12"
 # uv is the only closure engine as of v4.4.0 (the legacy resolver knob was
 # removed); the wheel closure is always computed by uv.
@@ -37,9 +37,6 @@ retread-conda-deps = ["flatdict"]
 retread-bundle = "isaac-pack"
 
 [package.build.config.retread-overrides]
-# IPython 9.13+ requires psutil>=7, incompatible with Isaac Sim 6's exact
-# psutil==5.9.8 requirement. 9.12.0 is the newest compatible release.
-ipython = "==9.12.0"
 # IsaacLab RL carries the stale cap packaging<24 while Isaac Sim 6 requires
 # packaging 26. Replace both wheel constraints graph-wide; this matches the
 # proven IsaacLab v3.0.0-beta uv baseline and keeps the conda-owned 26.x fact.
