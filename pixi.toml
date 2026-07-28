@@ -2,8 +2,8 @@
 channels = ["https://prefix.dev/conda-forge"]
 name = "TEMPLATE"
 platforms = [
-  { name = "linux-64-base", platform = "linux-64" },
-  { name = "linux-64-cuda-12", platform = "linux-64", cuda = "12" },
+  { name = "linux-64-base", platform = "linux-64", glibc = "2.34" },
+  { name = "linux-64-cuda-12", platform = "linux-64", cuda = "12", glibc = "2.34" },
   { name = "linux-64-cuda-12-glibc-2-35", platform = "linux-64", cuda = "12", glibc = "2.35" },
 ]
 version = "0.1.0"
