@@ -100,6 +100,22 @@ To use Pixi locally on the base system run the following installation command.
 curl -fsSL https://pixi.sh/install.sh | PIXI_VERSION=0.73.0 bash
 ```
 
+This workspace contains source packs and is exposed to a Pixi build-dispatch
+race during concurrent solves. After cloning and installing Pixi, serialize
+solves for this checkout:
+
+```bash
+pixi config set --local concurrency.solves 1
+```
+
+This writes `.pixi/config.toml`, which this template ignores, so repeat the
+command in every clone. It prevents a single `pixi install --all` from
+concurrent-solving source packs into the `build dispatch initialization failed:
+failed to build <pack>` error. It does not make two Pixi processes safe: they
+can still race at `pixi_core/src/lock_file/resolve/build_dispatch.rs:477` and
+panic with `could not initialize build dispatch correctly`, so do not run two
+against the same checkout concurrently.
+
 If using Docker, install [Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and [Docker Compose](https://docs.docker.com/compose/install/linux/#install-using-the-repository) on the host system, and enter the container prior to running any commands with the following.
 
 ```bash
