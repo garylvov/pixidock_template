@@ -164,7 +164,7 @@ Here is where to put the entrypoints your user may care about.
 ### Adding a dependency to a retread pack (incremental)
 
 The `*-pack*/` directories are [pixi-build-retread](https://github.com/garylvov/pixi-build-retread)
-packs (backend pinned `==4.10.42` from [prefix.dev/garylvov](https://prefix.dev/garylvov)). Retread
+packs (backend pinned `==4.10.45` from [prefix.dev/garylvov](https://prefix.dev/garylvov)). Retread
 emits target-qualified `retread-*.lock.json` closure locks during successful pack builds such as
 `pixi build --path <pack>`; commit those stable locks when generated, but not transient audit or
 probe-trace JSON. uv is the only closure engine as of v4.4.0 (the legacy resolver was removed); the
@@ -173,6 +173,15 @@ Each pack sets `retread-courier-mode = "activation"`, so the bundled wheels inst
 run`/`shell` via the activate.d self-heal guard -- no conda post-link script and **no
 `run-post-link-scripts = "insecure"`** in `.pixi/config.toml`. Conda/PyPI conflicts auto-resolved
 during a solve persist as overrides in each pack's `.retread` ledger.
+
+GPU-only MuJoCo dependencies are split by their locked closure families:
+`gpu-extras-pack/` carries MuJoCo/MJX 3.11 for ordinary GPU environments on
+NumPy 2.5, while `isaac-gpu-extras-pack/` carries the same roots for the
+Isaac environments pinned to NumPy 2.3.1. The Newton pack carries MJX 3.8.1,
+while `[feature.newton]` retains conda `mujoco-python` 3.8.x ownership. This
+avoids duplicate bindings and preserves every prior solve. PyTorch3D remains
+a documented feature-level exception because Retread 4.10.45 rejects its only
+upstream wheel's plain `linux_x86_64` platform tag.
 
 To add a dependency to a pack, add it under `[package.build.config.retread-wheels]` in the
 pack's `pixi.toml`, then install with `RETREAD_INCREMENTAL=1`:

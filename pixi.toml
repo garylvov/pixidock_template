@@ -52,22 +52,24 @@ cpu = { features = ["platform-base", "cpu"] } # All you need for bare-bones
 test = { features = ["platform-base", "test", "cpu"] } # This environment is relied upon by default by the CI
 
 ## The following environment combinations are optional and can safely be removed if not needed.
-gpu = { features = ["platform-cuda", "gpu", ] }
-test-gpu = { features = ["platform-cuda", "gpu", "test", ] }
-ros2-humble-gpu = { features = ["platform-cuda", "gpu", "ros2-humble", ]}
+gpu = { features = ["platform-cuda", "gpu", "gpu-extras", ] }
+test-gpu = { features = ["platform-cuda", "gpu", "gpu-extras", "test", ] }
+ros2-humble-gpu = { features = ["platform-cuda", "gpu", "gpu-extras", "ros2-humble", ]}
 ros2-humble-cpu = { features = ["platform-base", "cpu", "ros2-humble"]}
-genesis-gpu = { features = ["platform-cuda", "gpu", "genesis"]}
-genesis-ros2-humble-gpu = { features = ["platform-cuda", "gpu", "genesis", "ros2-humble", ]} # Advanced users ;)
+genesis-gpu = { features = ["platform-cuda", "gpu", "gpu-extras", "genesis"]}
+genesis-ros2-humble-gpu = { features = ["platform-cuda", "gpu", "gpu-extras", "genesis", "ros2-humble", ]} # Advanced users ;)
 
 # Isaac Lab v3.0.0-beta pack includes Isaac Sim 6, PhysX, and Newton.
-isaaclab-gpu = { features = ["platform-isaac", "isaaclab", "gpu"] }
-isaaclab-gpu-latest = { features = ["platform-isaac", "isaaclab-latest", "gpu"] }
+# Isaac's NumPy 2.3.1 pin requires a separate MuJoCo 3.11 closure from the
+# ordinary GPU environments' NumPy 2.5 line.
+isaaclab-gpu = { features = ["platform-isaac", "isaaclab", "gpu", "isaac-gpu-extras"] }
+isaaclab-gpu-latest = { features = ["platform-isaac", "isaaclab-latest", "gpu", "isaac-gpu-extras"] }
 newton-gpu = { features = ["platform-cuda", "newton", "gpu"] }
 
 # ROS 2 Jazzy variants (mirror the Humble envs; see [feature.ros2-jazzy]).
-ros2-jazzy-gpu = { features = ["platform-cuda", "gpu", "ros2-jazzy"] }
+ros2-jazzy-gpu = { features = ["platform-cuda", "gpu", "gpu-extras", "ros2-jazzy"] }
 ros2-jazzy-cpu = { features = ["platform-base", "cpu", "ros2-jazzy"] }
-genesis-ros2-jazzy-gpu = { features = ["platform-cuda", "gpu", "genesis", "ros2-jazzy"] }
+genesis-ros2-jazzy-gpu = { features = ["platform-cuda", "gpu", "gpu-extras", "genesis", "ros2-jazzy"] }
 # Keep ROS 2 and Isaac Lab in separate environments: Isaac Sim's OpenUSD 25.8
 # pins TBB 2021.13, while the ROS GPU stack requires TBB 2022.3 or newer.
 # Now, for the other environment configurations.
@@ -111,12 +113,20 @@ torchaudio = "==2.10.0"
 imageio = ">=2.37.0,<3"
 scikit-image = ">=0.25.2,<0.26"
 
+[feature.gpu-extras.dependencies]
+# Common MuJoCo 3.11 closure for the ordinary GPU environments on NumPy 2.5.
+gpu-extras-pack = { path = "./gpu-extras-pack" }
+
+[feature.isaac-gpu-extras.dependencies]
+# Isaac carries the same MuJoCo/MJX roots but retains its exact NumPy 2.3.1
+# ownership. Newton's MuJoCo 3.8 closure remains in newton-pack-latest.
+isaac-gpu-extras-pack = { path = "./isaac-gpu-extras-pack" }
+
 [feature.gpu.pypi-dependencies]
-# Special thank you to @MiroPsota for these wheels
-# https://github.com/facebookresearch/pytorch3d/discussions/1752?
+# Retread 4.10.45 parses this local-version pin, but rejects the only upstream
+# wheel's plain linux_x86_64 tag for the declared manylinux target. Pixi accepts
+# that wheel directly, so keep this one compatibility exception feature-owned.
 pytorch3d = { version = "==0.7.9+d9839a9pt2.10.0cu128", index = "https://miropsota.github.io/torch_packages_builder" }
-mujoco = ">=3.3.3"
-mujoco-mjx = "*"
 
 #### Genesis Simulation Environment------------------------------------------------------------
 [feature.genesis.dependencies]
