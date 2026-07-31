@@ -7,7 +7,7 @@ version = "0.1.0"
 
 [package.build]
 # Keep the backend exact so a fresh solve cannot silently change its closure.
-backend = { name = "pixi-build-retread", version = "==4.10.45", channels = [
+backend = { name = "pixi-build-retread", version = "==4.10.47", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/pixi-build-backends",
   "https://prefix.dev/conda-forge",
