@@ -8,7 +8,7 @@ version = "6.0.0"
 [package.build]
 # Keep the backend exact so a fresh solve cannot silently change its closure.
 # 4.10.42 validates routed dependencies against co-activated sibling packs.
-backend = { name = "pixi-build-retread", version = "==4.10.71", channels = [
+backend = { name = "pixi-build-retread", version = "==4.10.75", channels = [
   "https://prefix.dev/garylvov",
   "https://prefix.dev/pixi-build-backends",
   "https://prefix.dev/conda-forge",
