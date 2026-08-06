@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -21,10 +21,13 @@ jobs:
           bash scripts/get_submodules_and_patches.bash
 
       - name: Install Pixi
-        uses: prefix-dev/setup-pixi@v0.8.8
+        uses: prefix-dev/setup-pixi@v0.10.0
         with:
-          pixi-version: v0.62.2
+          pixi-version: v0.73.0
+          # Consume the committed Retread source-package records verbatim.
+          # Re-solving here needlessly reopens unrelated upstream drift.
+          frozen: true
 
       - name : Run test
         run: |
-          pixi run --environment test test
+          pixi run --frozen --environment test test

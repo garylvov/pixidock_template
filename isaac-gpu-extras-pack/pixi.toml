@@ -1,0 +1,29 @@
+# Retread source package for Isaac environments' GPU PyPI closure.
+# The root pixi.toml consumes this through [feature.isaac-gpu-extras].
+
+[package]
+name = "isaac-gpu-extras-pack"
+version = "0.1.0"
+
+[package.build]
+# Keep the backend exact so a fresh solve cannot silently change its closure.
+backend = { name = "pixi-build-retread", version = "==4.10.76", channels = [
+  "https://prefix.dev/garylvov",
+  "https://prefix.dev/pixi-build-backends",
+  "https://prefix.dev/conda-forge",
+] }
+
+[package.build.config]
+retread-pin-version = true
+retread-courier-mode = "activation"
+retread-relax = "patch-then-minor-then-major-then-last-resort"
+retread-build-number = 0
+retread-python = "3.12"
+retread-compression-level = 1
+retread-bundle = "isaac-gpu-extras-pack"
+# Both consuming Isaac environments own NumPy at exactly 2.3.1.
+retread-conda-deps = ["numpy"]
+
+[package.build.config.retread-wheels]
+mujoco = { version = "==3.11.0" }
+mujoco-mjx = { version = "==3.11.0" }

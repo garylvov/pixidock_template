@@ -1,0 +1,20 @@
+# Contains colcon default settings for user overlay containers.
+# Thank you to Sebastian Castro for the Colcon home file tip!
+# Taken from https://github.com/PickNikRobotics/moveit_pro_example_ws/blob/main/colcon-defaults.yaml
+build:
+  symlink-install: true
+  # https://colcon.readthedocs.io/en/released/reference/executor-arguments.html
+  executor: parallel
+  # num_paralel_workers : auto configured to be number of CPU cores by default with 'parallel' executor
+  # Limit package discovery to humble_ws/src
+  base-paths:
+    - humble_ws/src
+  build-base: humble_ws/build
+  install-base: humble_ws/install
+  # Need to add packages to build here
+  # To build your package, clone it into humble_ws/src, and add its name to packages-select below.
+  packages-select:
+    - synchros2
+  cmake-args:
+    - -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    - -DCMAKE_BUILD_TYPE=RelWithDebInfo

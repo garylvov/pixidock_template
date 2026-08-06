@@ -1,0 +1,31 @@
+# Retread source package for the common non-Newton GPU PyPI closure.
+# The root pixi.toml consumes this through [feature.gpu-extras].
+
+[package]
+name = "gpu-extras-pack"
+version = "0.1.0"
+
+[package.build]
+# Keep the backend exact so a fresh solve cannot silently change its closure.
+backend = { name = "pixi-build-retread", version = "==4.10.76", channels = [
+  "https://prefix.dev/garylvov",
+  "https://prefix.dev/pixi-build-backends",
+  "https://prefix.dev/conda-forge",
+] }
+
+[package.build.config]
+retread-pin-version = true
+# Activation courier mode installs the bundled wheels lazily without an
+# insecure conda post-link script.
+retread-courier-mode = "activation"
+retread-relax = "patch-then-minor-then-major-then-last-resort"
+retread-build-number = 0
+retread-python = "3.12"
+retread-compression-level = 1
+retread-bundle = "gpu-extras-pack"
+
+[package.build.config.retread-wheels]
+# These exact versions preserve the pre-migration lock for every non-Newton
+# GPU environment. Newton's 3.8 family lives in newton-pack-latest instead.
+mujoco = { version = "==3.11.0" }
+mujoco-mjx = { version = "==3.11.0" }
